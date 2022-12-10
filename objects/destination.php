@@ -1,22 +1,16 @@
 <?php
 
-class Organization 
+class Destination 
 {
-    private $id;
-    private $name;
-    private $mail;
-    private $password;
-    private $image;
-    private $about;
-    private $enabled;
+    protected $id;
+    protected $name;
+    protected $coordinates;
+    protected $country;
 
-    public function __construct($name=null, $mail=null, $password=null, $image=null, $about=null, $enabled=null)
+    public function __construct($name=null, $coordinates=null, $country=null)
     {
         $this->name=$name;
-        $this->mail=$mail;
-        $this->password=$password;
-        $this->image=$image;
-        $this->enabled=$about;
-        $this->about=$enabled;
+        $this->coordinates=$coordinates;
+        $this->country=$country;
     }
 }

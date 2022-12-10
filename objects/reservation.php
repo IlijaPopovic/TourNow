@@ -1,22 +1,18 @@
 <?php
 
-class Organization 
+class Reservation 
 {
-    private $id;
-    private $name;
-    private $mail;
-    private $password;
-    private $image;
-    private $about;
-    private $enabled;
+    protected $id;
+    protected $checked;
+    protected $tour_group;
+    protected $user_id;
+    protected $tour_id;
 
-    public function __construct($name=null, $mail=null, $password=null, $image=null, $about=null, $enabled=null)
+    public function __construct($checked=null, $tour_group=null, $user_id=null, $tour_id=null)
     {
-        $this->name=$name;
-        $this->mail=$mail;
-        $this->password=$password;
-        $this->image=$image;
-        $this->enabled=$about;
-        $this->about=$enabled;
+        $this->checked=$checked;
+        $this->tour_group=$tour_group;
+        $this->user_id=$user_id;
+        $this->tour_id=$tour_id;
     }
 }

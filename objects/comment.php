@@ -2,9 +2,9 @@
 
 class Comment 
 {
-    private $id;
-    private $grade;
-    private $opinion;
+    protected $id;
+    protected $grade;
+    protected $opinion;
 
     public function __construct($grade=null, $opinion=null)
     {

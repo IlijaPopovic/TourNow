@@ -1,22 +1,20 @@
 <?php
 
-class Organization 
+class Transport 
 {
-    private $id;
-    private $name;
-    private $mail;
-    private $password;
-    private $image;
-    private $about;
-    private $enabled;
+    protected $id;
+    protected $name;
+    protected $type;
+    protected $start;
+    protected $end;
+    protected $tour_id;
 
-    public function __construct($name=null, $mail=null, $password=null, $image=null, $about=null, $enabled=null)
+    public function __construct($name=null, $type=null, $start=null, $end=null, $tour_id=null)
     {
         $this->name=$name;
-        $this->mail=$mail;
-        $this->password=$password;
-        $this->image=$image;
-        $this->enabled=$about;
-        $this->about=$enabled;
+        $this->type=$type;
+        $this->start=$start;
+        $this->end=$end;
+        $this->enabled=$tour_id;
     }
 }
