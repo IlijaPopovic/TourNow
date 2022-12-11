@@ -1,6 +1,8 @@
 <?php
 
-class Tour 
+require 'table.php';
+
+class Tour extends Table
 {
     protected $connection;
     protected $id;
@@ -29,16 +31,41 @@ class Tour
         $this->location_id=$location_id;
     }
 
-    public function getTour()
+    public function insertTour():array
     {
         $query = <<<EOD
-                Example of string
-                spanning multiple lines
-                using heredoc syntax.
+                INSERT INTO `tour` (`id`, `name`, `date_start`, `date_end`, `description`, `max_people`, `type`, `price`, `enabled`, `organisation_id`, `location_id`) 
+                VALUES (NULL, :name, :date_start, :date_end, :description, :max_people, :type, :price, :enabled, :organisation_id, :location_id);
                 EOD;
-        $query_solution = $this->connection->prepare($query);
-        $query_solution->execute();
-        $array = $query_solution->fetchAll(PDO::FETCH_ASSOC);
-        return $array;
+        $params = ['name', 'date_start', 'date_end', 'description', 'max_people', 'type', 'price', 'enabled', 'organisation_id', 'location_id'];
+        return parent::insert($query, $params);
+    }
+
+    public function deleteTour():array
+    {
+        $query = <<<EOD
+                DELETE FROM `tour` WHERE `tour`.`id` = :id
+                EOD;
+        $params = ['id'];
+        return parent::delete($query, $params);
+    }
+
+    public function selectTour():array
+    {
+        $query = <<<EOD
+                SELECT * FROM `tour` WHERE `tour`.`id` = :id
+                EOD;
+        $params = ['id'];
+        return parent::select($query, $params);
+    }
+
+    public function updateTour():array
+    {
+        $query = <<<EOD
+                UPDATE `tour` SET `name` = :name, `date_start` = :date_start, `date_end` = :date_end, `description` = :description, `max_people` = :max_people, `type` = :type, `price` = :price, `enabled` = :enabled
+                WHERE `tour`.`id` = :id;
+                EOD;
+        $params = ['id', 'name', 'date_start', 'date_end', 'description', 'max_people', 'type', 'price', 'enabled',];
+        return parent::update($query, $params);
     }
 }

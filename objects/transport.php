@@ -1,6 +1,8 @@
 <?php
 
-class Transport 
+require 'table.php';
+
+class Transport extends Table
 {
     protected $id;
     protected $name;
@@ -15,6 +17,45 @@ class Transport
         $this->type=$type;
         $this->start=$start;
         $this->end=$end;
-        $this->enabled=$tour_id;
+        $this->tour_id=$tour_id;
+    }
+
+    public function insertTransport():array
+    {
+        $query = <<<EOD
+                INSERT INTO `Transport` (`id`, `name`, `type`, `start`, `end`, `tour_id`) 
+                VALUES (NULL, :name, :type, :start, :end, :tour_id);
+                EOD;
+        $params = ['name', 'type', 'start', 'end', 'tour_id'];
+        return parent::insert($query, $params);
+    }
+
+    public function deleteTransport():array
+    {
+        $query = <<<EOD
+                DELETE FROM `transport` WHERE `transport`.`id` = :id
+                EOD;
+        $params = ['id'];
+        return parent::delete($query, $params);
+    }
+
+    public function selectTransport():array
+    {
+        $query = <<<EOD
+                SELECT * FROM `transport` WHERE `transport`.`id` = :id
+                EOD;
+        $params = ['id'];
+        return parent::select($query, $params);
+    }
+
+    public function updateTransport():array
+    {
+        $query = <<<EOD
+                UPDATE `Transport` 
+                SET `name` = :name, `type` = :type, `start` = :start, `end` = :end 
+                WHERE `Transport`.`id` = :id;
+                EOD;
+        $params = ['id', 'name', 'type', 'start', 'end'];
+        return parent::update($query, $params);
     }
 }

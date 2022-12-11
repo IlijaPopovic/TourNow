@@ -1,11 +1,9 @@
 <?php
 
-require 'traits/open.php';
 require 'table.php';
 
 class Accommodation extends Table
 {
-    use Open;
 
     protected $id;
     protected $name;
@@ -22,6 +20,45 @@ class Accommodation extends Table
         $this->about = $about;
         $this->enabled = $enabled;
     }
+
+    public function insertAccommodation():array
+    {
+        $query = <<<EOD
+                INSERT INTO `accommodation` (`id`, `name`, `stars`, `picture`, `about`, `enabled`) 
+                VALUES (NULL, :name, :stars, :picture, :about, :enabled);
+                EOD;
+        $params = ['name','stars','picture','about','enabled'];
+        return parent::insert($query, $params);
+    }
+
+    public function deleteAccommodation():array
+    {
+        $query = <<<EOD
+                DELETE FROM `accommodation` WHERE `accommodation`.`id` = :id"
+                EOD;
+        $params = ['id'];
+        return parent::delete($query, $params);
+    }
+
+    public function selectAccommodation():array
+    {
+        $query = <<<EOD
+                SELECT * FROM `accommodation` WHERE `accommodation`.`id` = :id
+                EOD;
+        $params = ['id'];
+        return parent::select($query, $params);
+    }
+
+    public function updateAccommodation():array
+    {
+        $query = <<<EOD
+                UPDATE `accommodation` 
+                SET `name` = :name, `stars` = :stars, `picture` = :picture, `about` = :about, `enabled` = :enabled 
+                WHERE `accommodation`.`id` = :id;
+                EOD;
+        $params = ['id','name','stars','picture','about','enabled'];
+        return parent::update($query, $params);
+    }
 }
 
 
@@ -32,10 +69,8 @@ class Accommodation extends Table
 // $a = new Accommodation('ilija','1','nekaslika','ja sam ilija',true);
 // $a->setConnection($db->getConnection());
 
-// $query = <<<EOD
-// INSERT INTO `accommodation` (`id`, `name`, `stars`, `picture`, `about`, `enabled`) 
-// VALUES (NULL, :name, :stars, :picture, :about, :enabled);
-// EOD;
-// $params = ['name','stars','picture','about','enabled'];
-// var_dump($a->insert($query, $params));
+// $a->id=2;
+// var_dump($a->updateAccommodation());
+
+
 

@@ -14,13 +14,13 @@ class Table
         $bindedValues = [];
         foreach($parameters as $parameter)
         {
-            if(property_exists($this,$parameter))
+            if(property_exists($this, $parameter))
                 $bindedValues[":$parameter"] = $this->$parameter;
         }
         return $bindedValues;
     }
 
-    public function select(string $query, array $parameters):array
+    protected function select(string $query, array $parameters):array
     {
         $query_solution = $this->connection->prepare($query);
         $query_solution->execute($this->bindParameters($parameters));
@@ -28,7 +28,7 @@ class Table
         return $array;
     }
 
-    public function insert(string $query, array $parameters):array
+    protected function insert(string $query, array $parameters):array
     {
         try
         {
@@ -42,7 +42,7 @@ class Table
         return ['status' => 'inserted'];
     }
 
-    public function delete(string $query, array $parameters):array
+    protected function delete(string $query, array $parameters):array
     {
         try
         {
@@ -54,5 +54,19 @@ class Table
             return ['status' => $e->getMessage()];
         }
         return ['status' => 'deleted'];
+    }
+
+    protected function update(string $query, array $parameters):array
+    {
+        try
+        {
+            $query_solution = $this->connection->prepare($query);
+            $query_solution->execute($this->bindParameters($parameters));
+        }
+        catch (PDOException $e) 
+        {
+            return ['status' => $e->getMessage()];
+        }
+        return ['status' => 'updated'];
     }
 }
