@@ -1,9 +1,11 @@
 <?php
 
 require 'table.php';
+require 'traits/open.php';
 
 class User extends Table
 {
+    use open;
     protected $id;
     protected $name;
     protected $surname;
@@ -15,7 +17,7 @@ class User extends Table
     protected $mobile_number;
     protected $image;
 
-    public function __construct($name=null, $surname=null, $identity_number=null, $country=null, $address=null, $mail=null, $password=null, $mobile_number=null, $image=null)
+    public function __construct($name=null, $surname=null, $identity_number=null, $country=null, $mail=null, $address=null, $password=null, $mobile_number=null, $image=null)
     {
         $this->name=$name;
         $this->surname=$surname;
@@ -31,10 +33,10 @@ class User extends Table
     public function insertUser():array
     {
         $query = <<<EOD
-                INSERT INTO `user` (`id`, `name`, `surname`, `identity_number`, `country`, `address`, `mail`, `password`, `mobile_number`, `image`, `created`)
-                VALUES (NULL, :name, :surname, :identity_number, :country, :address, :mail, :password, :mobile_number, :image, :created);
+                INSERT INTO `user` (`id`, `name`, `surname`, `identity_number`, `country`, `address`, `mail`, `password`, `mobile_number`, `image`)
+                VALUES (NULL, :name, :surname, :identity_number, :country, :address, :mail, :password, :mobile_number, :image);
                 EOD;
-        $params = ['name', 'surname', 'identity_number', 'country', 'address', 'mail', 'password', 'mobile_number', 'image', 'created'];
+        $params = ['name', 'surname', 'identity_number', 'country', 'address', 'mail', 'password', 'mobile_number', 'image'];
         return parent::insert($query, $params);
     }
 

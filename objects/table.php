@@ -15,7 +15,7 @@ class Table
         foreach($parameters as $parameter)
         {
             if(property_exists($this, $parameter))
-                $bindedValues[":$parameter"] = $this->$parameter;
+                $bindedValues[":$parameter"] = $this->$parameter; 
         }
         return $bindedValues;
     }

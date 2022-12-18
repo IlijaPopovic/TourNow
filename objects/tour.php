@@ -4,7 +4,6 @@ require 'table.php';
 
 class Tour extends Table
 {
-    protected $connection;
     protected $id;
     protected $name;
     protected $date_start;
@@ -15,29 +14,29 @@ class Tour extends Table
     protected $price;
     protected $enabled;
     protected $organisation_id;
-    protected $location_id;
+    protected $destination_id;
 
-    public function __construct($name=null, $date_start=null, $date_end=null, $description=null, $max_people=null, $type=null, $price, $enabled=null, $organisation_id=null, $location_id=null)
+    public function __construct($name=null, $date_start=null, $date_end=null, $description=null, $max_people=null, $type=null, $price=null, $enabled=null, $organisation_id=null, $destination_id=null)
     {
-        $this->name=$name;
-        $this->date_start=$date_start;
-        $this->date_end=$date_end;
-        $this->description=$description;
-        $this->max_people=$max_people;
-        $this->type=$type;
+        $this->name = $name;
+        $this->date_start = $date_start;
+        $this->date_end = $date_end;
+        $this->description = $description;
+        $this->max_people = $max_people;
+        $this->type = $type;
         $this->price = $price;
         $this->enabled = $enabled;
-        $this->organisation_id=$organisation_id;
-        $this->location_id=$location_id;
+        $this->organisation_id = $organisation_id;
+        $this->destination_id = $destination_id;
     }
 
     public function insertTour():array
     {
         $query = <<<EOD
-                INSERT INTO `tour` (`id`, `name`, `date_start`, `date_end`, `description`, `max_people`, `type`, `price`, `enabled`, `organisation_id`, `location_id`) 
-                VALUES (NULL, :name, :date_start, :date_end, :description, :max_people, :type, :price, :enabled, :organisation_id, :location_id);
+                INSERT INTO `tour` (`id`, `name`, `date_start`, `date_end`, `description`, `max_people`, `type`, `price`, `enabled`, `organisation_id`, `destination_id`) 
+                VALUES (NULL, :name, :date_start, :date_end, :description, :max_people, :type, :price, :enabled, :organisation_id, :destination_id);
                 EOD;
-        $params = ['name', 'date_start', 'date_end', 'description', 'max_people', 'type', 'price', 'enabled', 'organisation_id', 'location_id'];
+        $params = ['name', 'date_start', 'date_end', 'description', 'max_people', 'type', 'price', 'enabled', 'organisation_id', 'destination_id'];
         return parent::insert($query, $params);
     }
 
