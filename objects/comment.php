@@ -10,8 +10,9 @@ class Comment extends Table
     protected $user_id;
     protected $tour_id;
 
-    public function __construct($grade=null, $opinion=null, $user_id=null, $tour_id=null)
+    public function __construct($id=null, $grade=null, $opinion=null, $user_id=null, $tour_id=null)
     {
+        $this->id = $id;
         $this->grade = $grade;
         $this->opinion = $opinion;
         $this->user_id = $user_id;
@@ -21,10 +22,10 @@ class Comment extends Table
     public function insertComment():array
     {
         $query = <<<EOD
-                INSERT INTO `commnet` (`id`, `grade`, `opinion`, `created`, `user_id`, `tour_id`) 
-                VALUES (NULL, :grade, :opinion, :created, :user_id, :tour_id)
+                INSERT INTO `commnet` (`id`, `grade`, `opinion`, `user_id`, `tour_id`) 
+                VALUES (NULL, :grade, :opinion, :user_id, :tour_id)
                 EOD;
-        $params = ['grade','opinion','created','user_id', 'tour_id'];
+        $params = ['grade','opinion', 'user_id', 'tour_id'];
         return parent::insert($query, $params);
     }
 
