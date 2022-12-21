@@ -12,7 +12,7 @@ if($statusFile['status'] == 'uploaded')
 
 $organisation = new Organisation
 (
-    null,
+    isset($_POST['id']) ? $_POST['id'] : die(),
     isset($_POST['name']) ? $_POST['name'] : die(), 
     isset($_POST['mail']) ? $_POST['mail'] : die(), 
     isset($_POST['password']) ? $_POST['password'] : die(), 
@@ -24,5 +24,5 @@ $organisation = new Organisation
 $db = new Database();
 $organisation->setConnection($db->getConnection());
 
-print_r($organisation->insertOrganisation());
+print_r($organisation->updateOrganisation());
 

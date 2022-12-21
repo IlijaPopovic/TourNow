@@ -1,6 +1,6 @@
 <?php
 
-require 'table.php';
+require_once 'table.php';
 
 class Destination extends Table
 {
@@ -9,8 +9,9 @@ class Destination extends Table
     protected $coordinates;
     protected $country;
 
-    public function __construct($name=null, $coordinates=null, $country=null)
+    public function __construct($id=null, $name=null, $coordinates=null, $country=null)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->coordinates = $coordinates;
         $this->country = $country;

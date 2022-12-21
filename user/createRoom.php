@@ -1,8 +1,8 @@
 <?php
 
-require '../config/database.php';
-require '../objects/room.php';
-require '../objects/File.php';
+require_once '../config/database.php';
+require_once '../objects/room.php';
+require_once '../objects/file.php';
 
 var_dump($_POST);
 

@@ -1,6 +1,6 @@
 <?php
 
-require 'table.php';
+require_once 'table.php';
 
 class Organisation extends Table
 {
@@ -12,8 +12,9 @@ class Organisation extends Table
     protected $about;
     protected $enabled;
 
-    public function __construct($name=null, $mail=null, $password=null, $image=null, $about=null, $enabled=null)
+    public function __construct($id = null,$name=null, $mail=null, $password=null, $image=null, $about=null, $enabled=null)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->mail = $mail;
         $this->password = $password;
@@ -35,7 +36,7 @@ class Organisation extends Table
     public function deleteOrganisation():array
     {
         $query = <<<EOD
-                DELETE FROM `organisation` WHERE `organisation`.`id` = :id"
+                DELETE FROM `organisation` WHERE `organisation`.`id` = :id
                 EOD;
         $params = ['id'];
         return parent::delete($query, $params);

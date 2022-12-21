@@ -1,8 +1,8 @@
 <?php
 
-require '../config/database.php';
-require '../objects/user.php';
-require '../objects/File.php';
+require_once '../config/database.php';
+require_once '../objects/user.php';
+require_once '../objects/file.php';
 
 $file = new File();
 if (!isset($_FILES['image'])) die('nema slike');

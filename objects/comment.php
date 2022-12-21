@@ -1,6 +1,6 @@
 <?php
 
-require 'table.php';
+require_once 'table.php';
 
 class Comment extends Table
 {

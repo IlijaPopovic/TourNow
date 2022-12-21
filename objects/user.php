@@ -1,7 +1,7 @@
 <?php
 
-require 'table.php';
-require 'traits/open.php';
+require_once 'table.php';
+require_once 'traits/open.php';
 
 class User extends Table
 {

@@ -2,12 +2,10 @@
 // SAMO ORGANIZACIJA
 require_once '../config/database.php';
 require_once '../objects/tour.php';
-require_once '../objects/tour_image.php';
-require_once '../objects/file.php';
 
 $tour = new Tour
 (
-    NULL,
+    isset($_POST['id']) ? $_POST['id'] : die('no id'), 
     isset($_POST['name']) ? $_POST['name'] : die('no name'), 
     isset($_POST['date_start']) ? $_POST['date_start'] : die('no date start'), 
     isset($_POST['date_end']) ? $_POST['date_end'] : die('no date end'),
@@ -23,31 +21,9 @@ $tour = new Tour
 $db = new Database();
 $tour->setConnection($db->getConnection());
 
-print_r($dataTour = $tour->insertTour());
+print_r($dataTour = $tour->updateTour());
 
 
-$file = new File();
-print_r($dataImage = $file->uploadFiles($_FILES['image']));
-
-foreach($dataImage['fileName'] as $fileName)
-{
-    $tourImage = New TourImage(
-        NULL,
-        $fileName,
-        "ne",
-        $dataTour['id']
-    );
-    $tourImage->setConnection($db->getConnection());
-    $tourImage->insertTourImage();
-}
-
-
-
-
-
-
-//var_dump($_POST);
-//var_dump($_FILES);
 
 
 

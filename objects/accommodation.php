@@ -1,6 +1,6 @@
 <?php
 
-require 'table.php';
+require_once 'table.php';
 
 class Accommodation extends Table
 {
@@ -63,7 +63,7 @@ class Accommodation extends Table
 
 
 
-// require '../config/database.php';
+// require_once '../config/database.php';
 
 // $db = new Database();
 // $a = new Accommodation('ilija','1','nekaslika','ja sam ilija',true);

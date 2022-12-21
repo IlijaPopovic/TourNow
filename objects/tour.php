@@ -1,6 +1,6 @@
 <?php
 
-require 'table.php';
+require_once 'table.php';
 
 class Tour extends Table
 {
@@ -16,8 +16,9 @@ class Tour extends Table
     protected $organisation_id;
     protected $destination_id;
 
-    public function __construct($name=null, $date_start=null, $date_end=null, $description=null, $max_people=null, $type=null, $price=null, $enabled=null, $organisation_id=null, $destination_id=null)
+    public function __construct($id=null,$name=null, $date_start=null, $date_end=null, $description=null, $max_people=null, $type=null, $price=null, $enabled=null, $organisation_id=null, $destination_id=null)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->date_start = $date_start;
         $this->date_end = $date_end;

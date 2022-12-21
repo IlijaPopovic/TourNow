@@ -1,6 +1,6 @@
 <?php
 
-require 'table.php';
+require_once 'table.php';
 
 class TourImage extends Table
 {
@@ -9,8 +9,9 @@ class TourImage extends Table
     protected $link;
     protected $tour_id;
 
-    public function __construct($name=null, $link=null, $tour_id=null)
+    public function __construct($id=null, $name=null, $link=null, $tour_id=null)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->link = $link;
         $this->tour_id = $tour_id;
@@ -28,7 +29,7 @@ class TourImage extends Table
     public function deleteTourImage():array
     {
         $query = <<<EOD
-                DELETE FROM `tour_image` WHERE `tour_image`.`id` = :id"
+                DELETE FROM `tour_image` WHERE `tour_image`.`id` = :id
                 EOD;
         $params = ['id'];
         return parent::delete($query, $params);

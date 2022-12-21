@@ -39,7 +39,7 @@ class Table
         {
             return ['status' => $e->getMessage()];
         }
-        return ['status' => 'inserted'];
+        return ['status' => 'inserted','id' => $this->connection->lastInsertId()];
     }
 
     protected function delete(string $query, array $parameters):array
