@@ -1,7 +1,7 @@
 <?php
 // KORISNIK SAMO
 require_once '../config/database.php';
-require_once '../objects/comment.php'; print_r($_POST);
+require_once '../objects/comment.php';
 
 $comment = new Comment
 (
