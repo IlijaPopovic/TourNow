@@ -17,8 +17,9 @@ class User extends Table
     protected $mobile_number;
     protected $image;
 
-    public function __construct($name=null, $surname=null, $identity_number=null, $country=null, $mail=null, $address=null, $password=null, $mobile_number=null, $image=null)
+    public function __construct($id = null, $name=null, $surname=null, $identity_number=null, $country=null, $mail=null, $address=null, $password=null, $mobile_number=null, $image=null)
     {
+        $this->id = $id;
         $this->name=$name;
         $this->surname=$surname;
         $this->identity_number=$identity_number;

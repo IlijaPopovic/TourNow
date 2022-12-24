@@ -20,7 +20,7 @@ class Table
         return $bindedValues;
     }
 
-    protected function select(string $query, array $parameters):array
+    protected function select(string $query, array $parameters = []):array
     {
         $query_solution = $this->connection->prepare($query);
         $query_solution->execute($this->bindParameters($parameters));

@@ -59,6 +59,14 @@ class Tour extends Table
         return parent::select($query, $params);
     }
 
+    public function selectTours():array
+    {
+        $query = <<<EOD
+                SELECT * FROM `tour`
+                EOD;
+        return parent::select($query);
+    }
+
     public function updateTour():array
     {
         $query = <<<EOD

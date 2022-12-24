@@ -1,5 +1,5 @@
 <?php
-    
+    // SAMO USER
     require_once '../config/database.php';
     require_once '../objects/table.php';
 
