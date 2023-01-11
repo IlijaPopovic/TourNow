@@ -69,4 +69,15 @@ class User extends Table
         $params = ['id', 'name', 'surname', 'identity_number', 'country', 'address', 'mail', 'password', 'mobile_number', 'image', 'created'];
         return parent::update($query, $params);
     }
+
+    public function updateUserPassword():array
+    {
+        $query = <<<EOD
+                UPDATE `user` 
+                SET `password` = :password
+                WHERE `user`.`id` = :id;
+                EOD;
+        $params = ['id','password'];
+        return parent::update($query, $params);
+    }
 }

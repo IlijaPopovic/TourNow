@@ -57,4 +57,13 @@ class Reservation extends Table
         $params = ['id','checked','tour_group'];
         return parent::update($query, $params);
     }
+
+    public function selectUserReservations():array
+    {
+        $query = <<<EOD
+                SELECT * FROM `reservation` WHERE `reservation`.`user_id` = :id
+                EOD;
+        $params = ['id'];
+        return parent::select($query, $params);
+    }
 }
