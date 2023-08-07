@@ -2,6 +2,11 @@
 // SAMO ORGANIZACIJA i Klijent
 require_once '../config/database.php';
 require_once '../objects/reservation.php';
+require_once '../objects/sessionHandler.php';
+
+$session = new MySessionHandler();
+$session->checkOrganisation();
+$session->checkClient();
 
 $reservation = new Reservation
 (

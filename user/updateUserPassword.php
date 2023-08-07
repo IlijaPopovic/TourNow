@@ -2,6 +2,10 @@
 // SAMO ORGANIZACIJA
 require_once '../config/database.php';
 require_once '../objects/user.php';
+require_once '../objects/sessionHandler.php';
+
+$session = new MySessionHandler();
+$session->checkOrganisation();
 
 $user = new User
 (

@@ -11,8 +11,9 @@ class Transport extends Table
     protected $end;
     protected $tour_id;
 
-    public function __construct($name=null, $type=null, $start=null, $end=null, $tour_id=null)
+    public function __construct($id = null,$name=null, $type=null, $start=null, $end=null, $tour_id=null)
     {
+        $this->id = $id;
         $this->name=$name;
         $this->type=$type;
         $this->start=$start;

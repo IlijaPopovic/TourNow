@@ -2,6 +2,10 @@
 // SAMO ORGANIZACIJA
 require_once '../config/database.php';
 require_once '../objects/tour.php';
+require_once '../objects/sessionHandler.php';
+
+$session = new MySessionHandler();
+$session->checkOrganisation();
 
 $tour = new Tour
 (

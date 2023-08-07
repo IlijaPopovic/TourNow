@@ -3,8 +3,12 @@
 require_once '../config/database.php';
 require_once '../objects/room.php';
 require_once '../objects/file.php';
+require_once '../objects/sessionHandler.php';
 
-var_dump($_POST);
+$session = new MySessionHandler();
+$session->checkOrganisation();
+
+// var_dump($_POST);
 
 $room = new Room
 (

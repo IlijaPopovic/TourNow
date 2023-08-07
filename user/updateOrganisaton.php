@@ -3,6 +3,10 @@
 require_once '../config/database.php';
 require_once '../objects/organisation.php';
 require_once '../objects/file.php';
+require_once '../objects/sessionHandler.php';
+
+$session = new MySessionHandler();
+$session->checkAdmin();
 
 $file = new File();
 if (!isset($_FILES['image'])) die('nema slike');

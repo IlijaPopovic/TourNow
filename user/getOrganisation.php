@@ -1,11 +1,7 @@
 <?php
-// ADMIN SAMO
+// SVI
 require_once '../config/database.php';
 require_once '../objects/organisation.php';
-require_once '../objects/sessionHandler.php';
-
-$session = new MySessionHandler();
-$session->checkAdmin();
 
 $organisation = new Organisation
 (
@@ -15,5 +11,5 @@ $organisation = new Organisation
 $db = new Database();
 $organisation->setConnection($db->getConnection());
 
-print_r($organisation->deleteOrganisation());
+print_r($organisation->selectOrganisation());
 

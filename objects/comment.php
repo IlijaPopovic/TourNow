@@ -22,7 +22,7 @@ class Comment extends Table
     public function insertComment():array
     {
         $query = <<<EOD
-                INSERT INTO `commnet` (`id`, `grade`, `opinion`, `user_id`, `tour_id`) 
+                INSERT INTO `comment` (`id`, `grade`, `opinion`, `user_id`, `tour_id`) 
                 VALUES (NULL, :grade, :opinion, :user_id, :tour_id)
                 EOD;
         $params = ['grade','opinion', 'user_id', 'tour_id'];
@@ -47,10 +47,19 @@ class Comment extends Table
         return parent::select($query, $params);
     }
 
+    public function selectComments():array
+    {
+        $query = <<<EOD
+                SELECT * FROM `comment` WHERE `tour_id` = :id
+                EOD;
+        $params = ['id'];
+        return parent::select($query, $params);
+    }
+
     public function updateComment():array
     {
         $query = <<<EOD
-                UPDATE `commnet` 
+                UPDATE `comment` 
                 SET `grade` = :grade, `opinion` = :opinion, `user_id` = :user_id, `tour_id` = :tour_id 
                 WHERE `commnet`.`id` = :id;
                 EOD;

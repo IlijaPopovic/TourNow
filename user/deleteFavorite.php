@@ -2,6 +2,10 @@
     // SAMO KORISNIK
     require_once '../config/database.php';
     require_once '../objects/table.php';
+    require_once '../objects/sessionHandler.php';
+
+    $session = new MySessionHandler();
+    $session->checkClient();
 
     isset($_POST['id']) ? $_POST['id'] : die();
 

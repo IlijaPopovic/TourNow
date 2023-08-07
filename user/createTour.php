@@ -4,6 +4,10 @@ require_once '../config/database.php';
 require_once '../objects/tour.php';
 require_once '../objects/tour_image.php';
 require_once '../objects/file.php';
+require_once '../objects/sessionHandler.php';
+
+$session = new MySessionHandler();
+$session->checkOrganisation();
 
 $tour = new Tour
 (
@@ -25,9 +29,9 @@ $tour->setConnection($db->getConnection());
 
 print_r($dataTour = $tour->insertTour());
 
-
-$file = new File();
-print_r($dataImage = $file->uploadFiles($_FILES['image']));
+// var_dump($_FILES);
+$file = new File();  
+$dataImage = $file->uploadFiles($_FILES['image']);
 
 foreach($dataImage['fileName'] as $fileName)
 {
