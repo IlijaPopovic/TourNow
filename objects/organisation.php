@@ -1,9 +1,11 @@
 <?php
 
 require_once 'table.php';
+require_once 'traits/open.php';
 
 class Organisation extends Table
 {
+    use open;
     protected $id;
     protected $name;
     protected $mail;
@@ -12,7 +14,7 @@ class Organisation extends Table
     protected $about;
     protected $enabled;
 
-    public function __construct($id = null,$name=null, $mail=null, $password=null, $image=null, $about=null, $enabled=null)
+    public function __construct($id = null,$name=null, $mail=null, $password=null, $image=null, $about=null)
     {
         $this->id = $id;
         $this->name = $name;
@@ -20,16 +22,15 @@ class Organisation extends Table
         $this->password = $password;
         $this->image = $image;
         $this->about = $about;
-        $this->enabled = $enabled;
     }
 
     public function insertOrganisation():array
     {
         $query = <<<EOD
-                INSERT INTO `organisation` (`id`, `name`, `mail`, `password`, `image`, `about`, `enabled`) 
-                VALUES (NULL, :name, :mail, :password, :image, :about, :enabled);
+                INSERT INTO `organisation` (`id`, `name`, `mail`, `password`, `image`, `about`) 
+                VALUES (NULL, :name, :mail, :password, :image, :about);
                 EOD;
-        $params = ['name','mail','password','image','about','enabled'];
+        $params = ['name','mail','password','image','about'];
         return parent::insert($query, $params);
     }
 
@@ -48,6 +49,15 @@ class Organisation extends Table
                 SELECT * FROM `organisation` WHERE `organisation`.`id` = :id
                 EOD;
         $params = ['id'];
+        return parent::select($query, $params);
+    }
+
+    public function checkIfOrganisationExists()
+    {
+        $query = <<<EOD
+                SELECT * FROM `organisation` WHERE `organisation`.`mail` = :mail AND `organisation`.`password` = :password
+                EOD;
+        $params = ['mail','password'];
         return parent::select($query, $params);
     }
 

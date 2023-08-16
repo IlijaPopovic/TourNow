@@ -21,8 +21,7 @@ $organisation = new Organisation
     isset($_POST['mail']) ? $_POST['mail'] : die(), 
     isset($_POST['password']) ? $_POST['password'] : die(), 
     isset($imageName) ? $imageName : die(),
-    isset($_POST['about']) ? $_POST['about'] : die(), 
-    isset($_POST['enabled']) ? $_POST['enabled'] : die()
+    isset($_POST['about']) ? $_POST['about'] : die()
 );
 
 $db = new Database();

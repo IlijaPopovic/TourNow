@@ -1,4 +1,5 @@
 <?php
+
 //SVI
 require_once '../config/database.php';
 require_once '../objects/user.php';

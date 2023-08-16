@@ -59,6 +59,15 @@ class User extends Table
         return parent::select($query, $params);
     }
 
+    public function checkIfUserExists()
+    {
+        $query = <<<EOD
+                SELECT * FROM `user` WHERE `user`.`mail` = :mail AND `user`.`password` = :password
+                EOD;
+        $params = ['mail','password'];
+        return parent::select($query, $params);
+    }
+
     public function updateUser():array
     {
         $query = <<<EOD
