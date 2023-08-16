@@ -1,0 +1,18 @@
+.transportCard {
+  display: flex;
+  flex-wrap: no-wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.poster {
+  flex-grow: 1;
+}
+.poster-image {
+  width: 300px;
+  border-radius: 15px;
+}
+.data {
+  flex-grow: 2;
+  padding: 0 10px;
+}

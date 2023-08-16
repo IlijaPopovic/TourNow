@@ -1,0 +1,19 @@
+img {
+  width: 40px;
+}
+.header,
+.header-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-right {
+  color: white;
+  font-size: 25px;
+}
+
+.header-right > :first-child {
+  margin-right: 20px;
+}
