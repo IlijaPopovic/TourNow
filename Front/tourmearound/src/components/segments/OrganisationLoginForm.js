@@ -18,45 +18,46 @@ const initialValues = {
 
 const LoginForm = (props) => {
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={(values) => {
-        axios
-          .post(
-            "http://localhost/TourMeAround/user/organisationLogin.php",
-            values,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            }
-          )
-          .then((response) => {
-            console.log(response.data);
-          });
-      }}
-    >
-      {() => (
-        <Form className="form">
-          <label>
-            <Field name="mail" type="email" placeholder="Email" />
-            <ErrorMessage name="mail" component="div" />
-          </label>
+    <div className="form-main">
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={(values) => {
+          axios
+            .post(
+              "http://localhost/TourMeAround/user/organisationLogin.php",
+              values,
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                },
+              }
+            )
+            .then((response) => {
+              console.log(response.data);
+            });
+        }}
+      >
+        {() => (
+          <Form className="form">
+            <label>
+              <Field name="mail" type="email" placeholder="Email" />
+              <ErrorMessage name="mail" component="div" />
+            </label>
 
-          <label>
-            <Field name="password" type="password" placeholder="Password" />
-            <ErrorMessage name="password" component="div" />
-          </label>
+            <label>
+              <Field name="password" type="password" placeholder="Password" />
+              <ErrorMessage name="password" component="div" />
+            </label>
 
-          <button type="submit">Log In</button>
-
-          <button type="button" onClick={props.toggleForm}>
-            {props.isSignUp ? "Switch to Signup" : "Switch to Login"}
-          </button>
-        </Form>
-      )}
-    </Formik>
+            <button type="submit">Log In</button>
+          </Form>
+        )}
+      </Formik>
+      <button type="button" onClick={props.toggleForm}>
+        {props.isSignUp ? "Switch to Signup" : "Switch to Login"}
+      </button>
+    </div>
   );
 };
 

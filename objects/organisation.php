@@ -52,6 +52,14 @@ class Organisation extends Table
         return parent::select($query, $params);
     }
 
+    public function selectOrganisations():array
+    {
+        $query = <<<EOD
+                SELECT * FROM `organisation`
+                EOD;
+        return parent::select($query);
+    }
+
     public function checkIfOrganisationExists()
     {
         $query = <<<EOD

@@ -36,7 +36,7 @@ const Tour = () => {
         title="ATAS – ASSOCIATION OF TRAVEL AGENCIES OF SERBIA"
         dateStart="Polazak 01.01.2023. u 20:00h"
         dateEnd="Povratak u 01.07.2023. u 18:00h"
-        about="Lorem Ipsum is simply dummy text of the printing and typesetting
+        description="Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
         since the 1500s, when an unknown printer took a galley of type and
         scrambled it to make a type specimen book. "
@@ -49,7 +49,7 @@ const Tour = () => {
           title="Prevoz autobusom Lasta"
           dateStart="Polazak 01.01.2023. u 20:00h"
           dateEnd="Povratak u 01.07.2023. u 18:00h"
-          about="Transport type: Bus "
+          description="Transport type: Bus "
           link="/tour/1"
         />
         <TransportCard
@@ -57,7 +57,7 @@ const Tour = () => {
           title="Prevoz autobusom Lasta"
           dateStart="Polazak 01.01.2023. u 20:00h"
           dateEnd="Povratak u 01.07.2023. u 18:00h"
-          about="Transport type: Bus "
+          description="Transport type: Bus "
           link="/tour/1"
         />
         <TransportCard
@@ -65,7 +65,7 @@ const Tour = () => {
           title="Prevoz autobusom Lasta"
           dateStart="Polazak 01.01.2023. u 20:00h"
           dateEnd="Povratak u 01.07.2023. u 18:00h"
-          about="Transport type: Bus "
+          description="Transport type: Bus "
           link="/tour/1"
         />
         <TransportCard
@@ -73,7 +73,7 @@ const Tour = () => {
           title="Prevoz autobusom Lasta"
           dateStart="Polazak 01.01.2023. u 20:00h"
           dateEnd="Povratak u 01.07.2023. u 18:00h"
-          about="Transport type: Bus "
+          description="Transport type: Bus "
           link="/tour/1"
         />
       </div>
@@ -83,7 +83,7 @@ const Tour = () => {
         title="Prevoz autobusom Lasta"
         dateStart="Polazak 01.01.2023. u 20:00h"
         dateEnd="Povratak u 01.07.2023. u 18:00h"
-        about="Lorem Ipsum is simply dummy text of the printing and typesetting
+        description="Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
         since the 1500s, when an unknown printer took a galley of type and
         scrambled it to make a type specimen book. "
@@ -93,7 +93,7 @@ const Tour = () => {
         image={require("./placeholder.jpg")}
         title="Prevoz autobusom Lasta"
         subtitle="Polazak 01.01.2023. u 20:00h - Povratak u 01.07.2023. u 18:00h"
-        about="Lorem Ipsum is simply dummy text of the printing and typesetting
+        description="Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
         since the 1500s, when an unknown printer took a galley of type and
         scrambled it to make a type specimen book. "
@@ -103,7 +103,7 @@ const Tour = () => {
         image={require("./placeholder.jpg")}
         title="Prevoz autobusom Lasta"
         subtitle="Polazak 01.01.2023. u 20:00h - Povratak u 01.07.2023. u 18:00h"
-        about="Lorem Ipsum is simply dummy text of the printing and typesetting
+        description="Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
         since the 1500s, when an unknown printer took a galley of type and
         scrambled it to make a type specimen book. "

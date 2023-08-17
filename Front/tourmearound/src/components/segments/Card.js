@@ -3,6 +3,14 @@ import { NavLink } from "react-router-dom";
 import "./Card.css";
 
 const Card = (props) => {
+  const limitStringLength = (text, maxLength) => {
+    if (text.length <= maxLength) {
+      return text;
+    } else {
+      return text.substring(0, maxLength) + "...";
+    }
+  };
+
   return (
     <NavLink to={props.link}>
       <div className="Card">
@@ -11,8 +19,10 @@ const Card = (props) => {
         </div>
         <div className="data">
           <h2 className="title">{props.title}</h2>
-          <p className="date">{props.subtitle}</p>
-          <p className="description">{props.about}</p>
+          <p className="subtitle">{props.subtitle}</p>
+          <p className="description">
+            {limitStringLength(props.description, 300)}
+          </p>
         </div>
       </div>
     </NavLink>

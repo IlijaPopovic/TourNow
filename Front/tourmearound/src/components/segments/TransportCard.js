@@ -11,7 +11,7 @@ const TransportCard = (props) => {
         <h3 className="transport-title">{props.title}</h3>
         <p className="transport-dateStart">{props.dateStart}</p>
         <p className="transport-dateEnd">{props.dateEnd}</p>
-        <p className="transport-description">{props.about}</p>
+        <p className="transport-description">{props.description}</p>
       </div>
     </div>
   );
