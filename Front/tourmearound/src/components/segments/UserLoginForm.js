@@ -24,6 +24,7 @@ const LoginForm = (props) => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values) => {
+          console.log(values);
           axios
             .post("http://localhost/TourMeAround/user/userLogin.php", values, {
               headers: {
@@ -31,7 +32,7 @@ const LoginForm = (props) => {
               },
             })
             .then((response) => {
-              console.log(response);
+              console.log(response.data);
             });
         }}
       >

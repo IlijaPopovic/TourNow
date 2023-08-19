@@ -4,15 +4,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  display: none;
 }
-.poster {
-  flex-grow: 1;
-}
-.poster-image {
-  width: 300px;
+.transport-poster-image {
+  width: 250px;
   border-radius: 15px;
-}
-.data {
-  flex-grow: 2;
-  padding: 0 10px;
 }

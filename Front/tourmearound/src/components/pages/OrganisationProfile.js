@@ -16,17 +16,13 @@ const OrganisationProfile = () => {
     setIsLogged((prevIsLogged) => !prevIsLogged);
   };
 
-  let showPanel = <OrganisationLoginForm />;
-
-  if (isLogged) {
-    showPanel = <OrganisationProfileInfo />;
-  } else {
-    showPanel = isSignUp ? (
-      <OrganisationLoginForm toggleForm={toggleForm} isSignUp={isSignUp} />
-    ) : (
-      <OrganisationSignupForm toggleForm={toggleForm} isSignUp={isSignUp} />
-    );
-  }
+  const showPanel = isLogged ? (
+    <OrganisationProfileInfo />
+  ) : isSignUp ? (
+    <OrganisationLoginForm toggleForm={toggleForm} isSignUp={isSignUp} />
+  ) : (
+    <OrganisationSignupForm toggleForm={toggleForm} isSignUp={isSignUp} />
+  );
 
   return (
     <div className="profile">

@@ -3,6 +3,8 @@
 require_once '../config/database.php';
 require_once '../objects/tour.php';
 
+
+
 $tour = new Tour();
 
 $db = new Database();

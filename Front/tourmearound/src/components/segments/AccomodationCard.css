@@ -1,0 +1,22 @@
+.accomodationCard {
+  display: flex;
+  flex-wrap: no-wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.accomodationCard-poster {
+  flex: 1;
+}
+.accomodation-poster-image {
+  width: 300px;
+  border-radius: 15px;
+}
+.accomodationCard-data {
+  flex: 1;
+  flex-grow: 2;
+  padding: 0 10px;
+}
+.accomodationCard-more {
+  flex: 1;
+}

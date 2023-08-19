@@ -4,7 +4,7 @@ class MySessionHandler
 {
     public function __construct()
     {
-        session_start();
+        //session_start();
     }
 
     public function set($key, $value)
@@ -19,7 +19,7 @@ class MySessionHandler
 
     public function has($key)
     {
-        return 1;//<-------------- gasenje provere sesija
+        //return 1;//<-------------- gasenje provere sesija
         return isset($_SESSION[$key]);
     }
 
@@ -38,16 +38,40 @@ class MySessionHandler
     
     public function checkClient()
     {
-        if (!$this->has('user')) die('no user');
+        if (!$this->has('user'))
+        {
+            return array("id" => "no");
+            die('no user');
+        } 
+        else
+        {
+            return array("id" => $this->get('user'));
+        }
     }
 
     public function checkOrganisation()
     {
-        if (!$this->has('organisation')) die('no organisation');
+        if (!$this->has('organisation'))
+        {
+            return array("id" => "no");
+            die('no organisation');
+        } 
+        else
+        {
+            return array("id" => $this->get('organisation'));
+        }
     }
 
     public function checkAdmin()
     {
-        if (!$this->has('admin')) die('no admin');
+        if (!$this->has('admin'))
+        {
+            return array("id" => "no");
+            die('no admin');
+        } 
+        else
+        {
+            return array("id" => $this->get('admin'));
+        }
     }
 }

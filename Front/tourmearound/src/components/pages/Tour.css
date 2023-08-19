@@ -6,10 +6,23 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: space-between;
-  overflow: scroll;
+  overflow: auto; /* Use "auto" for both horizontal and vertical scrolling */
+  white-space: nowrap; /* Prevent components from wrapping to the next line */
+  max-width: 100%; /* Alternatively, use max-width to make it responsive */
 }
-.transport-poster-image {
-  width: 250px;
-  border-radius: 15px;
+.transports > * {
+  margin-left: 10px;
+}
+.header-title-filter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.filter > * {
+  font-size: 20px;
+  padding: 10px;
+}
+.activeFilter {
+  color: #fdaf01;
 }

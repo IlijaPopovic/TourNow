@@ -1,9 +1,11 @@
 <?php
 
 require_once 'table.php';
+require_once 'traits/open.php';
 
 class Room extends Table
 {
+    use open;
     protected $id;
     protected $beds_number;
     protected $name;
@@ -51,6 +53,19 @@ class Room extends Table
         $params = ['id'];
         return parent::select($query, $params);
     }
+
+    public function selectRooms():array
+    {
+        $query = <<<EOD
+                SELECT room.`id`,`beds_number`,room.`name`,`kid_number`,`service`,`booked`,`tour_id`,`accommodation_id`, accommodation.name AS accommodation_name, stars, about, picture  FROM `room` 
+                INNER JOIN accommodation ON room.accommodation_id = accommodation.id  
+                WHERE tour_id = :tour_id
+                ORDER BY `room`.`beds_number` ASC;
+                EOD;
+        $params = ['tour_id'];
+        return parent::select($query, $params);
+    }
+
 
     public function updateRoom():array
     {

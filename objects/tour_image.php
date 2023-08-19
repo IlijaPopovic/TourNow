@@ -1,9 +1,11 @@
 <?php
 
 require_once 'table.php';
+require_once 'traits/open.php';
 
 class TourImage extends Table
 {
+    use open;
     protected $id;
     protected $name;
     protected $link;
@@ -41,6 +43,15 @@ class TourImage extends Table
                 SELECT * FROM `tour_image` WHERE `tour_image`.`id` = :id
                 EOD;
         $params = ['id'];
+        return parent::select($query, $params);
+    }
+
+    public function selectTourImages():array
+    {
+        $query = <<<EOD
+                SELECT * FROM `tour_image` WHERE `tour_image`.`tour_id` = :tour_id
+                EOD;
+        $params = ['tour_id'];
         return parent::select($query, $params);
     }
 

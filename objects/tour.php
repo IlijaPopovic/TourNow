@@ -62,7 +62,7 @@ class Tour extends Table
     public function selectTours():array
     {
         $query = <<<EOD
-                SELECT `tour`.`id`, `tour`.`name` as title, `tour`.`date_start`, `tour`.`date_end`, `tour`.`description`, `tour`.`max_people`, `tour`.`type`, `tour`.`price`, `tour`.`enabled`,`tour`.`created`, `tour`.`organisation_id`, `tour`.`destination_id`, (SELECT name from tour_image WHERE tour_image.tour_id = tour.id ORDER BY tour.id LIMIT 1) as `image` FROM `tour`;
+                SELECT `tour`.`id`, `tour`.`name` as title, `tour`.`date_start`, `tour`.`date_end`, `tour`.`description`, `tour`.`max_people`, `tour`.`type`, `tour`.`price`, `tour`.`enabled`,`tour`.`created`, `tour`.`organisation_id`, `tour`.`destination_id`, (SELECT name from tour_image WHERE tour_image.tour_id = tour.id ORDER BY tour.id LIMIT 1) as `image`, destination.name as destination, destination.country FROM `tour` INNER JOIN destination ON tour.destination_id = destination.id;
                 EOD;
         return parent::select($query);
     }

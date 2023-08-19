@@ -3,10 +3,26 @@ import "./Profile.css";
 import UserLoginForm from "../segments/UserLoginForm";
 import UserSignupForm from "../segments/UserSignupForm";
 import UserProfileInfo from "../segments/UserProfileInfo";
+import axios from "axios";
 
 const UserProfile = () => {
   const [isSignUp, setIsSignUp] = React.useState(true);
   const [isLogged, setIsLogged] = React.useState(false);
+  //const [logInData, setlogInData] = React.useState([]);
+
+  React.useEffect(() => {
+    const apiUrl = "http://localhost/TourMeAround/user/checkUserLogin.php";
+
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        //setlogInData(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   const toggleForm = () => {
     setIsSignUp((prevIsSignUp) => !prevIsSignUp);
@@ -16,17 +32,13 @@ const UserProfile = () => {
     setIsLogged((prevIsLogged) => !prevIsLogged);
   };
 
-  let showPanel = <UserLoginForm />;
-
-  if (isLogged) {
-    showPanel = <UserProfileInfo />;
-  } else {
-    showPanel = isSignUp ? (
-      <UserLoginForm toggleForm={toggleForm} isSignUp={isSignUp} />
-    ) : (
-      <UserSignupForm toggleForm={toggleForm} isSignUp={isSignUp} />
-    );
-  }
+  const showPanel = isLogged ? (
+    <UserProfileInfo />
+  ) : isSignUp ? (
+    <UserLoginForm toggleForm={toggleForm} isSignUp={isSignUp} />
+  ) : (
+    <UserSignupForm toggleForm={toggleForm} isSignUp={isSignUp} />
+  );
 
   return (
     <div className="profile">

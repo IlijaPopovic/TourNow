@@ -16,6 +16,7 @@ $user->setConnection($db->getConnection());
 $array = $user->checkIfUserExists();
 
 if (count($array) > 0) {
+    session_start();
     $session = new MySessionHandler();
     $session->set("user", $array[0]['id']);
     print_r($array);

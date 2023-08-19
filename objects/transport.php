@@ -1,9 +1,11 @@
 <?php
 
 require_once 'table.php';
+require_once 'traits/open.php';
 
 class Transport extends Table
 {
+    use open;
     protected $id;
     protected $name;
     protected $type;
@@ -46,6 +48,15 @@ class Transport extends Table
                 SELECT * FROM `transport` WHERE `transport`.`id` = :id
                 EOD;
         $params = ['id'];
+        return parent::select($query, $params);
+    }
+
+    public function selectTransports():array
+    {
+        $query = <<<EOD
+                SELECT * FROM `transport` WHERE `transport`.`tour_id` = :tour_id
+                EOD;
+        $params = ['tour_id'];
         return parent::select($query, $params);
     }
 

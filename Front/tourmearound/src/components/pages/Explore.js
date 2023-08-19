@@ -4,6 +4,10 @@ import axios from "axios";
 
 const Explore = () => {
   const [data, setData] = React.useState([]);
+  const [filteredData, setFilteredData] = React.useState([]);
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const [startDate, setStartDate] = React.useState("");
+  const [endDate, setEndDate] = React.useState("");
 
   React.useEffect(() => {
     const apiUrl = "http://localhost/TourMeAround/user/getTours.php";
@@ -19,13 +23,36 @@ const Explore = () => {
       });
   }, []);
 
-  const cards = data.map((item) => (
+  React.useEffect(() => {
+    const filtered = data.filter(
+      (item) =>
+        (item.country.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.destination.toLowerCase().includes(searchTerm.toLowerCase())) &&
+        (!startDate || new Date(item.startDate) >= new Date(startDate)) &&
+        (!endDate || new Date(item.endDate) <= new Date(endDate))
+    );
+
+    setFilteredData(filtered);
+  }, [searchTerm, startDate, endDate, data]);
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleStartDateChange = (event) => {
+    setStartDate(event.target.value);
+  };
+
+  const handleEndDateChange = (event) => {
+    setEndDate(event.target.value);
+  };
+
+  const cards = filteredData.map((item) => (
     <Card
       key={item.id}
       image={`http://localhost/TourMeAround/user/${item.image}`}
-      //image={require("./placeholder.jpg")}
       title={item.title}
-      subtitle={item.date_start}
+      subtitle={item.date_start + " to " + item.date_end}
       description={item.description}
       link={`/tour/${item.id}`}
     />
@@ -33,23 +60,30 @@ const Explore = () => {
 
   return (
     <div>
-      <p>This is Explore page</p>
+      <div className="header-title-filter">
+        <h1>Explore</h1>
+        <div className="filter">
+          <input
+            type="text"
+            placeholder="Search by location"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+          <input
+            type="date"
+            placeholder="Start Date"
+            value={startDate}
+            onChange={handleStartDateChange}
+          />
+          <input
+            type="date"
+            placeholder="End Date"
+            value={endDate}
+            onChange={handleEndDateChange}
+          />
+        </div>
+      </div>
       {cards}
-      {/* <Card
-        image={require("./placeholder.jpg")}
-        title="Specialni rezervat prirode Uvac"
-        subtitle="01.01.2023. - 01.05.2023."
-        about="Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only
-        five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with
-        the release of Letraset sheets containing Lorem Ipsum passages, and
-        more recently with desktop publishing software like Aldus PageMaker
-        including versions of Lorem Ipsum."
-        link="/tour/1"
-      /> */}
     </div>
   );
 };
