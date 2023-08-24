@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "../segments/Card";
 import TransportCard from "../segments/TransportCard";
+import { format } from "date-fns";
 import AccomodationCard from "../segments/AccomodationCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -24,7 +25,7 @@ const Tour = () => {
   const dataSend = { id: lastSegment };
 
   const [dataR, setData] = React.useState([]);
-  const [activeTransportFilter, setActiveTransportFilter] = React.useState(""); // State for active filter
+  const [activeTransportFilter, setActiveTransportFilter] = React.useState("");
   const [activeAccomodationFilter, setActiveAccomodationFilter] =
     React.useState("");
 
@@ -108,12 +109,13 @@ const Tour = () => {
         />
       </div>
       <h1>{dataR[0]["name"]}</h1>
-      <p>{dataR[1]["name"]}</p>
+      <p>Location: {dataR[1]["name"]}</p>
       <p>
-        Datum: {dataR[0]["date_start"]} - {dataR[0]["date_end"]}
+        Date: {format(new Date(dataR[0]["date_start"]), "d/m/yyyy")} -{" "}
+        {format(new Date(dataR[0]["date_end"]), "d/m/yyyy")}
       </p>
-      <p>Slobodnih mesta: {dataR[0]["max_people"]}</p>
-      <p>Cena po osobi: {dataR[0]["price"]}din</p>
+      <p>Free space: {dataR[0]["max_people"]}</p>
+      <p>Price: {dataR[0]["price"]}din</p>
       <p>{dataR[0]["description"]}</p>
 
       <h2>Organisation</h2>

@@ -11,5 +11,5 @@ $transport = new Transport
 $db = new Database();
 $transport->setConnection($db->getConnection());
 
-print_r($transport->selectTransport());
+print_r(json_encode($transport->selectTransport()));
 

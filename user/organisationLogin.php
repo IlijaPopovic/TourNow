@@ -18,13 +18,13 @@ $array = $organisation->checkIfOrganisationExists();
 if (count($array) > 0) {
     $session = new MySessionHandler();
     $session->set("organisation", $array[0]['id']);
-    print_r($array);
+    print_r(json_encode($array));
 }
 else
 {
-   print_r(array(
+   print_r(json_encode(array(
     'organisation' => 'no',
     'id' => 'no'
-    ));
+    )));
 }
 

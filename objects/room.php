@@ -54,6 +54,23 @@ class Room extends Table
         return parent::select($query, $params);
     }
 
+    public function selectCreateRoomRoomData():array
+    {
+        $query1 = <<<EOD
+                SHOW COLUMNS FROM room WHERE Field = 'service';
+                EOD;
+
+        $query2 = <<<EOD
+                SELECT id as id, name as name FROM `tour`;
+                EOD;
+
+        $query3 = <<<EOD
+                SELECT id as id, name as name FROM `accommodation`;
+                EOD;
+
+        return array(parent::select($query1)[0]['Type'],parent::select($query2),parent::select($query3)) ;
+    }
+
     public function selectRooms():array
     {
         $query = <<<EOD

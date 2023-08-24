@@ -28,6 +28,6 @@
     {
         print_r(['status' => $e->getMessage()]);
     }
-    print_r(['status' => 'inserted','id' => $connection->lastInsertId()]);
+    print_r(json_encode(['status' => 'inserted','id' => $connection->lastInsertId()]));
     
 

@@ -27,5 +27,5 @@ $destination = new Destination
 $db = new Database();
 $destination->setConnection($db->getConnection());
 
-print_r($destination->insertDestination());
+print_r(json_encode($destination->insertDestination()));
 

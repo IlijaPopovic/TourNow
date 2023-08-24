@@ -25,7 +25,7 @@
     }
     catch (PDOException $e) 
     {
-        print_r(['status' => $e->getMessage()]);
+        print_r(json_encode(['status' => $e->getMessage()]));
     }
     
 

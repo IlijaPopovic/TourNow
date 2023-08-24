@@ -1,0 +1,38 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 80vh;
+}
+.form label {
+  margin: 2px;
+}
+.field-error {
+  color: red;
+}
+.file-input {
+  display: none;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+
+input {
+  color: white;
+  background-color: black;
+  border: 2px solid white;
+  border-radius: 5px;
+  text-align: center;
+  width: 300px;
+  height: 20px;
+}
+/* input::placeholder {
+  color: white;
+} */
+.form-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

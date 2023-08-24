@@ -8,15 +8,16 @@ class Accommodation extends Table
     protected $id;
     protected $name;
     protected $stars;
-    protected $picture;
+    protected $image;
     protected $about;
     protected $enabled;
 
-    public function __construct($name=null, $stars=null, $picture=null, $about=null, $enabled=null)
+    public function __construct($id=null,$name=null, $stars=null, $image=null, $about=null, $enabled=null)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->stars = $stars;
-        $this->picture = $picture;
+        $this->image = $image;
         $this->about = $about;
         $this->enabled = $enabled;
     }
@@ -24,10 +25,10 @@ class Accommodation extends Table
     public function insertAccommodation():array
     {
         $query = <<<EOD
-                INSERT INTO `accommodation` (`id`, `name`, `stars`, `picture`, `about`, `enabled`) 
-                VALUES (NULL, :name, :stars, :picture, :about, :enabled);
+                INSERT INTO `accommodation` (`id`, `name`, `stars`, `image`, `about`) 
+                VALUES (NULL, :name, :stars, :image, :about);
                 EOD;
-        $params = ['name','stars','picture','about','enabled'];
+        $params = ['name','stars','image','about'];
         return parent::insert($query, $params);
     }
 
@@ -53,24 +54,14 @@ class Accommodation extends Table
     {
         $query = <<<EOD
                 UPDATE `accommodation` 
-                SET `name` = :name, `stars` = :stars, `picture` = :picture, `about` = :about, `enabled` = :enabled 
+                SET `name` = :name, `stars` = :stars, `image` = :image, `about` = :about, `enabled` = :enabled 
                 WHERE `accommodation`.`id` = :id;
                 EOD;
-        $params = ['id','name','stars','picture','about','enabled'];
+        $params = ['id','name','stars','image','about','enabled'];
         return parent::update($query, $params);
     }
 }
 
-
-
-// require_once '../config/database.php';
-
-// $db = new Database();
-// $a = new Accommodation('ilija','1','nekaslika','ja sam ilija',true);
-// $a->setConnection($db->getConnection());
-
-// $a->id=2;
-// var_dump($a->updateAccommodation());
 
 
 

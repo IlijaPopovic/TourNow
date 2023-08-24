@@ -19,5 +19,4 @@ $comment = new Comment
 $db = new Database();
 $comment->setConnection($db->getConnection());
 
-print_r($comment->insertComment());
-
+print_r(json_encode($comment->insertComment()));

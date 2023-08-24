@@ -15,5 +15,5 @@ $tourImage = new TourImage
 $db = new Database();
 $tourImage->setConnection($db->getConnection());
 
-print_r($tourImage->deleteTourImage());
+print_r(json_encode($tourImage->deleteTourImage()));
 

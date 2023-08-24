@@ -19,13 +19,13 @@ if (count($array) > 0) {
     session_start();
     $session = new MySessionHandler();
     $session->set("user", $array[0]['id']);
-    print_r($array);
+    print_r(json_encode($array));
 }
 else
 {
-   print_r(array(
+   print_r(json_encode(array(
     'user' => 'no',
     'id' => 'no'
-    ));
+    )));
 }
 

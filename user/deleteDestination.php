@@ -15,5 +15,5 @@ $destination = new Destination
 $db = new Database();
 $destination->setConnection($db->getConnection());
 
-print_r($destination->deleteDestination());
+print_r(json_encode($destination->deleteDestination()));
 

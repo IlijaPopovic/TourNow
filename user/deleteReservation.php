@@ -16,5 +16,5 @@ $reservation = new Reservation
 $db = new Database();
 $reservation->setConnection($db->getConnection());
 
-print_r($reservation->deleteReservation());
+print_r(json_encode($reservation->deleteReservation()));
 

@@ -26,13 +26,13 @@ const Organisations = () => {
       title={item.name}
       subtitle={item.mail}
       description={item.about}
-      link={`/tour/${item.id}`}
+      link={`/organisation/${item.id}`}
     />
   ));
 
   return (
     <div>
-      <p>This is Organisations page</p>
+      <h1>Organisations</h1>
       {cards}
     </div>
   );

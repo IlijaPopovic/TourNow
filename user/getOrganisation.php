@@ -11,5 +11,5 @@ $organisation = new Organisation
 $db = new Database();
 $organisation->setConnection($db->getConnection());
 
-print_r($organisation->selectOrganisation());
+print_r(json_encode($organisation->selectOrganisation()));
 

@@ -17,7 +17,7 @@ $user->password = isset($_POST['password']) ? $_POST['password'] : die('no passw
 $db = new Database();
 $user->setConnection($db->getConnection());
 
-print_r($datauser = $user->updateUserPassword());
+print_r(json_encode($datauser = $user->updateUserPassword()));
 
 
 

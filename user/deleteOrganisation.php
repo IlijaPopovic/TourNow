@@ -15,5 +15,5 @@ $organisation = new Organisation
 $db = new Database();
 $organisation->setConnection($db->getConnection());
 
-print_r($organisation->deleteOrganisation());
+print_r(json_encode($organisation->deleteOrganisation()));
 

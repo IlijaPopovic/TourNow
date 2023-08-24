@@ -20,11 +20,11 @@ try
     $query_solution = $connection->prepare($query);
     $query_solution->execute();
     $array = $query_solution->fetchAll(PDO::FETCH_ASSOC);
-    print_r(['status' => $array]);
+    print_r(json_encode(['status' => $array]));
 }
 catch (PDOException $e) 
 {
-    print_r(['status' => $e->getMessage()]);
+    print_r(json_encode(['status' => $e->getMessage()]));
 }
     
     

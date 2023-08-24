@@ -70,10 +70,10 @@ class Tour extends Table
     public function updateTour():array
     {
         $query = <<<EOD
-                UPDATE `tour` SET `name` = :name, `date_start` = :date_start, `date_end` = :date_end, `description` = :description, `max_people` = :max_people, `type` = :type, `price` = :price, `enabled` = :enabled
+                UPDATE `tour` SET `name` = :name, `date_start` = :date_start, `date_end` = :date_end, `description` = :description, `max_people` = :max_people, `type` = :type, `price` = :price, `enabled` = 1
                 WHERE `tour`.`id` = :id;
                 EOD;
-        $params = ['id', 'name', 'date_start', 'date_end', 'description', 'max_people', 'type', 'price', 'enabled',];
+        $params = ['id', 'name', 'date_start', 'date_end', 'description', 'max_people', 'type', 'price'];
         return parent::update($query, $params);
     }
 }

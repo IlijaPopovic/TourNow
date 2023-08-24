@@ -29,7 +29,7 @@ $attraction = new Attraction
 $db = new Database();
 $attraction->setConnection($db->getConnection());
 
-print_r($dataattraction = $attraction->updateAttraction());
+print_r(json_encode($attraction->updateAttraction()));
 
 
 

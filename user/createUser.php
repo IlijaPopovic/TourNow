@@ -28,5 +28,5 @@ $user = new User
 $db = new Database();
 $user->setConnection($db->getConnection());
 
-print_r($user->insertUser());
+print_r(json_encode($user->insertUser()));
 

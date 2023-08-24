@@ -6,7 +6,7 @@ class Attraction extends Table
 {
     protected $id;
     protected $name;
-    protected $picture;
+    protected $image;
     protected $date_start;
     protected $date_end;
     protected $description;
@@ -14,11 +14,11 @@ class Attraction extends Table
     protected $max_people;
     protected $destination_id;
 
-    public function __construct($id=null,$name=null ,$picture=null, $date_start=null, $date_end=null, $description=null, $price=null, $max_people=null, $destination_id=null)
+    public function __construct($id=null,$name=null ,$image=null, $date_start=null, $date_end=null, $description=null, $price=null, $max_people=null, $destination_id=null)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->picture = $picture;
+        $this->image = $image;
         $this->date_start = $date_start;
         $this->date_end = $date_end;
         $this->description = $description;
@@ -30,10 +30,10 @@ class Attraction extends Table
     public function insertAttraction():array
     {
         $query = <<<EOD
-                INSERT INTO `attraction` (`id`, `name`,`picture`, `date_start`, `date_end`, `description`, `price`, `max_people`,  `destination_id`) 
-                VALUES (NULL, :name, :picture, :date_start, :date_end, :description, :price, :max_people, :destination_id);
+                INSERT INTO `attraction` (`id`, `name`,`image`, `date_start`, `date_end`, `description`, `price`, `max_people`,  `destination_id`) 
+                VALUES (NULL, :name, :image, :date_start, :date_end, :description, :price, :max_people, :destination_id);
                 EOD;
-        $params = ['name', 'picture', 'date_start', 'date_end', 'description', 'price', 'max_people', 'destination_id'];
+        $params = ['name', 'image', 'date_start', 'date_end', 'description', 'price', 'max_people', 'destination_id'];
         return parent::insert($query, $params);
     }
 
@@ -63,13 +63,21 @@ class Attraction extends Table
         return parent::select($query);
     }
 
+    public function selectCreateAttractionData():array
+    {
+        $query = <<<EOD
+                SELECT id, name FROM `destination`;
+                EOD;
+        return parent::select($query);
+    }
+
     public function updateAttraction():array
     {
         $query = <<<EOD
-                UPDATE `tour` SET `name` = :name, `picture` = :picture, `date_start` = :date_start, `date_end` = :date_end, `description` = :description, `max_people` = :max_people, `price` = :price
+                UPDATE `tour` SET `name` = :name, `image` = :image, `date_start` = :date_start, `date_end` = :date_end, `description` = :description, `max_people` = :max_people, `price` = :price
                 WHERE `tour`.`id` = :id;
                 EOD;
-        $params = ['id', 'name', 'picture', 'date_start', 'date_end', 'description', 'max_people', 'price'];
+        $params = ['id', 'name', 'image', 'date_start', 'date_end', 'description', 'max_people', 'price'];
         return parent::update($query, $params);
     }
 }

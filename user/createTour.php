@@ -27,7 +27,7 @@ $tour = new Tour
 $db = new Database();
 $tour->setConnection($db->getConnection());
 
-print_r($dataTour = $tour->insertTour());
+print_r(json_encode($dataTour = $tour->insertTour()));
 
 // var_dump($_FILES);
 $file = new File();  

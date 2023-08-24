@@ -4,8 +4,8 @@ import Card from "../segments/Card";
 const Reservations = () => {
   return (
     <div>
+      <h1>Reservations</h1>
       <Card
-        // {...item} item je objekat sa svim ovim dole podacima koji bih trebao imati iz baze, to ce mi napisati ovo isto
         image={require("./placeholder.jpg")}
         title="Novi sad"
         subtitle="Serbia"

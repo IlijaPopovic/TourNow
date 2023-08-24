@@ -11,6 +11,24 @@ const Card = (props) => {
     }
   };
 
+  const [reserved, setReserved] = React.useState(false);
+  const handleReservationButtonClick = () => {
+    setReserved((reserved) => !reserved);
+    console.log(props.button);
+    console.log(reserved);
+  };
+
+  const button = (
+    <div>
+      <br />
+      <button onClick={handleReservationButtonClick}>Rezervisi</button>
+    </div>
+  );
+
+  const whenReserved = <p>Reseved</p>;
+
+  const showReservationButton = reserved ? whenReserved : button;
+
   return (
     <NavLink to={props.link}>
       <div className="Card">
@@ -23,6 +41,7 @@ const Card = (props) => {
           <p className="description">
             {limitStringLength(props.description, 300)}
           </p>
+          {props.button && showReservationButton}
         </div>
       </div>
     </NavLink>

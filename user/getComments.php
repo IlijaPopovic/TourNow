@@ -12,5 +12,5 @@ $comments = new Comment
 $db = new Database();
 $comments->setConnection($db->getConnection());
 
-print_r($comments->selectComments());
+print_r(json_encode($comments->selectComments()));
 

@@ -1,8 +1,9 @@
 import React from "react";
 import Card from "../segments/Card";
 import axios from "axios";
+import { format } from "date-fns";
 
-const Explore = () => {
+const Explore = (props) => {
   const [data, setData] = React.useState([]);
   const [filteredData, setFilteredData] = React.useState([]);
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -29,7 +30,10 @@ const Explore = () => {
         (item.country.toLowerCase().includes(searchTerm.toLowerCase()) ||
           item.destination.toLowerCase().includes(searchTerm.toLowerCase())) &&
         (!startDate || new Date(item.startDate) >= new Date(startDate)) &&
-        (!endDate || new Date(item.endDate) <= new Date(endDate))
+        (!endDate || new Date(item.endDate) <= new Date(endDate)) &&
+        (!props.organisationID ||
+          props.organisationID === item.organisation_id) &&
+        (!props.destinationID || props.destinationID === item.destination_id)
     );
 
     setFilteredData(filtered);
@@ -52,7 +56,11 @@ const Explore = () => {
       key={item.id}
       image={`http://localhost/TourMeAround/user/${item.image}`}
       title={item.title}
-      subtitle={item.date_start + " to " + item.date_end}
+      subtitle={
+        format(new Date(item.date_start), "d/m/yyyy") +
+        " to " +
+        format(new Date(item.date_end), "d/m/yyyy")
+      }
       description={item.description}
       link={`/tour/${item.id}`}
     />
@@ -61,7 +69,7 @@ const Explore = () => {
   return (
     <div>
       <div className="header-title-filter">
-        <h1>Explore</h1>
+        <h1>Tours</h1>
         <div className="filter">
           <input
             type="text"

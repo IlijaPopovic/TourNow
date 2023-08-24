@@ -30,5 +30,5 @@ $attraction = new Attraction
 $db = new Database();
 $attraction->setConnection($db->getConnection());
 
-print_r($attraction->insertAttraction());
+print_r(json_encode($attraction->insertAttraction()));
 

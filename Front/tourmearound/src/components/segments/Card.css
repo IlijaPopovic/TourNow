@@ -10,7 +10,9 @@
 }
 .poster-image {
   width: 300px;
+  height: 200px;
   border-radius: 15px;
+  border: 2px solid white;
 }
 .data {
   flex-grow: 1;

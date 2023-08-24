@@ -11,5 +11,5 @@ $user = new User
 $db = new Database();
 $user->setConnection($db->getConnection());
 
-print_r($user->selectUser());
+print_r(json_encode($user->selectUser()));
 

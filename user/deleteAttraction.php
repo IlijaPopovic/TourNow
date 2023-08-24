@@ -15,5 +15,5 @@ $attraction = new Attraction
 $db = new Database();
 $attraction->setConnection($db->getConnection());
 
-print_r($attraction->deleteAttraction());
+print_r(json_encode($attraction->deleteAttraction()));
 

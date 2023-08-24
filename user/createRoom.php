@@ -16,7 +16,7 @@ $room = new Room
     isset($_POST['name']) ? $_POST['name'] : die(''), 
     isset($_POST['kid_number']) ? $_POST['kid_number'] : die(''),
     isset($_POST['service']) ? $_POST['service'] : die(''), 
-    isset($_POST['booked']) ? $_POST['booked'] : die(''),
+    0,
     isset($_POST['tour_id']) ? $_POST['tour_id'] : die(''),
     isset($_POST['accommodation_id']) ? $_POST['accommodation_id'] : die('')
 );
@@ -24,5 +24,5 @@ $room = new Room
 $db = new Database();
 $room->setConnection($db->getConnection());
 
-print_r($room->insertRoom());
+print_r(json_encode($room->insertRoom()));
 

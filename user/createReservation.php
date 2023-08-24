@@ -19,5 +19,5 @@ $reservation = new Reservation
 $db = new Database();
 $reservation->setConnection($db->getConnection());
 
-print_r($reservation->insertReservation());
+print_r(json_encode($reservation->insertReservation()));
 
