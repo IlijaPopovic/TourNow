@@ -56,6 +56,14 @@ class Destination extends Table
                 EOD;
         return parent::select($query);
     }
+    public function selectChangeDestinationData():array
+    {
+        $query = <<<EOD
+                SELECT * FROM `destination` WHERE `destination`.`id` = :id
+                EOD;
+        $params = ['id'];
+        return parent::select($query, $params);
+    }
 
     public function updateDestination():array
     {

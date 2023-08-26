@@ -8,25 +8,10 @@ const FILE_SIZE = 2000 * 1024 * 1024; // ograničenje na 2MB
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 
 const validationSchema = yup.object({
-  name: yup
-    .string()
-    .min(2, "Name must be at least 2 characters")
-    .max(50, "Name must not exceed 50 characters")
-    .required("Name is required"),
-  surname: yup
-    .string()
-    .min(2, "Surname must be at least 2 characters")
-    .max(50, "Surname must not exceed 50 characters")
-    .required("Surname is required"),
+  name: yup.string().required("Name is required"),
+  coordinates: yup.string().required("Surname is required"),
   country: yup.string().required("Required"),
-  address: yup.string().required("Required"),
-  mail: yup.string().email().required("Required"),
-  password: yup
-    .string()
-    .min(8, "Password must be at least 8 characters")
-    .required("Password is required"),
-  mobile_number: yup.string().required("Required"),
-  identity_number: yup.string().required("Required"),
+  description: yup.string().required("Required"),
   image: yup
     .mixed()
     .required("Image is required")
@@ -44,31 +29,38 @@ const validationSchema = yup.object({
 
 const initialValues = {
   name: "",
-  surname: "",
+  coordinates: "",
   country: "",
-  address: "",
-  mail: "",
-  password: "",
-  mobile_number: "",
-  identity_number: "",
+  description: "",
   image: undefined,
 };
 
 const CreateDestination = (props) => {
   return (
     <div className="form-main">
+      <h1>Create Destination</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
+        onSubmit={(values, actions) => {
           axios
-            .post("http://localhost/TourMeAround/user/createUser.php", values, {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            })
+            .post(
+              "http://localhost/TourMeAround/user/createDestination.php",
+              values,
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                },
+              }
+            )
             .then((response) => {
               console.log(response);
+              if (response.data["status"] === "inserted") {
+                alert("Created");
+                actions.resetForm();
+              } else {
+                alert("Error");
+              }
             });
         }}
       >
@@ -86,9 +78,13 @@ const CreateDestination = (props) => {
               </label>
 
               <label>
-                <Field name="surname" type="text" placeholder="Surname" />
+                <Field
+                  name="coordinates"
+                  type="text"
+                  placeholder="Coordinates"
+                />
                 <ErrorMessage
-                  name="surname"
+                  name="coordinates"
                   component="div"
                   className="field-error"
                 />
@@ -104,60 +100,20 @@ const CreateDestination = (props) => {
               </label>
 
               <label>
-                <Field name="address" type="text" placeholder="Address" />
-                <ErrorMessage
-                  name="address"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
-
-              <label>
-                <Field name="mail" type="email" placeholder="Email" />
-                <ErrorMessage
-                  name="mail"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
-
-              <label>
-                <Field name="password" type="password" placeholder="Password" />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
-
-              <label>
                 <Field
-                  name="mobile_number"
+                  name="description"
                   type="text"
-                  placeholder="Mobile Number"
+                  placeholder="Description"
                 />
                 <ErrorMessage
-                  name="mobile_number"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
-
-              <label>
-                <Field
-                  name="identity_number"
-                  type="text"
-                  placeholder="Identity Number"
-                />
-                <ErrorMessage
-                  name="identity_number"
+                  name="description"
                   component="div"
                   className="field-error"
                 />
               </label>
 
               <label className="file-input-label">
-                {"Upload profile picture"}
+                {"Upload image"}
                 <input
                   className="file-input"
                   id="image"
@@ -175,14 +131,11 @@ const CreateDestination = (props) => {
                 />
               </label>
 
-              <button type="submit">Sign Up</button>
+              <button type="submit">Create</button>
             </Form>
           )
         )}
       </Formik>
-      <button type="button" onClick={props.toggleForm}>
-        {props.isSignUp ? "Switch to Signup" : "Switch to Login"}
-      </button>
     </div>
   );
 };

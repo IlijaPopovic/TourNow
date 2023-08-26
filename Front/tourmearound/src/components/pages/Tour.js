@@ -39,8 +39,8 @@ const Tour = () => {
       })
       .then((response) => {
         setData(response.data);
-        console.log(response);
-        console.log(response.data[2][0]["name"]);
+        //console.log(response);
+        //console.log(response.data[2][0]["name"]);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -89,7 +89,7 @@ const Tour = () => {
   const acomadation = filteredAccomadation.map((acomadation, index) => (
     <AccomodationCard
       key={index} //
-      image={`http://localhost/TourMeAround/user/${acomadation["picture"]}`}
+      image={`http://localhost/TourMeAround/user/${acomadation["image"]}`}
       title={acomadation["name"]}
       subtitle={`Hotel: ${acomadation["accommodation_name"]}`}
       description={acomadation["about"]}

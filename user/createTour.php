@@ -19,7 +19,7 @@ $tour = new Tour
     isset($_POST['max_people']) ? $_POST['max_people'] : die('no max people'),
     isset($_POST['type']) ? $_POST['type'] : die('no type'),
     isset($_POST['price']) ? $_POST['price'] : die('no price'),
-    isset($_POST['enabled']) ? $_POST['enabled'] : die('no enabled'),
+    1,
     isset($_POST['organisation_id']) ? $_POST['organisation_id'] : die('no organisation'),
     isset($_POST['destination_id']) ? $_POST['destination_id'] : die('no destination')  
 );
@@ -29,7 +29,7 @@ $tour->setConnection($db->getConnection());
 
 print_r(json_encode($dataTour = $tour->insertTour()));
 
-// var_dump($_FILES);
+//var_dump($_FILES);
 $file = new File();  
 $dataImage = $file->uploadFiles($_FILES['image']);
 

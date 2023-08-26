@@ -29,7 +29,7 @@ import ChangeOrganisation from "./components/pages/edit/ChangeOrganisation";
 import ChangeRoom from "./components/pages/edit/ChangeRoom";
 import ChangeTour from "./components/pages/edit/ChangeTour";
 import ChangeTransport from "./components/pages/edit/ChangeTransport";
-import ChangeAccomodation from "./components/pages/edit/ChangeAccomodation";
+import ChangeAccommodation from "./components/pages/edit/ChangeAccommodation";
 
 const App = () => {
   return (
@@ -67,8 +67,8 @@ const App = () => {
         <Route path="/ChangeTour/:id" element={<ChangeTour />} />
         <Route path="/ChangeTransport/:id" element={<ChangeTransport />} />
         <Route
-          path="/ChangeAccomodation/:id"
-          element={<ChangeAccomodation />}
+          path="/ChangeAccommodation/:id"
+          element={<ChangeAccommodation />}
         />
       </Routes>
     </div>

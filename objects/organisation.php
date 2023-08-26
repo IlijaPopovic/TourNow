@@ -14,7 +14,7 @@ class Organisation extends Table
     protected $about;
     protected $enabled;
 
-    public function __construct($id = null,$name=null, $mail=null, $password=null, $image=null, $about=null)
+    public function __construct($id = null,$name=null, $mail=null, $password=null, $image=null, $about=null, $enabled=null)
     {
         $this->id = $id;
         $this->name = $name;
@@ -22,6 +22,7 @@ class Organisation extends Table
         $this->password = $password;
         $this->image = $image;
         $this->about = $about;
+        $this->enabled = $enabled;
     }
 
     public function insertOrganisation():array
@@ -58,6 +59,15 @@ class Organisation extends Table
                 SELECT * FROM `organisation`
                 EOD;
         return parent::select($query);
+    }
+
+    public function selectChangeOrganisationData():array
+    {
+        $query = <<<EOD
+                SELECT * FROM `organisation` WHERE `organisation`.`id` = :id
+                EOD;
+        $params = ['id'];
+        return parent::select($query, $params);
     }
 
     public function checkIfOrganisationExists()

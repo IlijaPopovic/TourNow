@@ -14,6 +14,10 @@ const validationSchema = yup.object({
   description: yup.string().required("Required"),
   price: yup.string().required("Required"),
   max_people: yup.string().required("Required"),
+  destination_id: yup
+    .string()
+    .notOneOf(["default"], "Select an option")
+    .required("Required"),
   image: yup
     .mixed()
     .required("Image is required")
@@ -81,10 +85,12 @@ const CreateAttraction = (props) => {
             )
             .then((response) => {
               console.log(response);
-              response.data["status"] === "inserted"
-                ? alert("Created")
-                : alert("Error");
-              actions.resetForm();
+              if (response.data["status"] === "inserted") {
+                alert("Created");
+                actions.resetForm();
+              } else {
+                alert("Error");
+              }
             });
         }}
       >

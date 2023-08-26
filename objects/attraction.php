@@ -71,13 +71,25 @@ class Attraction extends Table
         return parent::select($query);
     }
 
+    public function selectChangeAttractionData():array
+    {
+        $query1 = <<<EOD
+                SELECT `id`, `name`, `image`, date_start, date_end , `description`, `price`, `max_people`, `destination_id` FROM `attraction` WHERE `attraction`.`id` = :id
+                EOD;
+        $params = ['id'];
+        $query2 = <<<EOD
+                SELECT id, name FROM `destination`;
+                EOD;
+        return [parent::select($query1, $params),parent::select($query2)];
+    }
+
     public function updateAttraction():array
     {
         $query = <<<EOD
-                UPDATE `tour` SET `name` = :name, `image` = :image, `date_start` = :date_start, `date_end` = :date_end, `description` = :description, `max_people` = :max_people, `price` = :price
-                WHERE `tour`.`id` = :id;
+                UPDATE `attraction` SET `name` = :name, `image` = :image, `date_start` = :date_start, `date_end` = :date_end, `description` = :description, `max_people` = :max_people, `price` = :price, `destination_id` = :destination_id
+                WHERE `attraction`.`id` = :id;
                 EOD;
-        $params = ['id', 'name', 'image', 'date_start', 'date_end', 'description', 'max_people', 'price'];
+        $params = ['id', 'name', 'image', 'date_start', 'date_end', 'description', 'max_people', 'price', 'destination_id'];
         return parent::update($query, $params);
     }
 }

@@ -39,6 +39,7 @@ const initialValues = {
 const CreateAccomodation = (props) => {
   return (
     <div className="form-main">
+      <h1>Create accommodation</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

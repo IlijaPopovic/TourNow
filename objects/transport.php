@@ -51,6 +51,35 @@ class Transport extends Table
         return parent::select($query, $params);
     }
 
+    public function selectCreateTransportData():array
+    {
+        $query1 = <<<EOD
+                SHOW COLUMNS FROM transport WHERE Field = 'type';
+                EOD;
+
+        $query2 = <<<EOD
+                SELECT id as id, name as name FROM `tour`;
+                EOD;
+        $params = ['id'];
+        return [parent::select($query1)[0]['Type'],parent::select($query2)];
+    }
+
+    public function selectChangeTransportData():array
+    {
+        $query1 = <<<EOD
+                SHOW COLUMNS FROM transport WHERE Field = 'type';
+                EOD;
+
+        $query2 = <<<EOD
+                SELECT id as id, name as name FROM `tour`;
+                EOD;
+        $query3 = <<<EOD
+                SELECT * FROM `transport` WHERE `transport`.`id` = :id
+                EOD;
+        $params = ['id'];
+        return [parent::select($query1)[0]['Type'],parent::select($query2),parent::select($query3,$params)];
+    }
+
     public function selectTransports():array
     {
         $query = <<<EOD

@@ -27,5 +27,5 @@ $organisation = new Organisation
 $db = new Database();
 $organisation->setConnection($db->getConnection());
 
-print_r(json_encode($organisation->insertOrganisation());
+print_r(json_encode($organisation->insertOrganisation()));
 

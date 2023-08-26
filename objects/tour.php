@@ -67,6 +67,32 @@ class Tour extends Table
         return parent::select($query);
     }
 
+    public function selectCreateTourData():array
+    {
+        $query1 = <<<EOD
+                SELECT id, name FROM `organisation`;
+                EOD;
+        $query2 = <<<EOD
+                SELECT id, name FROM `destination`;
+                EOD;
+        return [parent::select($query1),parent::select($query2)];
+    }
+
+    public function selectChangeTourData():array
+    {
+        $query1 = <<<EOD
+                SELECT id, name FROM `organisation`;
+                EOD;
+        $query2 = <<<EOD
+                SELECT id, name FROM `destination`;
+                EOD;
+        $query3 = <<<EOD
+                SELECT * FROM `tour` WHERE `tour`.`id` = :id
+                EOD;
+        $params = ['id'];
+        return [parent::select($query1),parent::select($query2),parent::select($query3, $params)];
+    }
+
     public function updateTour():array
     {
         $query = <<<EOD

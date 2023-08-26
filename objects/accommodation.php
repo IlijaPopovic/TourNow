@@ -50,6 +50,15 @@ class Accommodation extends Table
         return parent::select($query, $params);
     }
 
+    public function selectChangeAccommodationData():array
+    {
+        $query = <<<EOD
+                SELECT * FROM `accommodation` WHERE `accommodation`.`id` = :id
+                EOD;
+        $params = ['id'];
+        return parent::select($query, $params);
+    }
+
     public function updateAccommodation():array
     {
         $query = <<<EOD

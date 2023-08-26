@@ -12,6 +12,7 @@ $session->checkOrganisation();
 
 $room = new Room
 (
+    null,
     isset($_POST['beds_number']) ? $_POST['beds_number'] : die(''), 
     isset($_POST['name']) ? $_POST['name'] : die(''), 
     isset($_POST['kid_number']) ? $_POST['kid_number'] : die(''),
