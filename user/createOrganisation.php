@@ -3,10 +3,11 @@
 require_once '../config/database.php';
 require_once '../objects/organisation.php';
 require_once '../objects/file.php';
-require_once '../objects/sessionHandler.php';
+require_once '../objects/mailer.php';
+// require_once '../objects/sessionHandler.php';
 
-$session = new MySessionHandler();
-$session->checkAdmin();
+// $session = new MySessionHandler();
+// $session->checkAdmin();
 
 $file = new File();
 if (!isset($_FILES['image'])) die('nema slike');
@@ -27,5 +28,15 @@ $organisation = new Organisation
 $db = new Database();
 $organisation->setConnection($db->getConnection());
 
-print_r(json_encode($organisation->insertOrganisation()));
+$answer = $organisation->insertOrganisation();
 
+if($answer["status"]=="inserted")
+{
+    $mailer = new MyPHPMailerClass();
+    $to = $_POST['mail'];
+    $subject = 'Verification';
+    $body = 'Verifide your mail by clicking on this link: http://localhost/TourMeAround/user/verifyOrganisationAccount.php?id='.$answer["id"];
+    $mailer->sendEmail($to, $subject, $body);
+}
+
+print_r(json_encode($answer));

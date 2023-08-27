@@ -2,7 +2,7 @@ import React from "react";
 import Explore from "./Explore";
 import Attractions from "./Attractions";
 import Map from "../segments/Map";
-import "./Tour.css";
+import "../style/Tour.css";
 import axios from "axios";
 
 const Organisation = () => {

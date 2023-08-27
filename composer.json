@@ -1,0 +1,6 @@
+{
+  "name": "brunoschlumpf/tour-me-around",
+  "require": {
+    "phpmailer/phpmailer": "^6.5"
+  }
+}

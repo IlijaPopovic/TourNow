@@ -73,7 +73,7 @@ class Organisation extends Table
     public function checkIfOrganisationExists()
     {
         $query = <<<EOD
-                SELECT * FROM `organisation` WHERE `organisation`.`mail` = :mail AND `organisation`.`password` = :password
+                SELECT * FROM `organisation` WHERE `organisation`.`mail` = :mail AND `organisation`.`password` = :password AND `organisation`.`verified` = 1
                 EOD;
         $params = ['mail','password'];
         return parent::select($query, $params);
@@ -87,6 +87,26 @@ class Organisation extends Table
                 WHERE `organisation`.`id` = :id;
                 EOD;
         $params = ['id','name','mail','password','image','about','enabled'];
+        return parent::update($query, $params);
+    }
+
+    public function updateOrganisationPassword():array
+    {
+        $query = <<<EOD
+                UPDATE `organisation` 
+                SET `password` = :password
+                WHERE `organisation`.`mail` = :mail;
+                EOD;
+        $params = ['mail','password'];
+        return parent::update($query, $params);
+    }
+
+    public function updateOrganisationVerification():array
+    {
+        $query = <<<EOD
+                UPDATE `organisation` SET `verified` = '1' WHERE `organisation`.`id` = :id;
+                EOD;
+        $params = ['id'];
         return parent::update($query, $params);
     }
 }

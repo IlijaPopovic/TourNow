@@ -1,5 +1,6 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import axios from "axios";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 
 import Header from "./components/header/Header";
@@ -31,6 +32,11 @@ import ChangeTour from "./components/pages/edit/ChangeTour";
 import ChangeTransport from "./components/pages/edit/ChangeTransport";
 import ChangeAccommodation from "./components/pages/edit/ChangeAccommodation";
 
+import UserForgotPassword from "./components/pages/edit/UserForgotPassword";
+import OrganisationForgotPassword from "./components/pages/edit/OrganisationForgotPassword";
+
+axios.defaults.withCredentials = true;
+
 const App = () => {
   return (
     <div className="App">
@@ -57,8 +63,14 @@ const App = () => {
         <Route path="/CreateTransport" element={<CreateTransport />} />
         <Route path="/CreateAccommodation" element={<CreateAccommodation />} />
 
-        <Route path="/ChangeAttraction/:id" element={<ChangeAttraction />} />
-        <Route path="/ChangeDestination/:id" element={<ChangeDestination />} />
+        <Route path="/CreateTransport" element={<CreateTransport />} />
+        <Route path="/CreateAccommodation" element={<CreateAccommodation />} />
+
+        <Route path="/UserForgotPassword" element={<UserForgotPassword />} />
+        <Route
+          path="/OrganisationForgotPassword"
+          element={<OrganisationForgotPassword />}
+        />
         <Route
           path="/ChangeOrganisation/:id"
           element={<ChangeOrganisation />}

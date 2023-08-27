@@ -1,5 +1,5 @@
 import React from "react";
-import "./AccomodationCard.css";
+import "../style/AccomodationCard.css";
 
 const Card = (props) => {
   const limitStringLength = (text, maxLength) => {

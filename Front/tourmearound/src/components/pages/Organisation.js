@@ -1,7 +1,7 @@
 import React from "react";
 import { format } from "date-fns";
 import Explore from "./Explore";
-import "./Tour.css";
+import "../style/Tour.css";
 import axios from "axios";
 
 const Organisation = () => {

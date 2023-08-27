@@ -1,5 +1,5 @@
 import React from "react";
-import "./Form.css";
+import "../style/Form.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import * as yup from "yup";
@@ -45,6 +45,7 @@ const initialValues = {
 const SignUpForm = (props) => {
   return (
     <div className="form-main">
+      <h1>Sign up orgnaisation</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -61,6 +62,11 @@ const SignUpForm = (props) => {
             )
             .then((response) => {
               console.log(response.data);
+              if (response.data.status === "inserted") {
+                alert("Verifikacioni mail Vam je poslat");
+              } else {
+                alert("Error - duplicate mail");
+              }
             });
         }}
       >

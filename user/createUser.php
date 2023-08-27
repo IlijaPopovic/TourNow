@@ -4,6 +4,7 @@
 require_once '../config/database.php';
 require_once '../objects/user.php';
 require_once '../objects/file.php';
+require_once '../objects/mailer.php';
 
 $file = new File();
 if (!isset($_FILES['image'])) die('nema slike');
@@ -28,5 +29,18 @@ $user = new User
 $db = new Database();
 $user->setConnection($db->getConnection());
 
-print_r(json_encode($user->insertUser()));
+$answer = $user->insertUser();
+
+if($answer["status"]=="inserted")
+{
+    $mailer = new MyPHPMailerClass();
+    $to = $_POST['mail'];
+    $subject = 'Verification';
+    $body = 'Verifide your mail by clicking on this link: http://localhost/TourMeAround/user/verifyUserAccount.php?id='.$answer["id"];
+    $mailer->sendEmail($to, $subject, $body);
+}
+
+print_r(json_encode($answer));
+
+
 

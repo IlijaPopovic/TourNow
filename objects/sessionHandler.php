@@ -4,7 +4,7 @@ class MySessionHandler
 {
     public function __construct()
     {
-        //session_start();
+        session_start();
     }
 
     public function set($key, $value)

@@ -1,5 +1,5 @@
 import React from "react";
-import "./TransportCard.css";
+import "../style/TransportCard.css";
 
 const TransportCard = (props) => {
   return (

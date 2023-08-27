@@ -12,7 +12,6 @@ $organisation->password = isset($_POST['password']) ? $_POST['password'] : die()
 $db = new Database();
 $organisation->setConnection($db->getConnection());
 
-
 $array = $organisation->checkIfOrganisationExists();
 
 if (count($array) > 0) {

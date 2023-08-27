@@ -1,8 +1,9 @@
 import React from "react";
-import "./Form.css";
+import "../style/Form.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import * as yup from "yup";
+import { NavLink } from "react-router-dom";
 
 const validationSchema = yup.object({
   mail: yup.string().email().required("Required"),
@@ -20,11 +21,12 @@ const initialValues = {
 const LoginForm = (props) => {
   return (
     <div className="form-main">
+      <h1>Log in user</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values) => {
-          console.log(values);
+          //console.log(values);
           axios
             .post("http://localhost/TourMeAround/user/userLogin.php", values, {
               headers: {
@@ -33,6 +35,12 @@ const LoginForm = (props) => {
             })
             .then((response) => {
               console.log(response.data);
+              if (response.data.id === "no") {
+                alert("pogresan upis");
+              } else {
+                localStorage.setItem("user", response.data[0].id);
+                window.location.reload();
+              }
             });
         }}
       >
@@ -57,6 +65,7 @@ const LoginForm = (props) => {
             </label>
 
             <button type="submit">Log In</button>
+            <NavLink to="/UserForgotPassword">Forgotten password?</NavLink>
           </Form>
         )}
       </Formik>

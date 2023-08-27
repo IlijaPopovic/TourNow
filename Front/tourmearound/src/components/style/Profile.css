@@ -1,0 +1,13 @@
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.profile-data {
+  margin-left: 20px;
+}
+.profile-picture {
+  min-width: 400px;
+  max-width: 400px;
+}

@@ -15,7 +15,7 @@ import {
   faStar,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import "./Tour.css";
+import "../style/Tour.css";
 import axios from "axios";
 
 const Tour = () => {
@@ -39,8 +39,6 @@ const Tour = () => {
       })
       .then((response) => {
         setData(response.data);
-        //console.log(response);
-        //console.log(response.data[2][0]["name"]);
       })
       .catch((error) => {
         console.error("Error:", error);
