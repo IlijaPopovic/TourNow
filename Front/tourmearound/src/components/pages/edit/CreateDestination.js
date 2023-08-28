@@ -45,7 +45,7 @@ const CreateDestination = (props) => {
         onSubmit={(values, actions) => {
           axios
             .post(
-              "http://localhost/TourMeAround/user/createDestination.php",
+              process.env.REACT_APP_API_URL + "createDestination.php",
               values,
               {
                 headers: {

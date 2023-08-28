@@ -1,12 +1,11 @@
 <?php
-// SAMO ORGANIZACIJA i Klijent
+
 require_once '../config/database.php';
 require_once '../objects/reservation.php';
 require_once '../objects/sessionHandler.php';
 
 $session = new MySessionHandler();
-$session->checkOrganisation();
-$session->checkClient();
+$session->checkClient()['id']!=="no" ? null : die('nema ulogovanog');
 
 $reservation = new Reservation
 (

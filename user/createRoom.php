@@ -1,12 +1,12 @@
 <?php
-// SAMO ORGANIZACIJA
+
 require_once '../config/database.php';
 require_once '../objects/room.php';
 require_once '../objects/file.php';
 require_once '../objects/sessionHandler.php';
 
 $session = new MySessionHandler();
-$session->checkOrganisation();
+$session->checkOrganisation()['id']!=="no" ? null : die('nema ulogovane organisacije');
 
 // var_dump($_POST);
 

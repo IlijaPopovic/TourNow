@@ -48,7 +48,7 @@ const CreateAttraction = (props) => {
   const [data, setData] = React.useState([]);
   React.useEffect(() => {
     axios
-      .post("http://localhost/TourMeAround/user/getCreateAttractionData.php")
+      .post(process.env.REACT_APP_API_URL + "getCreateAttractionData.php")
       .then((response) => {
         setData(response.data);
         console.log(response.data);
@@ -69,13 +69,14 @@ const CreateAttraction = (props) => {
   ));
   return (
     <div className="form-main">
+      <h1>Create Attraction</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
           axios
             .post(
-              "http://localhost/TourMeAround/user/CreateAttraction.php",
+              process.env.REACT_APP_API_URL + "CreateAttraction.php",
               values,
               {
                 headers: {
@@ -129,7 +130,7 @@ const CreateAttraction = (props) => {
                 <Field
                   name="description"
                   type="text"
-                  placeholder="description"
+                  placeholder="Description"
                 />
                 <ErrorMessage
                   name="description"

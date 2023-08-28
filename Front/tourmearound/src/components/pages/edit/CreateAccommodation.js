@@ -46,7 +46,7 @@ const CreateAccomodation = (props) => {
         onSubmit={(values, actions) => {
           axios
             .post(
-              "http://localhost/TourMeAround/user/createAccommodation.php",
+              process.env.REACT_APP_API_URL + "createAccommodation.php",
               values,
               {
                 headers: {
@@ -76,7 +76,7 @@ const CreateAccomodation = (props) => {
             </label>
 
             <label>
-              <Field name="about" type="text" placeholder="about" />
+              <Field name="about" type="text" placeholder="About" />
               <ErrorMessage
                 name="about"
                 component="div"

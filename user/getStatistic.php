@@ -1,5 +1,5 @@
 <?php
-// SAMO ORGANIZACIJA
+
 require_once '../config/database.php';
 require_once '../objects/table.php';
 require_once '../objects/sessionHandler.php';

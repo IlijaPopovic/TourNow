@@ -1,31 +1,31 @@
 <?php
-    // SAMO KORISNIK
-    require_once '../config/database.php';
-    require_once '../objects/table.php';
-    require_once '../objects/sessionHandler.php';
 
-    $session = new MySessionHandler();
-    $session->checkClient();
+require_once '../config/database.php';
+require_once '../objects/table.php';
+require_once '../objects/sessionHandler.php';
 
-    isset($_POST['id']) ? $_POST['id'] : die();
+$session = new MySessionHandler();
+$session->checkClient()['id']!=="no" ? null : die('nema ulogovanog korisnika');
 
-    $db = new Database();
+isset($_POST['id']) ? $_POST['id'] : die();
 
-    $table = new Table();
-    $connection = $db->getConnection();
+$db = new Database();
 
-    $query = <<<EOD
-                DELETE FROM `favorite` WHERE `id` = {$_POST['id']}
-                EOD;
-    try
-    {
-        $query_solution = $connection->prepare($query);
-        $query_solution->execute();
-        print_r(['status' => 'deleted']);
-    }
-    catch (PDOException $e) 
-    {
-        print_r(json_encode(['status' => $e->getMessage()]));
-    }
+$table = new Table();
+$connection = $db->getConnection();
+
+$query = <<<EOD
+            DELETE FROM `favorite` WHERE `id` = {$_POST['id']}
+            EOD;
+try
+{
+    $query_solution = $connection->prepare($query);
+    $query_solution->execute();
+    print_r(['status' => 'deleted']);
+}
+catch (PDOException $e) 
+{
+    print_r(json_encode(['status' => $e->getMessage()]));
+}
     
 

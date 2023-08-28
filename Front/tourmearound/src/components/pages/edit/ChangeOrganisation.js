@@ -46,7 +46,7 @@ const ChangeOrganisation = (props) => {
   React.useEffect(() => {
     axios
       .post(
-        "http://localhost/TourMeAround/user/getChangeOrganisationData.php",
+        process.env.REACT_APP_API_URL + "getChangeOrganisationData.php",
         dataSend,
         {
           headers: {
@@ -80,7 +80,7 @@ const ChangeOrganisation = (props) => {
           console.log(values);
           axios
             .post(
-              "http://localhost/TourMeAround/user/ChangeOrganisation.php",
+              process.env.REACT_APP_API_URL + "ChangeOrganisation.php",
               values,
               {
                 headers: {

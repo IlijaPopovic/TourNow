@@ -1,11 +1,11 @@
 <?php
-// KORISNIK SAMO
+
 require_once '../config/database.php';
 require_once '../objects/transport.php';
-// require_once '../objects/sessionHandler.php';
+require_once '../objects/sessionHandler.php';
 
-// $session = new MySessionHandler();
-// $session->checkClient();
+$session = new MySessionHandler();
+$session->checkOrganisation()['id']!=="no" ? null : die('nema ulogovane organisacije');
 
 $transport = new Transport
 (

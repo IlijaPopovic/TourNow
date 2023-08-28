@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 
 const Map = ({ coordinates }) => {
   const customIcon = new Icon({
-    iconUrl: "http://localhost/TourMeAround/user/images/pin.png",
+    iconUrl: process.env.REACT_APP_API_URL + "images/pin.png",
     iconSize: [38, 38],
   });
 

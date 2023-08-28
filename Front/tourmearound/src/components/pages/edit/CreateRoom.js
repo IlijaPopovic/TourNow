@@ -38,7 +38,7 @@ const CreateRoom = (props) => {
   const [data, setData] = React.useState([]);
   React.useEffect(() => {
     axios
-      .post("http://localhost/TourMeAround/user/getCreateRoomData.php")
+      .post(process.env.REACT_APP_API_URL + "getCreateRoomData.php")
       .then((response) => {
         setData(response.data);
         console.log(response.data);
@@ -82,7 +82,7 @@ const CreateRoom = (props) => {
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
           axios
-            .post("http://localhost/TourMeAround/user/createRoom.php", values, {
+            .post(process.env.REACT_APP_API_URL + "createRoom.php", values, {
               headers: {
                 "Content-Type": "multipart/form-data",
               },
@@ -111,7 +111,7 @@ const CreateRoom = (props) => {
             </label>
 
             <label>
-              <Field name="beds_number" type="text" placeholder="beds_number" />
+              <Field name="beds_number" type="text" placeholder="Bed number" />
               <ErrorMessage
                 name="beds_number"
                 component="div"
@@ -120,7 +120,7 @@ const CreateRoom = (props) => {
             </label>
 
             <label>
-              <Field name="kid_number" type="text" placeholder="kid_number" />
+              <Field name="kid_number" type="text" placeholder="Kid number" />
               <ErrorMessage
                 name="kid_number"
                 component="div"

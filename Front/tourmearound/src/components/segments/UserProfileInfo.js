@@ -10,7 +10,7 @@ const UserProfileInfo = (props) => {
   const [data, setData] = React.useState([]);
 
   React.useEffect(() => {
-    const apiUrl = "http://localhost/TourMeAround/user/getUser.php";
+    const apiUrl = process.env.REACT_APP_API_URL + "getUser.php";
 
     axios
       .post(apiUrl, dataSend, {
@@ -31,6 +31,28 @@ const UserProfileInfo = (props) => {
     return <p>Loading...</p>;
   }
 
+  const handleLogOutButtonClick = () => {
+    axios
+      .post(process.env.REACT_APP_API_URL + "logOutUser.php")
+      .then((response) => {
+        console.log(response.data);
+        if (response.data["status"] === "logged_out") {
+          localStorage.removeItem("user");
+          alert("Logged out");
+          window.location.reload();
+        } else {
+          alert("Error");
+        }
+      });
+  };
+
+  const button = (
+    <div>
+      <br />
+      <button onClick={handleLogOutButtonClick}>Log out</button>
+    </div>
+  );
+
   return (
     <div className="profileInfo">
       <h1>User profile</h1>
@@ -50,6 +72,7 @@ const UserProfileInfo = (props) => {
           <p>Coutry: {data.country}</p>
           <p>Identity number: {data.identity_number}</p>
           <p>Mobile number: {data.mobile_number}</p>
+          {button}
         </div>
       </div>
     </div>

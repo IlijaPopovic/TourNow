@@ -19,12 +19,12 @@ const OrganisationProfile = () => {
   };
 
   React.useEffect(() => {
-    const apiUrl =
-      "http://localhost/TourMeAround/user/checkOrganisationLogin.php";
+    const apiUrl = process.env.REACT_APP_API_URL + "checkOrganisationLogin.php";
 
     axios
       .post(apiUrl, null, {})
       .then((response) => {
+        console.log(response.data);
         setData(response.data);
         response.data.id !== "no" && toggleLogged();
       })

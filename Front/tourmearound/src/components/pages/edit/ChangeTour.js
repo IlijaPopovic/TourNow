@@ -66,15 +66,11 @@ const ChangeTour = (props) => {
   const [data, setData] = React.useState([]);
   React.useEffect(() => {
     axios
-      .post(
-        "http://localhost/TourMeAround/user/getChangeTourData.php",
-        dataSend,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
+      .post(process.env.REACT_APP_API_URL + "getChangeTourData.php", dataSend, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((response) => {
         setData(response.data);
         console.log(response.data);
@@ -111,7 +107,7 @@ const ChangeTour = (props) => {
         onSubmit={(values) => {
           console.log(values);
           axios
-            .post("http://localhost/TourMeAround/user/changeTour.php", values, {
+            .post(process.env.REACT_APP_API_URL + "changeTour.php", values, {
               headers: {
                 "Content-Type": "multipart/form-data",
               },

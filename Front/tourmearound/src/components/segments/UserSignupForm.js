@@ -63,7 +63,7 @@ const SignUpForm = (props) => {
         validationSchema={validationSchema}
         onSubmit={(values) => {
           axios
-            .post("http://localhost/TourMeAround/user/createUser.php", values, {
+            .post(process.env.REACT_APP_API_URL + "createUser.php", values, {
               headers: {
                 "Content-Type": "multipart/form-data",
               },

@@ -83,10 +83,21 @@ class Transport extends Table
     public function selectTransports():array
     {
         $query = <<<EOD
-                SELECT * FROM `transport` WHERE `transport`.`tour_id` = :tour_id
+                SELECT * FROM `transport` WHERE `transport`.`tour_id` = :tour_id AND `transport`.`booked` < `transport`.`max_people`
                 EOD;
         $params = ['tour_id'];
         return parent::select($query, $params);
+    }
+
+    public function updateTransportBooking():array
+    {
+        $query = <<<EOD
+                UPDATE `Transport` 
+                SET `booked` = `booked` + 1 
+                WHERE `Transport`.`id` = :id;
+                EOD;
+        $params = ['id'];
+        return parent::update($query, $params);
     }
 
     public function updateTransport():array

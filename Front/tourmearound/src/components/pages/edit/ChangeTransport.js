@@ -39,7 +39,7 @@ const ChangeTransport = (props) => {
   React.useEffect(() => {
     axios
       .post(
-        "http://localhost/TourMeAround/user/getChangeTransportData.php",
+        process.env.REACT_APP_API_URL + "getChangeTransportData.php",
         dataSend,
         {
           headers: {
@@ -89,7 +89,7 @@ const ChangeTransport = (props) => {
           console.log(values);
           axios
             .post(
-              "http://localhost/TourMeAround/user/ChangeTransport.php",
+              process.env.REACT_APP_API_URL + "ChangeTransport.php",
               values,
               {
                 headers: {

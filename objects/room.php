@@ -98,11 +98,22 @@ class Room extends Table
         $query = <<<EOD
                 SELECT room.`id`,`beds_number`,room.`name`,`kid_number`,`service`,`booked`,`tour_id`,`accommodation_id`, accommodation.name AS accommodation_name, stars, about, image  FROM `room` 
                 INNER JOIN accommodation ON room.accommodation_id = accommodation.id  
-                WHERE tour_id = :tour_id
+                WHERE tour_id = :tour_id AND room.booked = 0
                 ORDER BY `room`.`beds_number` ASC;
                 EOD;
         $params = ['tour_id'];
         return parent::select($query, $params);
+    }
+
+    public function updateRoomBooking():array
+    {
+        $query = <<<EOD
+                UPDATE `room` 
+                SET `room`.`booked` = "1" 
+                WHERE `room`.`id` = :id;
+                EOD;
+        $params = ['id'];
+        return parent::update($query, $params);
     }
 
 

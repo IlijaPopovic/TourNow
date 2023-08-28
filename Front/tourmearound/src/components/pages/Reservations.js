@@ -1,81 +1,53 @@
 import React from "react";
-import Card from "../segments/Card";
+import Explore from "./Explore";
+import Attractions from "./Attractions";
+import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const Reservations = () => {
+  const [dataR, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    const apiUrl = process.env.REACT_APP_API_URL + "getUserReservations.php";
+    axios
+      .post(
+        apiUrl,
+        { id: localStorage.getItem("user") },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
+
+  if (dataR.length === 0) {
+    return <p>Loading...</p>;
+  }
+
+  if (!localStorage.getItem("user")) {
+    return (
+      <div>
+        <h1>Reservations</h1>
+        <NavLink to="/UserProfile">Log in</NavLink>
+      </div>
+    );
+  }
+  const tours = <div>tours</div>;
+  const attractions = <div>attraction</div>;
+
   return (
     <div>
       <h1>Reservations</h1>
-      <Card
-        image={require("./placeholder.jpg")}
-        title="Novi sad"
-        subtitle="Serbia"
-        description="Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only
-        five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with
-        the release of Letraset sheets containing Lorem Ipsum passages, and
-        more recently with desktop publishing software like Aldus PageMaker
-        including versions of Lorem Ipsum."
-      />
-      <Card
-        image={require("./placeholder.jpg")}
-        title="Novi sad"
-        subtitle="Serbia"
-        description="Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only
-        five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with
-        the release of Letraset sheets containing Lorem Ipsum passages, and
-        more recently with desktop publishing software like Aldus PageMaker
-        including versions of Lorem Ipsum."
-      />
-      <Card
-        image={require("./placeholder.jpg")}
-        title="Novi sad"
-        subtitle="Serbia"
-        description="Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only
-        five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with
-        the release of Letraset sheets containing Lorem Ipsum passages, and
-        more recently with desktop publishing software like Aldus PageMaker
-        including versions of Lorem Ipsum."
-      />
-      <Card
-        image={require("./placeholder.jpg")}
-        title="Novi sad"
-        subtitle="Serbia"
-        description="Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only
-        five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with
-        the release of Letraset sheets containing Lorem Ipsum passages, and
-        more recently with desktop publishing software like Aldus PageMaker
-        including versions of Lorem Ipsum."
-      />
-      <Card
-        image={require("./placeholder.jpg")}
-        title="Novi sad"
-        subtitle="Serbia"
-        description="Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only
-        five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with
-        the release of Letraset sheets containing Lorem Ipsum passages, and
-        more recently with desktop publishing software like Aldus PageMaker
-        including versions of Lorem Ipsum."
-      />
-      <p>This is Reservations page</p>
+      {tours}
+      {attractions}
     </div>
   );
 };

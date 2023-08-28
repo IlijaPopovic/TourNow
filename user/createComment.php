@@ -1,11 +1,10 @@
-<?php
-// KORISNIK SAMO
+
 require_once '../config/database.php';
 require_once '../objects/comment.php';
 require_once '../objects/sessionHandler.php';
 
 $session = new MySessionHandler();
-$session->checkClient();
+$session->checkClient()['id']!=="no" ? null : die('nema ulogovanog klijenta');
 
 $comment = new Comment
 (

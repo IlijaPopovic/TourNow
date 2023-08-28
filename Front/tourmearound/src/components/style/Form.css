@@ -24,7 +24,7 @@ input {
   border: 2px solid white;
   border-radius: 5px;
   text-align: center;
-  width: 300px;
+  width: 250px;
   height: 20px;
 }
 /* input::placeholder {
@@ -35,4 +35,13 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+@media (max-width: 767px) {
+  .form {
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+
+  input {
+    font-size: 14px; /* Reduce font size for better readability on phones */
+  }
 }

@@ -41,7 +41,6 @@ class MySessionHandler
         if (!$this->has('user'))
         {
             return array("id" => "no");
-            die('no user');
         } 
         else
         {
@@ -54,7 +53,6 @@ class MySessionHandler
         if (!$this->has('organisation'))
         {
             return array("id" => "no");
-            die('no organisation');
         } 
         else
         {
@@ -67,7 +65,6 @@ class MySessionHandler
         if (!$this->has('admin'))
         {
             return array("id" => "no");
-            die('no admin');
         } 
         else
         {

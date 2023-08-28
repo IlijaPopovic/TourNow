@@ -1,5 +1,5 @@
 <?php
-// SAMO ORGANIZACIJA
+
 require_once '../config/database.php';
 require_once '../objects/tour.php';
 require_once '../objects/tour_image.php';
@@ -7,7 +7,7 @@ require_once '../objects/file.php';
 require_once '../objects/sessionHandler.php';
 
 $session = new MySessionHandler();
-$session->checkOrganisation();
+$session->checkOrganisation()['id']!=="no" ? null : die('nema ulogovane organisacije');
 
 $tour = new Tour
 (

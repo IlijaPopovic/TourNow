@@ -11,7 +11,10 @@ const Card = (props) => {
   };
 
   return (
-    <div className="accomodationCard">
+    <div
+      className={`accomodationCard ${props.isSelected ? "selected" : ""}`}
+      onClick={() => props.handleClick(props.id)}
+    >
       <div className="accomodationCard-poster">
         <img
           src={props.image}

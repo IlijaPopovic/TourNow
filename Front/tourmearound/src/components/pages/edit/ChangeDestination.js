@@ -35,7 +35,7 @@ const ChangeAccommodation = (props) => {
   React.useEffect(() => {
     axios
       .post(
-        "http://localhost/TourMeAround/user/getChangeDestinationData.php",
+        process.env.REACT_APP_API_URL + "getChangeDestinationData.php",
         dataSend,
         {
           headers: {
@@ -68,7 +68,7 @@ const ChangeAccommodation = (props) => {
         onSubmit={(values, actions) => {
           axios
             .post(
-              "http://localhost/TourMeAround/user/changeDestination.php",
+              process.env.REACT_APP_API_URL + "changeDestination.php",
               values,
               {
                 headers: {

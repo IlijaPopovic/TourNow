@@ -1,5 +1,4 @@
 import React from "react";
-import { format } from "date-fns";
 import Explore from "./Explore";
 import "../style/Tour.css";
 import axios from "axios";
@@ -13,7 +12,7 @@ const Organisation = () => {
   const [dataR, setData] = React.useState([]);
 
   React.useEffect(() => {
-    const apiUrl = "http://localhost/TourMeAround/user/getOrganisation.php";
+    const apiUrl = process.env.REACT_APP_API_URL + "getOrganisation.php";
     axios
       .post(apiUrl, dataSend, {
         headers: {
@@ -35,7 +34,7 @@ const Organisation = () => {
 
   return (
     <div>
-      <div>
+      <div className="main-image">
         <img
           src={`http://localhost/TourMeAround/user/${dataR["image"]}`}
           alt="poster"
@@ -46,12 +45,6 @@ const Organisation = () => {
       <p>Mail: {dataR["mail"]}</p>
       <p>{dataR["about"]}</p>
 
-      <h2>Organisation</h2>
-      {/* 
-      <div className="header-title-filter">
-        <h2>Pick your Transport</h2>
-      </div>
-      <div className="transports">{transport}</div> */}
       <Explore organisationID={lastSegment} />
     </div>
   );

@@ -9,23 +9,27 @@ class Reservation extends Table
     protected $tour_group;
     protected $user_id;
     protected $tour_id;
+    protected $transport_id;
+    protected $room_id;
 
-    public function __construct($id=null, $checked=null, $tour_group=null, $user_id=null, $tour_id=null)
+    public function __construct($id=null, $checked=null, $tour_group=null, $user_id=null, $tour_id=null, $transport_id=null, $room_id=null)
     {
         $this->id = $id;
         $this->checked = $checked;
         $this->tour_group = $tour_group;
         $this->user_id = $user_id;
         $this->tour_id = $tour_id;
+        $this->transport_id = $transport_id;
+        $this->room_id = $room_id;
     }
 
     public function insertReservation():array
     {
         $query = <<<EOD
-                INSERT INTO `reservation` (`id`, `tour_group`, `user_id`, `tour_id`) 
-                VALUES (NULL, :tour_group, :user_id, :tour_id);
+                INSERT INTO `reservation` (`id`, `tour_group`, `user_id`, `tour_id`,`transport_id`,`room_id`) 
+                VALUES (NULL, :tour_group, :user_id, :tour_id, :transport_id, :room_id);
                 EOD;
-        $params = ['tour_group','user_id','tour_id'];
+        $params = ['tour_group','user_id','tour_id','transport_id','room_id'];
         return parent::insert($query, $params);
     }
 

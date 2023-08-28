@@ -1,8 +1,11 @@
 <?php
-// SVI
 
 require_once '../config/database.php';
 require_once '../objects/room.php';
+require_once '../objects/sessionHandler.php';
+
+$session = new MySessionHandler();
+$session->checkOrganisation()['id']!=="no" ? null : die('nema ulogovane organisacije');
 
 $room = new Room(
     isset($_POST['id']) ? $_POST['id'] : die('id'), 

@@ -6,11 +6,11 @@ const Navigation = (props) => {
   return (
     <nav className="header-nav">
       <ul>
-        <li>
+        {/* <li>
           <NavLink style={props.activeNavLinknStyle} to="/">
             Home
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink style={props.activeNavLinknStyle} to="/explore">
             Explore

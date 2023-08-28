@@ -19,7 +19,7 @@ const UserProfile = () => {
   };
 
   React.useEffect(() => {
-    const apiUrl = "http://localhost/TourMeAround/user/checkUserLogin.php";
+    const apiUrl = process.env.REACT_APP_API_URL + "checkUserLogin.php";
 
     axios
       .post(apiUrl, null, {})

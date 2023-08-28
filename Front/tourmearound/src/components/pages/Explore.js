@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "../segments/Card";
 import axios from "axios";
+import "../style/Tour.css";
 import { format } from "date-fns";
 
 const Explore = (props) => {
@@ -11,13 +12,13 @@ const Explore = (props) => {
   const [endDate, setEndDate] = React.useState("");
 
   React.useEffect(() => {
-    const apiUrl = "http://localhost/TourMeAround/user/getTours.php";
+    const apiUrl = process.env.REACT_APP_API_URL + "getTours.php";
 
     axios
       .get(apiUrl)
       .then((response) => {
         setData(response.data);
-        console.log(response.data);
+        //console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -29,8 +30,8 @@ const Explore = (props) => {
       (item) =>
         (item.country.toLowerCase().includes(searchTerm.toLowerCase()) ||
           item.destination.toLowerCase().includes(searchTerm.toLowerCase())) &&
-        (!startDate || new Date(item.startDate) >= new Date(startDate)) &&
-        (!endDate || new Date(item.endDate) <= new Date(endDate)) &&
+        (!startDate || new Date(item.date_start) >= new Date(startDate)) &&
+        (!endDate || new Date(item.date_end) <= new Date(endDate)) &&
         (!props.organisationID ||
           props.organisationID === item.organisation_id) &&
         (!props.destinationID || props.destinationID === item.destination_id)
@@ -57,40 +58,46 @@ const Explore = (props) => {
       image={`http://localhost/TourMeAround/user/${item.image}`}
       title={item.title}
       subtitle={
-        format(new Date(item.date_start), "d/m/yyyy") +
+        format(new Date(item.date_start), "dd/MM/yyyy") +
         " to " +
-        format(new Date(item.date_end), "d/m/yyyy")
+        format(new Date(item.date_end), "dd/MM/yyyy")
       }
       description={item.description}
       link={`/tour/${item.id}`}
     />
   ));
 
+  const filter = (
+    <div className="header-title-filter">
+      <h1>Tours</h1>
+      <div className="filter">
+        <input
+          type="text"
+          placeholder="Search by location"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+        <input
+          type="date"
+          placeholder="Start Date"
+          value={startDate}
+          onChange={handleStartDateChange}
+        />
+        <input
+          type="date"
+          placeholder="End Date"
+          value={endDate}
+          onChange={handleEndDateChange}
+        />
+      </div>
+    </div>
+  );
+
+  const showFiler = filteredData.length > 0 ? filter : <></>;
+
   return (
     <div>
-      <div className="header-title-filter">
-        <h1>Tours</h1>
-        <div className="filter">
-          <input
-            type="text"
-            placeholder="Search by location"
-            value={searchTerm}
-            onChange={handleSearch}
-          />
-          <input
-            type="date"
-            placeholder="Start Date"
-            value={startDate}
-            onChange={handleStartDateChange}
-          />
-          <input
-            type="date"
-            placeholder="End Date"
-            value={endDate}
-            onChange={handleEndDateChange}
-          />
-        </div>
-      </div>
+      {showFiler}
       {cards}
     </div>
   );

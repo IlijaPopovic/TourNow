@@ -59,6 +59,37 @@ class User extends Table
         return parent::select($query, $params);
     }
 
+    public function selectUserAttractionReservations():array
+    {
+        $query = <<<EOD
+                SELECT * FROM attraction INNER JOIN attraction_reservation on attraction.id = attraction_reservation.attraction_id WHERE attraction_reservation.user_id = :id;
+                EOD;
+        $params = ['id'];
+        return parent::select($query, $params);
+    }
+
+    public function selectUserRoomReservations():array
+    {
+        $query = <<<EOD
+                SELECT * FROM room
+                INNER JOIN reservation on room.id = reservation.room_id
+                WHERE reservation.user_id = :id;
+                EOD;
+        $params = ['id'];
+        return parent::select($query, $params);
+    }
+
+    public function selectUserTransportReservations():array
+    {
+        $query = <<<EOD
+                SELECT * FROM transport
+                INNER JOIN reservation on transport.id = reservation.transport_id
+                WHERE reservation.user_id = :id;
+                EOD;
+        $params = ['id'];
+        return parent::select($query, $params);
+    }
+
     public function checkIfUserExists()
     {
         $query = <<<EOD

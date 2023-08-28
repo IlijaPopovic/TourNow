@@ -1,7 +1,7 @@
 import React from "react";
 import Explore from "./Explore";
-import Attractions from "./Attractions";
 import Map from "../segments/Map";
+import Attractions from "./Attractions";
 import "../style/Tour.css";
 import axios from "axios";
 
@@ -46,7 +46,7 @@ const Organisation = () => {
       <h1>{dataR["name"]}</h1>
       <p>Conutry: {dataR["country"]}</p>
       <p>{dataR["description"]}</p>
-      <div style={{ height: "500px" }}>
+      <div className="map-main">
         <Map coordinates={coordinates} className="maps" />
       </div>
       <Explore destinationID={lastSegment} />

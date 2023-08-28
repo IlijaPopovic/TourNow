@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 import "../style/Card.css";
 
 const Card = (props) => {
@@ -11,8 +12,27 @@ const Card = (props) => {
     }
   };
 
+  const values = {
+    user_id: localStorage.getItem("user"),
+    attraction_id: props.id,
+  };
+
   const [reserved, setReserved] = React.useState(false);
   const handleReservationButtonClick = () => {
+    console.log(values);
+    axios
+      .post(
+        process.env.REACT_APP_API_URL + "createAttractionReservation.php",
+        values,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+      });
     setReserved((reserved) => !reserved);
     console.log(props.button);
     console.log(reserved);

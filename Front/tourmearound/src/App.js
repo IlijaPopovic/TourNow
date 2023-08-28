@@ -63,9 +63,6 @@ const App = () => {
         <Route path="/CreateTransport" element={<CreateTransport />} />
         <Route path="/CreateAccommodation" element={<CreateAccommodation />} />
 
-        <Route path="/CreateTransport" element={<CreateTransport />} />
-        <Route path="/CreateAccommodation" element={<CreateAccommodation />} />
-
         <Route path="/UserForgotPassword" element={<UserForgotPassword />} />
         <Route
           path="/OrganisationForgotPassword"

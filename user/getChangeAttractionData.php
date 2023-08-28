@@ -1,11 +1,11 @@
 <?php
-// KORISNIK SAMO
+
 require_once '../config/database.php';
 require_once '../objects/attraction.php';
-// require_once '../objects/sessionHandler.php';
+require_once '../objects/sessionHandler.php';
 
-// $session = new MySessionHandler();
-// $session->checkClient();
+$session = new MySessionHandler();
+$session->checkOrganisation()['id']!=="no" ? null : die('nema ulogovane organisacije');
 
 $attraction = new Attraction(
     isset($_POST['id']) ? $_POST['id'] : die('id'), 

@@ -1,5 +1,5 @@
 <?php
-// SVI
+
 require_once '../config/database.php';
 require_once '../objects/tour.php';
 require_once '../objects/tour_image.php';

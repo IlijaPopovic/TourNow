@@ -26,7 +26,7 @@ const UserForgotPassword = (props) => {
         onSubmit={(values, actions) => {
           axios
             .post(
-              "http://localhost/TourMeAround/user/userForgotPassword.php",
+              process.env.REACT_APP_API_URL + "userForgotPassword.php",
               values,
               {
                 headers: {

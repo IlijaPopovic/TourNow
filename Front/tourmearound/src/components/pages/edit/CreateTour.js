@@ -59,7 +59,7 @@ const CreateTour = (props) => {
   const [data, setData] = React.useState([]);
   React.useEffect(() => {
     axios
-      .post("http://localhost/TourMeAround/user/getCreateTourData.php")
+      .post(process.env.REACT_APP_API_URL + "getCreateTourData.php")
       .then((response) => {
         setData(response.data);
         // console.log(response.data);
@@ -92,7 +92,7 @@ const CreateTour = (props) => {
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
           axios
-            .post("http://localhost/TourMeAround/user/createTour.php", values, {
+            .post(process.env.REACT_APP_API_URL + "createTour.php", values, {
               headers: {
                 "Content-Type": "multipart/form-data",
               },
@@ -148,7 +148,7 @@ const CreateTour = (props) => {
             </label>
 
             <label>
-              <Field name="max_people" type="text" placeholder="Max eople" />
+              <Field name="max_people" type="text" placeholder="Max people" />
               <ErrorMessage
                 name="max_people"
                 component="div"

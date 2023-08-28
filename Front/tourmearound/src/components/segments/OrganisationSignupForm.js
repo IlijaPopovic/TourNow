@@ -52,7 +52,7 @@ const SignUpForm = (props) => {
         onSubmit={(values) => {
           axios
             .post(
-              "http://localhost/TourMeAround/user/createOrganisation.php",
+              process.env.REACT_APP_API_URL + "createOrganisation.php",
               values,
               {
                 headers: {

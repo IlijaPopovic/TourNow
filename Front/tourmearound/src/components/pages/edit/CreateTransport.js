@@ -30,7 +30,7 @@ const CreateTransport = (props) => {
   const [data, setData] = React.useState([]);
   React.useEffect(() => {
     axios
-      .post("http://localhost/TourMeAround/user/getCreateTransportData.php")
+      .post(process.env.REACT_APP_API_URL + "getCreateTransportData.php")
       .then((response) => {
         setData(response.data);
         // console.log(response.data);
@@ -68,7 +68,7 @@ const CreateTransport = (props) => {
         onSubmit={(values, actions) => {
           axios
             .post(
-              "http://localhost/TourMeAround/user/createTransport.php",
+              process.env.REACT_APP_API_URL + "createTransport.php",
               values,
               {
                 headers: {

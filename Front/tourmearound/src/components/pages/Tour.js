@@ -25,12 +25,17 @@ const Tour = () => {
   const dataSend = { id: lastSegment };
 
   const [dataR, setData] = React.useState([]);
+  console.log(dataR);
   const [activeTransportFilter, setActiveTransportFilter] = React.useState("");
   const [activeAccomodationFilter, setActiveAccomodationFilter] =
     React.useState("");
 
+  const [selectedTransportId, setSelectedTransportId] = React.useState(null);
+  const [selectedAccomodationId, setSelectedAccomodationId] =
+    React.useState(null);
+
   React.useEffect(() => {
-    const apiUrl = "http://localhost/TourMeAround/user/getTour.php";
+    const apiUrl = process.env.REACT_APP_API_URL + "getTour.php";
     axios
       .post(apiUrl, dataSend, {
         headers: {
@@ -57,6 +62,51 @@ const Tour = () => {
     setActiveAccomodationFilter(filter);
   };
 
+  const handleTransportCardClick = (id) => {
+    setSelectedTransportId(id);
+  };
+
+  const handleAccomodationCardClick = (id) => {
+    setSelectedAccomodationId(id);
+  };
+
+  const createRoomData = {
+    user_id: localStorage.getItem("user"),
+    tour_id: lastSegment,
+    transport_id: selectedTransportId,
+    room_id: selectedAccomodationId,
+  };
+
+  const handleReservationButtonClick = () => {
+    console.log(createRoomData);
+    axios
+      .post(
+        process.env.REACT_APP_API_URL + "createReservation.php",
+        createRoomData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        if (response.data["status"] === "inserted") {
+          window.location.reload();
+          alert("Reserved");
+        } else {
+          alert("Error");
+        }
+      });
+  };
+
+  const button = (
+    <div>
+      <br />
+      <button onClick={handleReservationButtonClick}>Reserve</button>
+    </div>
+  );
+
   const transportData = dataR[4];
   const filteredTransport = transportData.filter((transport) => {
     if (activeTransportFilter === "") {
@@ -68,11 +118,15 @@ const Tour = () => {
   const transport = filteredTransport.map((transport, index) => (
     <TransportCard
       key={index}
+      id={transport["id"]}
       image={require("./placeholder.jpg")}
       title={transport["name"]}
       dateStart={`Polazak: ${transport["start"]}`}
       dateEnd={`Dolazak: ${transport["end"]}`}
       description={`Cena: ${transport["price"]}`}
+      type={`Type: ${transport["type"]}`}
+      handleClick={handleTransportCardClick}
+      isSelected={transport["id"] === selectedTransportId}
     />
   ));
 
@@ -84,16 +138,19 @@ const Tour = () => {
     return accomadation["stars"] === activeAccomodationFilter;
   });
 
-  const acomadation = filteredAccomadation.map((acomadation, index) => (
+  const accommodation = filteredAccomadation.map((accommodation, index) => (
     <AccomodationCard
       key={index} //
-      image={`http://localhost/TourMeAround/user/${acomadation["image"]}`}
-      title={acomadation["name"]}
-      subtitle={`Hotel: ${acomadation["accommodation_name"]}`}
-      description={acomadation["about"]}
-      bedsNumber={`Bed number: ${acomadation["beds_number"]}`}
-      service={`Type: ${acomadation["service"]}`}
-      stars={`Number of Stars: ${acomadation["stars"]}`}
+      id={accommodation["id"]}
+      image={`http://localhost/TourMeAround/user/${accommodation["image"]}`}
+      title={accommodation["name"]}
+      subtitle={`Hotel: ${accommodation["accommodation_name"]}`}
+      description={accommodation["about"]}
+      bedsNumber={`Bed number: ${accommodation["beds_number"]}`}
+      service={`Type: ${accommodation["service"]}`}
+      stars={`Number of Stars: ${accommodation["stars"]}`}
+      handleClick={handleAccomodationCardClick}
+      isSelected={accommodation["id"] === selectedAccomodationId}
     />
   ));
 
@@ -196,7 +253,8 @@ const Tour = () => {
           />
         </div>
       </div>
-      {acomadation}
+      <div className="accomodation">{accommodation}</div>
+      <div>{button}</div>
     </div>
   );
 };

@@ -1,14 +1,15 @@
 .tour-poster {
   width: 100%;
   border-radius: 15px;
+  border: 3px white solid;
 }
 .transports {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  overflow: auto; /* Use "auto" for both horizontal and vertical scrolling */
-  white-space: nowrap; /* Prevent components from wrapping to the next line */
-  max-width: 100%; /* Alternatively, use max-width to make it responsive */
+  overflow: auto;
+  white-space: nowrap;
+  max-width: 100%;
 }
 .transports > * {
   margin-left: 10px;
@@ -16,13 +17,28 @@
 .header-title-filter {
   display: flex;
   flex-direction: row;
+  align-content: center;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: nowrap;
 }
 .filter > * {
   font-size: 20px;
   padding: 10px;
+  margin: 5px;
 }
 .activeFilter {
   color: #fdaf01;
+}
+.map-main {
+  height: 500px;
+  border-radius: 15px;
+  border: 2px white solid;
+  overflow: hidden;
+}
+@media (max-width: 1100px) {
+  .transports {
+    overflow-x: auto; /* Change to auto for better mobile experience */
+    margin-top: 15px; /* Adjust margin for smaller screens */
+  }
 }

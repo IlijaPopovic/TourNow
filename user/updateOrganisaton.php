@@ -1,12 +1,12 @@
 <?php
-// ADMIN SAMO
+
 require_once '../config/database.php';
 require_once '../objects/organisation.php';
 require_once '../objects/file.php';
 require_once '../objects/sessionHandler.php';
 
 $session = new MySessionHandler();
-$session->checkAdmin();
+$session->checkOrganisation()['id']!=="no" ? null : die('nema ulogovane organisacije');
 
 $file = new File();
 if (!isset($_FILES['image'])) die('nema slike');

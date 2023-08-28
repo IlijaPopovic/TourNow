@@ -1,11 +1,11 @@
 <?php
-// SAMO ORGANIZACIJA
+
 require_once '../config/database.php';
 require_once '../objects/attraction.php';
 require_once '../objects/sessionHandler.php';
 
 $session = new MySessionHandler();
-$session->checkOrganisation();
+$session->checkOrganisation()['id']!=="no" ? null : die('nema ulogovane organisacije');
 
 $file = new File();
 if (!isset($_FILES['image'])) die('nema slike');

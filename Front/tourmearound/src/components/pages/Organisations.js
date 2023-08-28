@@ -6,7 +6,7 @@ const Organisations = () => {
   const [data, setData] = React.useState([]);
 
   React.useEffect(() => {
-    const apiUrl = "http://localhost/TourMeAround/user/getOrganisations.php";
+    const apiUrl = process.env.REACT_APP_API_URL + "getOrganisations.php";
 
     axios
       .get(apiUrl)

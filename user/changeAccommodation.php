@@ -3,10 +3,10 @@
 require_once '../config/database.php';
 require_once '../objects/accommodation.php';
 require_once '../objects/file.php';
-// require_once '../objects/sessionHandler.php';
+require_once '../objects/sessionHandler.php';
 
-// $session = new MySessionHandler();
-// $session->checkOrganisation();
+$session = new MySessionHandler();
+$session->checkOrganisation()['id']!=="no" ? null : die('nema ulogovane organisacije');
 
 $file = new File();
 if (isset($_FILES['image']) && $_FILES['image']['name'] !== '') {
