@@ -2,6 +2,7 @@ import React from "react";
 import Explore from "./Explore";
 import Map from "../segments/Map";
 import Attractions from "./Attractions";
+import { NavLink } from "react-router-dom";
 import "../style/Tour.css";
 import axios from "axios";
 
@@ -30,6 +31,39 @@ const Organisation = () => {
       });
   }, []);
 
+  const handleDestinationDelete = () => {
+    const apiUrl = process.env.REACT_APP_API_URL + "deleteDestination.php";
+    axios
+      .post(
+        apiUrl,
+        { id: lastSegment },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((response) => {
+        if (response.data.status === "deleted") {
+          alert("Obrisano");
+          window.history.back();
+        } else {
+          alert("Error");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  const deleteButton = (
+    <div>
+      <br />
+      <button onClick={handleDestinationDelete}>Delete destination</button>
+      <br />
+    </div>
+  );
+
   if (dataR.length === 0) {
     return <p>Loading...</p>;
   }
@@ -42,6 +76,19 @@ const Organisation = () => {
           alt="poster"
           className="tour-poster"
         />
+      </div>
+      <div>
+        {localStorage.getItem("admin") || localStorage.getItem("organisation")
+          ? deleteButton
+          : null}
+      </div>
+      <div>
+        {localStorage.getItem("admin") ||
+        localStorage.getItem("organisation") ? (
+          <NavLink to={"/ChangeDestination/" + lastSegment}>
+            Change Destination
+          </NavLink>
+        ) : null}
       </div>
       <h1>{dataR["name"]}</h1>
       <p>Conutry: {dataR["country"]}</p>

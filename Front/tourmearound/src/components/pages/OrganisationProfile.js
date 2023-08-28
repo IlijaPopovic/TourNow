@@ -24,7 +24,7 @@ const OrganisationProfile = () => {
     axios
       .post(apiUrl, null, {})
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         setData(response.data);
         response.data.id !== "no" && toggleLogged();
       })

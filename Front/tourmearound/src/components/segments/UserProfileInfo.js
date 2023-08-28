@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 import "../style/Profile.css";
 
 const UserProfileInfo = (props) => {
@@ -72,6 +73,7 @@ const UserProfileInfo = (props) => {
           <p>Coutry: {data.country}</p>
           <p>Identity number: {data.identity_number}</p>
           <p>Mobile number: {data.mobile_number}</p>
+          <NavLink to={"/CreateAttraction/"}>Create Attraction</NavLink>
           {button}
         </div>
       </div>

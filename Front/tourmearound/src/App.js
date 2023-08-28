@@ -12,6 +12,7 @@ import Reservations from "./components/pages/Reservations";
 import Organisations from "./components/pages/Organisations";
 import OrganisationProfile from "./components/pages/OrganisationProfile";
 import UserProfile from "./components/pages/UserProfile";
+import AdminProfile from "./components/pages/AdminProfile";
 import Organisation from "./components/pages/Organisation";
 import Tour from "./components/pages/Tour";
 import Destination from "./components/pages/Destination";
@@ -50,6 +51,7 @@ const App = () => {
         <Route path="/Reservations" element={<Reservations />} />
         <Route path="/OrganisationProfile" element={<OrganisationProfile />} />
         <Route path="/UserProfile" element={<UserProfile />} />
+        <Route path="/AdminProfile" element={<AdminProfile />} />
 
         <Route path="/Tour/:id" element={<Tour />} />
         <Route path="/Organisation/:id" element={<Organisation />} />
@@ -79,6 +81,8 @@ const App = () => {
           path="/ChangeAccommodation/:id"
           element={<ChangeAccommodation />}
         />
+        <Route path="/ChangeAttraction/:id" element={<ChangeAttraction />} />
+        <Route path="/ChangeDestination/:id" element={<ChangeDestination />} />
       </Routes>
     </div>
   );

@@ -28,11 +28,11 @@ const OrganisationNavigation = (props) => {
               Room
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink style={props.activeNavLinknStyle} to="/CreateTour">
               Tour
             </NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink style={props.activeNavLinknStyle} to="/CreateTransport">
               Transport

@@ -13,10 +13,9 @@
 }
 @media (max-width: 1100px) {
   .info {
-    padding: 15px; /* Adjust padding for smaller screens */
+    flex-direction: column;
   }
-
   .profile-data {
-    margin-top: 10px; /* Reduce the space above the profile data */
+    margin-left: 0;
   }
 }

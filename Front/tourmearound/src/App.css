@@ -3,3 +3,10 @@
   margin: 0 auto;
   text-align: justify;
 }
+@media (max-width: 1100px) {
+  .App {
+    text-align: center;
+    margin: 10px;
+    width: auto;
+  }
+}

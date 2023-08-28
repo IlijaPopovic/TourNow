@@ -18,7 +18,7 @@ const Explore = (props) => {
       .get(apiUrl)
       .then((response) => {
         setData(response.data);
-        //console.log(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -93,11 +93,12 @@ const Explore = (props) => {
     </div>
   );
 
-  const showFiler = filteredData.length > 0 ? filter : <></>;
+  const showNoToursLabel = filteredData.length > 0 ? <></> : <p>No tours</p>;
 
   return (
     <div>
-      {showFiler}
+      {filter}
+      {showNoToursLabel}
       {cards}
     </div>
   );

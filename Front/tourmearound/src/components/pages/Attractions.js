@@ -68,7 +68,7 @@ const Attractions = (props) => {
       }
       subtitle={item.destination}
       description={item.description}
-      button={localStorage.getItem("user") ? item.id : null}
+      reservationButton={localStorage.getItem("user") ? item.id : null}
     />
   ));
 

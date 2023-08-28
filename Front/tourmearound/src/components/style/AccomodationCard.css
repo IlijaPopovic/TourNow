@@ -28,14 +28,6 @@
 }
 @media (max-width: 1100px) {
   .accomodationCard {
-    padding: 15px; /* Increase padding for better spacing */
-  }
-
-  .accomodationCard-poster {
-    margin-bottom: 15px; /* Add more space below the image */
-  }
-
-  .accomodationCard-data {
-    padding: 15px;
+    flex-direction: column;
   }
 }

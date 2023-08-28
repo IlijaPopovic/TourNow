@@ -9,7 +9,7 @@ $session->checkAdmin() ? null : die('nema ulogovanog admina');
 
 $organisation = new Organisation
 (
-    isset($_POST['id']) ? $_POST['id'] : die()
+    isset($_POST['id']) ? $_POST['id'] : die("id")
 );
 
 $db = new Database();

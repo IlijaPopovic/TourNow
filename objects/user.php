@@ -129,4 +129,36 @@ class User extends Table
         $params = ['id'];
         return parent::update($query, $params);
     }
+
+    public function updateActivationOrDeactivationUser():array
+    {
+        $query = <<<EOD
+                UPDATE `user`
+                SET `verified` = CASE
+                    WHEN `verified` = 1 THEN 0
+                    WHEN `verified` = 0 THEN 1
+                    ELSE `verified`  -- In case the current value is neither 0 nor 1
+                END
+                WHERE `id` = :id;
+                EOD;
+        $params = ['id'];
+        return parent::update($query, $params);
+    }
+
+    public function selectUsers():array
+    {
+        $query = <<<EOD
+                SELECT * FROM `user`;
+                EOD;
+        return parent::select($query);
+    }
+
+    public function disableUser():array
+    {
+        $query = <<<EOD
+                UPDATE `user` SET `verified` = '0' WHERE `user`.`id` = :id;
+                EOD;
+        $params = ['id'];
+        return parent::update($query, $params);
+    }
 }

@@ -6,7 +6,7 @@ require_once '../objects/file.php';
 require_once '../objects/sessionHandler.php';
 
 $session = new MySessionHandler();
-$session->checkOrganisation()['id']!=="no" || $session->checkClient()['id']!=="no" ? null : die('nema ulogovane organisacije');
+$session->checkOrganisation()['id']!=="no" || $session->checkClient()['id']!=="no" || $session->checkClient()['id']!=="no"? null : die('nema ulogovane organisacije');
 
 $file = new File();
 if (!isset($_FILES['image'])) die('nema slike');

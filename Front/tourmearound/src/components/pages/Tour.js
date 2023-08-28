@@ -3,6 +3,7 @@ import Card from "../segments/Card";
 import TransportCard from "../segments/TransportCard";
 import { format } from "date-fns";
 import AccomodationCard from "../segments/AccomodationCard";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -54,6 +55,25 @@ const Tour = () => {
     return <p>Loading...</p>;
   }
 
+  const apiUrl = process.env.REACT_APP_API_URL + "createStatistic.php";
+  axios
+    .post(
+      apiUrl,
+      { organisation_id: dataR[3]["id"], tour_id: lastSegment },
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    )
+    .then((response) => {
+      console.log("statistika:");
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+
   const handleTransportFilterClick = (filter) => {
     setActiveTransportFilter(filter);
   };
@@ -68,6 +88,27 @@ const Tour = () => {
 
   const handleAccomodationCardClick = (id) => {
     setSelectedAccomodationId(id);
+  };
+
+  const handleTourDelete = () => {
+    const apiUrl = process.env.REACT_APP_API_URL + "deleteTour.php";
+    axios
+      .post(
+        apiUrl,
+        { id: lastSegment },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((response) => {
+        console.log("statistika:");
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   const createRoomData = {
@@ -100,10 +141,18 @@ const Tour = () => {
       });
   };
 
-  const button = (
+  const reserveButton = (
     <div>
       <br />
       <button onClick={handleReservationButtonClick}>Reserve</button>
+    </div>
+  );
+
+  const deleteButton = (
+    <div>
+      <br />
+      <button onClick={handleTourDelete}>Delete tour</button>
+      <br />
     </div>
   );
 
@@ -163,6 +212,17 @@ const Tour = () => {
           className="tour-poster"
         />
       </div>
+      <div>
+        {localStorage.getItem("admin") || localStorage.getItem("organisation")
+          ? deleteButton
+          : null}
+      </div>
+      <div>
+        {localStorage.getItem("admin") ||
+        localStorage.getItem("organisation") ? (
+          <NavLink to={"/ChangeTour/" + lastSegment}>Change Tour</NavLink>
+        ) : null}
+      </div>
       <h1>{dataR[0]["name"]}</h1>
       <p>Location: {dataR[1]["name"]}</p>
       <p>
@@ -183,7 +243,7 @@ const Tour = () => {
 
       <div className="header-title-filter">
         <h2>Pick your Transport</h2>
-        <div className="filter">
+        <div className="filter-icon">
           <FontAwesomeIcon
             icon={faChevronRight}
             onClick={() => handleTransportFilterClick("")}
@@ -220,7 +280,7 @@ const Tour = () => {
 
       <div className="header-title-filter">
         <h2>Pick your Accomodation</h2>
-        <div className="filter">
+        <div className="filter-icon">
           <FontAwesomeIcon
             icon={faChevronRight}
             onClick={() => handleAccomodationFilterClick("")}
@@ -254,7 +314,7 @@ const Tour = () => {
         </div>
       </div>
       <div className="accomodation">{accommodation}</div>
-      <div>{button}</div>
+      <div>{localStorage.getItem("user") ? reserveButton : null}</div>
     </div>
   );
 };

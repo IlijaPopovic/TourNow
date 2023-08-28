@@ -15,6 +15,7 @@ const OrganisationProfileInfo = (props) => {
 
   const dataSend = { id: props.id };
   const [data, setData] = React.useState([]);
+  const [stat, setStat] = React.useState([]);
   React.useEffect(() => {
     const apiUrl = process.env.REACT_APP_API_URL + "getOrganisation.php";
 
@@ -26,10 +27,28 @@ const OrganisationProfileInfo = (props) => {
       })
       .then((response) => {
         setData(response.data[0]);
-        console.log(response.data[0]);
+        //console.log(response.data[0]);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  React.useEffect(() => {
+    const apiUrl =
+      process.env.REACT_APP_API_URL + "getOrganisationStatistics.php";
+    axios
+      .post(apiUrl, dataSend, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setStat(response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
       });
   }, []);
 
@@ -43,7 +62,7 @@ const OrganisationProfileInfo = (props) => {
       .then((response) => {
         console.log(response.data);
         if (response.data["status"] === "logged_out") {
-          localStorage.removeItem("user");
+          localStorage.removeItem("organisation");
           alert("Logged out");
           window.location.reload();
         } else {
@@ -51,6 +70,16 @@ const OrganisationProfileInfo = (props) => {
         }
       });
   };
+
+  const statistics = stat.map((item, index) => (
+    <p key={index}>
+      {"Tour name " +
+        item.name +
+        " has " +
+        item.number_of_clicks / 2 +
+        " visits"}
+    </p>
+  ));
 
   const button = (
     <div>
@@ -76,6 +105,10 @@ const OrganisationProfileInfo = (props) => {
           <p>About: {limitStringLength(data.about, 300)}</p>
           {button}
         </div>
+      </div>
+      <div>
+        <h1>Statistics: </h1>
+        {statistics}
       </div>
       <OrganisationNavigation />
       <Explore organisationID={localStorage.getItem("organisation")} />

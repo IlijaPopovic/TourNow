@@ -89,7 +89,7 @@ const CreateOrganisation = (props) => {
             </label>
 
             <label>
-              <Field name="password" type="text" placeholder="Password" />
+              <Field name="password" type="password" placeholder="Password" />
               <ErrorMessage
                 name="password"
                 component="div"

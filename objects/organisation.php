@@ -109,4 +109,13 @@ class Organisation extends Table
         $params = ['id'];
         return parent::update($query, $params);
     }
+
+    public function disableOrganisation():array
+    {
+        $query = <<<EOD
+                UPDATE `organisation` SET `verified` = '0' WHERE `organisation`.`id` = :id;
+                EOD;
+        $params = ['id'];
+        return parent::update($query, $params);
+    }
 }

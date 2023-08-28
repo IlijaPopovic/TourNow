@@ -12,18 +12,18 @@ const Card = (props) => {
     }
   };
 
-  const values = {
+  const createAttractionValues = {
     user_id: localStorage.getItem("user"),
     attraction_id: props.id,
   };
 
   const [reserved, setReserved] = React.useState(false);
   const handleReservationButtonClick = () => {
-    console.log(values);
+    console.log(createAttractionValues);
     axios
       .post(
         process.env.REACT_APP_API_URL + "createAttractionReservation.php",
-        values,
+        createAttractionValues,
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -34,20 +34,78 @@ const Card = (props) => {
         console.log(response.data);
       });
     setReserved((reserved) => !reserved);
-    console.log(props.button);
-    console.log(reserved);
   };
 
-  const button = (
+  const handleDeleteOranisationButtonClick = () => {
+    axios
+      .post(
+        process.env.REACT_APP_API_URL + "deleteOrganisation.php",
+        { id: props.deleteOranisationButtonID },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.status === "deleted") {
+          alert("Organisation deleted");
+          window.window.location.reload();
+        } else {
+          alert("error");
+        }
+      });
+  };
+
+  const handleDeactivatiUserButtonClick = () => {
+    axios
+      .post(
+        process.env.REACT_APP_API_URL + "deactivateOrActivateUser.php",
+        { id: props.deactivationUserButtonID },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.status === "updated") {
+          alert("Changed");
+          window.window.location.reload();
+        } else {
+          alert("error");
+        }
+      });
+  };
+
+  const reservationButton = (
     <div>
       <br />
       <button onClick={handleReservationButtonClick}>Rezervisi</button>
     </div>
   );
 
+  const deleteOranisationButton = (
+    <div>
+      <br />
+      <button onClick={handleDeleteOranisationButtonClick}>Delete</button>
+    </div>
+  );
+
+  const deactivatiUserButton = (
+    <div>
+      <br />
+      <button onClick={handleDeactivatiUserButtonClick}>
+        Deactivate / Activate
+      </button>
+    </div>
+  );
+
   const whenReserved = <p>Reseved</p>;
 
-  const showReservationButton = reserved ? whenReserved : button;
+  const showReservationButton = reserved ? whenReserved : reservationButton;
 
   return (
     <NavLink to={props.link}>
@@ -61,7 +119,9 @@ const Card = (props) => {
           <p className="description">
             {limitStringLength(props.description, 300)}
           </p>
-          {props.button && showReservationButton}
+          {props.reservationButton && showReservationButton}
+          {props.deleteOranisationButtonID && deleteOranisationButton}
+          {props.deactivationUserButtonID && deactivatiUserButton}
         </div>
       </div>
     </NavLink>
