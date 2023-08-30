@@ -103,8 +103,12 @@ const Tour = () => {
         }
       )
       .then((response) => {
-        console.log("statistika:");
-        console.log(response.data);
+        if (response.data.status === "deleted") {
+          alert("Obrisano");
+          window.history.back();
+        } else {
+          alert("Error");
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -226,8 +230,8 @@ const Tour = () => {
       <h1>{dataR[0]["name"]}</h1>
       <p>Location: {dataR[1]["name"]}</p>
       <p>
-        Date: {format(new Date(dataR[0]["date_start"]), "d/m/yyyy")} -{" "}
-        {format(new Date(dataR[0]["date_end"]), "d/m/yyyy")}
+        Date: {format(new Date(dataR[0]["date_start"]), "d.MM.yyyy")} -{" "}
+        {format(new Date(dataR[0]["date_end"]), "d.MM.yyyy")}
       </p>
       <p>Free space: {dataR[0]["max_people"]}</p>
       <p>Price: {dataR[0]["price"]}din</p>

@@ -1,8 +1,7 @@
 import React from "react";
-import Explore from "./Explore";
-import Attractions from "./Attractions";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import ReservationRenderer from "../segments/ReservationRenderer";
 
 const Reservations = () => {
   const [dataR, setData] = React.useState([]);
@@ -40,14 +39,11 @@ const Reservations = () => {
       </div>
     );
   }
-  const tours = <div>tours</div>;
-  const attractions = <div>attraction</div>;
 
   return (
     <div>
       <h1>Reservations</h1>
-      {tours}
-      {attractions}
+      <ReservationRenderer reservationData={dataR} />
     </div>
   );
 };

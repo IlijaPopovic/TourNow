@@ -45,7 +45,7 @@ const ChangeAccommodation = (props) => {
       )
       .then((response) => {
         setData(response.data);
-        //console.log(response.data[0]);
+        //console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -61,7 +61,7 @@ const ChangeAccommodation = (props) => {
 
   return (
     <div className="form-main">
-      <h1>Change Attraction</h1>
+      <h1>Change Destination</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

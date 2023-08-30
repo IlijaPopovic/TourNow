@@ -38,6 +38,6 @@ $data3 = $user->selectUserAttractionReservations();
 $data4 = $user->selectUserRoomReservations();
 $data5 = $user->selectUserTransportReservations();
 
-print_r(json_encode([$data1, $data2, $data3, $data4, $data5]));
+print_r(json_encode([$data1, $data2]));
 
 

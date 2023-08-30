@@ -35,7 +35,7 @@ const LoginForm = (props) => {
             })
             .then((response) => {
               console.log(response.data);
-              if (response.data.id === "no") {
+              if (response.data.user === "no") {
                 alert("pogresan upis");
               } else {
                 localStorage.setItem("user", response.data[0].id);

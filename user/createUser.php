@@ -20,7 +20,7 @@ $user = new User
     isset($_POST['country']) ? $_POST['country'] : die('country'), 
     isset($_POST['address']) ? $_POST['address'] : die('address'),
     isset($_POST['mail']) ? $_POST['mail'] : die('mail'),
-    isset($_POST['password']) ? $_POST['password'] : die('password'),
+    isset($_POST['password']) ? password_hash($_POST['password'], PASSWORD_BCRYPT) : die('password'),
     isset($_POST['mobile_number']) ? $_POST['mobile_number'] : die('mobile_number'),
     isset($imageName) ? $imageName : die()
 );

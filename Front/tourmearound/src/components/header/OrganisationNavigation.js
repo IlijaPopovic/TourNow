@@ -10,7 +10,7 @@ const OrganisationNavigation = (props) => {
           <li>Create:</li>
           <li>
             <NavLink style={props.activeNavLinknStyle} to="/CreateAttraction">
-              Accommodation
+              Attraction
             </NavLink>
           </li>
           <li>

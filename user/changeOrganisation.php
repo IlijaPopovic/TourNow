@@ -27,7 +27,7 @@ $organisation = new Organisation
     isset($_POST['id']) ? $_POST['id'] : die('id'), 
     isset($_POST['name']) ? $_POST['name'] : die('name'), 
     isset($_POST['mail']) ? $_POST['mail'] : die('mail'),
-    isset($_POST['password']) ? $_POST['password'] : die('password'),
+    isset($_POST['password']) ? password_hash($_POST['password'], PASSWORD_BCRYPT) : die('password'),
     isset($imageName) ? $imageName : die(),
     isset($_POST['about']) ? $_POST['about'] : die('about'),
     1

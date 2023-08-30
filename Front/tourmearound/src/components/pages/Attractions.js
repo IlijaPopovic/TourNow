@@ -106,7 +106,7 @@ const Attractions = (props) => {
 
   return (
     <div>
-      {showFiler}
+      {filter}
       {cards}
     </div>
   );

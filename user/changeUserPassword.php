@@ -2,14 +2,31 @@
 
 require_once '../config/database.php';
 require_once '../objects/user.php';
+require_once '../objects/sessionHandler.php';
 
-$user = new User();
-$user->mail = $_GET['mail'];
-$user->password = $_GET['password'];
+$token = $_GET['token'];
+$session = new MySessionHandler();
 
-$db = new Database();
-$user->setConnection($db->getConnection());
+if ($token === $session->get('reset_token')) {
 
-$user->updateUserPassword();
+    $user = new User();
+    $user->mail = $session->get('mail');
+    $user->password = $session->get('new_password');
+    $db = new Database();
+    $user->setConnection($db->getConnection());
+    $up = $user->updateUserPassword();
 
-echo "Password is changed";
+    if($up['status']==='updated')
+    {
+        echo "Password updated successfully!";
+    }
+    else
+    {
+        echo "Token mismatch. Please try again.";
+    }
+
+}
+
+unset($_SESSION['reset_token']);
+unset($_SESSION['new_password']);
+unset($_SESSION['email']);

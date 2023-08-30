@@ -93,10 +93,13 @@ class User extends Table
     public function checkIfUserExists()
     {
         $query = <<<EOD
-                SELECT * FROM `user` WHERE `user`.`mail` = :mail AND `user`.`password` = :password AND `user`.`verified` = 1
+                SELECT * FROM `user` WHERE `user`.`mail` = :mail AND `user`.`verified` = 1
                 EOD;
-        $params = ['mail','password'];
-        return parent::select($query, $params);
+        $params = ['mail'];
+        $array =  parent::select($query, $params);
+
+        return password_verify($this->password, $array[0]['password']) ? $array : [];
+        
     }
 
     public function updateUser():array

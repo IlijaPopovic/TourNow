@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Card from "./Card";
-import OrganisationNavigation from "../header/OrganisationNavigation";
+import AdminNavigation from "../header/AdminNavigation";
 import "../style/Profile.css";
 
 const AdminProfileInfo = (props) => {
@@ -76,7 +76,7 @@ const AdminProfileInfo = (props) => {
   return (
     <div className="profileInfo">
       <h1>Admin profile</h1>
-      <OrganisationNavigation />
+      <AdminNavigation />
       <h2>Organisations</h2>
       <div>{organisationCards}</div>
       <h2>Users</h2>

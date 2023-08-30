@@ -58,9 +58,9 @@ const Explore = (props) => {
       image={`http://localhost/TourMeAround/user/${item.image}`}
       title={item.title}
       subtitle={
-        format(new Date(item.date_start), "dd/MM/yyyy") +
+        format(new Date(item.date_start), "dd.MM.yyyy") +
         " to " +
-        format(new Date(item.date_end), "dd/MM/yyyy")
+        format(new Date(item.date_end), "dd.MM.yyyy")
       }
       description={item.description}
       link={`/tour/${item.id}`}

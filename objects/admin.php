@@ -20,10 +20,11 @@ class Admin extends Table
     public function checkIfAdminExists()
     {
         $query = <<<EOD
-                SELECT * FROM `admin` WHERE `admin`.`name` = :name AND `admin`.`password` = :password;
+                SELECT * FROM `admin` WHERE `admin`.`name` = :name;
                 EOD;
-        $params = ['name','password'];
-        return parent::select($query, $params);
+        $params = ['name'];
+        $array =  parent::select($query, $params);
+        return password_verify($this->password, $array[0]['password']) ? $array : [];
     }
 
 }

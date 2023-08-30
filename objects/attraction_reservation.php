@@ -57,7 +57,11 @@ class AttractionReservation extends Table
     public function selectUserAttractionReservation():array
     {
         $query = <<<EOD
-                SELECT * FROM `attraction_reservation` WHERE `attraction_reservation`.`user_id` = :id
+                SELECT destination.name as destination, attraction.name as attraction, attraction.date_start, attraction.date_end, attraction.price, attraction_reservation.id as attraction_reservation_id
+                FROM destination 
+                INNER JOIN attraction on attraction.destination_id = destination.id
+                INNER JOIN attraction_reservation on attraction.id = attraction_reservation.attraction_id
+                WHERE attraction_reservation.user_id = :id;
                 EOD;
         $params = ['id'];
         return parent::select($query, $params);
