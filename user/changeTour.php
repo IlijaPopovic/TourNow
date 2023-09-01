@@ -3,7 +3,7 @@
 require_once '../config/database.php';
 require_once '../objects/tour.php';
 require_once '../objects/tour_image.php';
-require_once '../objects/file.php';
+require_once '../objects/fileHandler.php';
 require_once '../objects/sessionHandler.php';
 
 $session = new MySessionHandler();
@@ -30,9 +30,8 @@ $tour->setConnection($db->getConnection());
 print_r(json_encode($dataTour = $tour->updateTour()));
 
 //var_dump($_FILES);
-$file = new File();  
 
-$file = new File();
+$file = new FileHandler();
 if (isset($_FILES['image']) && $_FILES['image']['name'] !== '') {
     $dataImage = $file->uploadFiles($_FILES['image']);
 

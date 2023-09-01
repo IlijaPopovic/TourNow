@@ -2,7 +2,6 @@
 
 require_once '../config/database.php';
 require_once '../objects/statistic.php';
-require_once '../objects/file.php';
 
 $statistic = new Statistic
 (

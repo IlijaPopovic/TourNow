@@ -1,7 +1,9 @@
 import axios from "axios";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const ReservationRenderer = ({ reservationData }) => {
+  const navigate = useNavigate();
   const destinationData = {};
 
   reservationData.forEach((destinationGroup) => {
@@ -32,7 +34,8 @@ const ReservationRenderer = ({ reservationData }) => {
       .then((response) => {
         if (response.data.status === "deleted") {
           alert("Obrisano");
-          document.location.reload();
+          //document.location.reload();
+          navigate("/");
         } else {
           alert("Error");
         }
@@ -58,7 +61,8 @@ const ReservationRenderer = ({ reservationData }) => {
       .then((response) => {
         if (response.data.status === "deleted") {
           alert("Obrisano");
-          document.location.reload();
+          //document.location.reload();
+          navigate("/");
         } else {
           alert("Error");
         }

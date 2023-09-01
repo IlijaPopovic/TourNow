@@ -3,8 +3,10 @@ import axios from "axios";
 import Explore from "../pages/Explore";
 import "../style/Profile.css";
 import OrganisationNavigation from "../header/OrganisationNavigation";
+import { useNavigate } from "react-router-dom";
 
 const OrganisationProfileInfo = (props) => {
+  const navigate = useNavigate();
   const limitStringLength = (text, maxLength) => {
     if (text.length <= maxLength) {
       return text;
@@ -64,7 +66,8 @@ const OrganisationProfileInfo = (props) => {
         if (response.data["status"] === "logged_out") {
           localStorage.removeItem("organisation");
           alert("Logged out");
-          window.location.reload();
+          //window.location.reload();
+          navigate("/");
         } else {
           alert("Error");
         }
@@ -94,7 +97,7 @@ const OrganisationProfileInfo = (props) => {
       <div className="info">
         <div className="profile-picture">
           <img
-            src={`http://localhost/TourMeAround/user/${data.image}`}
+            src={`${process.env.REACT_APP_API_URL}${data.image}`}
             alt="poster"
             className="tour-poster"
           />

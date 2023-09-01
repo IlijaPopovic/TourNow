@@ -33,8 +33,8 @@ const Explore = (props) => {
         (!startDate || new Date(item.date_start) >= new Date(startDate)) &&
         (!endDate || new Date(item.date_end) <= new Date(endDate)) &&
         (!props.organisationID ||
-          props.organisationID === item.organisation_id) &&
-        (!props.destinationID || props.destinationID === item.destination_id)
+          props.organisationID == item.organisation_id) &&
+        (!props.destinationID || props.destinationID == item.destination_id)
     );
 
     setFilteredData(filtered);
@@ -52,10 +52,14 @@ const Explore = (props) => {
     setEndDate(event.target.value);
   };
 
+  if (data.length === 0) {
+    return <p>Loading...</p>;
+  }
+
   const cards = filteredData.map((item) => (
     <Card
       key={item.id}
-      image={`http://localhost/TourMeAround/user/${item.image}`}
+      image={`${process.env.REACT_APP_API_URL}${item.image}`}
       title={item.title}
       subtitle={
         format(new Date(item.date_start), "dd.MM.yyyy") +

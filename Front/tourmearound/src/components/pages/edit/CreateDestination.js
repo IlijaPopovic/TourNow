@@ -65,75 +65,65 @@ const CreateDestination = (props) => {
         }}
       >
         {({ setFieldValue, errors }) => (
-          console.log("Formik Errors:", errors),
-          (
-            <Form className="form">
-              <label>
-                <Field name="name" type="text" placeholder="Name" />
-                <ErrorMessage
-                  name="name"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+          //console.log("Formik Errors:", errors),
+          <Form className="form">
+            <label>
+              <Field name="name" type="text" placeholder="Name" />
+              <ErrorMessage
+                name="name"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <label>
-                <Field
-                  name="coordinates"
-                  type="text"
-                  placeholder="Coordinates"
-                />
-                <ErrorMessage
-                  name="coordinates"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+            <label>
+              <Field name="coordinates" type="text" placeholder="Coordinates" />
+              <ErrorMessage
+                name="coordinates"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <label>
-                <Field name="country" type="text" placeholder="Country" />
-                <ErrorMessage
-                  name="country"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+            <label>
+              <Field name="country" type="text" placeholder="Country" />
+              <ErrorMessage
+                name="country"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <label>
-                <Field
-                  name="description"
-                  type="text"
-                  placeholder="Description"
-                />
-                <ErrorMessage
-                  name="description"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+            <label>
+              <Field name="description" type="text" placeholder="Description" />
+              <ErrorMessage
+                name="description"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <label className="file-input-label">
-                {"Upload image"}
-                <input
-                  className="file-input"
-                  id="image"
-                  name="image"
-                  type="file"
-                  onChange={(event) => {
-                    setFieldValue("image", event.currentTarget.files[0]);
-                    console.log(event.currentTarget.files[0]);
-                  }}
-                />
-                <ErrorMessage
-                  name="image"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+            <label className="file-input-label">
+              {"Upload image"}
+              <input
+                className="file-input"
+                id="image"
+                name="image"
+                type="file"
+                onChange={(event) => {
+                  setFieldValue("image", event.currentTarget.files[0]);
+                  console.log(event.currentTarget.files[0]);
+                }}
+              />
+              <ErrorMessage
+                name="image"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <button type="submit">Create</button>
-            </Form>
-          )
+            <button type="submit">Create</button>
+          </Form>
         )}
       </Formik>
     </div>

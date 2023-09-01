@@ -1,29 +1,47 @@
 <?php
+// local
+// header("Access-Control-Allow-Origin: http://localhost:3000");
+// header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+// header("Access-Control-Allow-Headers: Content-Type");
+// header("Access-Control-Allow-Credentials: true");
+// header('Access-Control-Allow-Headers: X-Requested-With, Origin, Content-Type, X-CSRF-Token, Accept');
 
-header("Access-Control-Allow-Origin: http://localhost:3000");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
-header("Access-Control-Allow-Credentials: true");
-header('Access-Control-Allow-Headers: X-Requested-With, Origin, Content-Type, X-CSRF-Token, Accept');
+// ini_set("session.cookie_domain", '.dev.local');
+// session_set_cookie_params(3600, '/', '.dev.local');
+// if(!isset($_SESSION)) {
+//    session_start();
+// }
 
-ini_set("session.cookie_domain", '.dev.local');
-session_set_cookie_params(3600, '/', '.dev.local');
-if(!isset($_SESSION)) {
-   session_start();
-}
+
+
+// IGN
 // // csrf code add here (see below...)
 // $http_origin = $_SERVER['HTTP_ORIGIN'];
 // if ($http_origin == "http://dev.local:3000" || $http_origin == "http://localhost:3000"){
 //     header("Access-Control-Allow-Origin: $http_origin");
 // }
+//IGN
+
+
+header("Access-Control-Allow-Origin: https://noclass.stud.vts.su.ac.rs");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Credentials: true");
+header('Access-Control-Allow-Headers: X-Requested-With, Origin, Content-Type, X-CSRF-Token, Accept');
+
+ini_set("session.cookie_domain", '.stud.vts.su.ac.rs');
+session_set_cookie_params(3600, '/', '.stud.vts.su.ac.rs');
+if (!isset($_SESSION)) {
+   session_start();
+}
 session_write_close();
 
 class Database
 {
     private $host = "localhost";
-    private $db_name = "turist";
-    private $username = "root";
-    private $password = "root";
+    private $db_name = "noclass";
+    private $username = "noclass";
+    private $password = "suYHPRGOhWe4t8k";
     public $conn;
 
     public function getConnection()

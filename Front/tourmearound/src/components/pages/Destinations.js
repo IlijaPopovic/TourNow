@@ -38,7 +38,7 @@ const Destinations = () => {
   const cards = filteredData.map((item) => (
     <Card
       key={item.id}
-      image={`http://localhost/TourMeAround/user/${item.image}`}
+      image={`${process.env.REACT_APP_API_URL}${item.image}`}
       title={item.name}
       subtitle={item.country}
       description={item.description}

@@ -2,10 +2,10 @@
 
 require_once '../config/database.php';
 require_once '../objects/user.php';
-require_once '../objects/file.php';
+require_once '../objects/fileHandler.php';
 require_once '../objects/mailer.php';
 
-$file = new File();
+$file = new FileHandler();
 if (!isset($_FILES['image'])) die('nema slike');
 $statusFile = $file->uploadFile($_FILES['image']);
 if($statusFile['status'] == 'uploaded')
@@ -35,7 +35,7 @@ if($answer["status"]=="inserted")
     $mailer = new MyPHPMailerClass();
     $to = $_POST['mail'];
     $subject = 'Verification';
-    $body = 'Verifide your mail by clicking on this link: http://localhost/TourMeAround/user/verifyUserAccount.php?id='.$answer["id"];
+    $body = 'Verifide your mail by clicking on this link: https://noclass.stud.vts.su.ac.rs/TourMeAround/user/verifyUserAccount.php?id='.$answer["id"];
     $mailer->sendEmail($to, $subject, $body);
 }
 

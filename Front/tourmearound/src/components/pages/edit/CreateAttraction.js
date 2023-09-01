@@ -96,96 +96,90 @@ const CreateAttraction = (props) => {
         }}
       >
         {({ setFieldValue, errors }) => (
-          console.log("Formik Errors:", errors),
-          (
-            <Form className="form">
-              <label>
-                <Field name="name" type="text" placeholder="Name" />
-                <ErrorMessage
-                  name="name"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+          //console.log("Formik Errors:", errors),
+          <Form className="form">
+            <label>
+              <Field name="name" type="text" placeholder="Name" />
+              <ErrorMessage
+                name="name"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <label>
-                <Field name="date_start" type="date" placeholder="Date start" />
-                <ErrorMessage
-                  name="date_start"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+            <label>
+              <Field name="date_start" type="date" placeholder="Date start" />
+              <ErrorMessage
+                name="date_start"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <label>
-                <Field name="date_end" type="date" placeholder="Date end" />
-                <ErrorMessage
-                  name="date_end"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+            <label>
+              <Field name="date_end" type="date" placeholder="Date end" />
+              <ErrorMessage
+                name="date_end"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <label>
-                <Field
-                  name="description"
-                  type="text"
-                  placeholder="Description"
-                />
-                <ErrorMessage
-                  name="description"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+            <label>
+              <Field name="description" type="text" placeholder="Description" />
+              <ErrorMessage
+                name="description"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <label>
-                <Field name="price" type="text" placeholder="Price" />
-                <ErrorMessage
-                  name="price"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+            <label>
+              <Field name="price" type="text" placeholder="Price" />
+              <ErrorMessage
+                name="price"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <label>
-                <Field name="max_people" type="text" placeholder="Max people" />
-                <ErrorMessage
-                  name="max_people"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+            <label>
+              <Field name="max_people" type="text" placeholder="Max people" />
+              <ErrorMessage
+                name="max_people"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <label>
-                <Field as="select" id="destination_id" name="destination_id">
-                  <option value="default">Select destination</option>
-                  {destinations}
-                </Field>
-              </label>
+            <label>
+              <Field as="select" id="destination_id" name="destination_id">
+                <option value="default">Select destination</option>
+                {destinations}
+              </Field>
+            </label>
 
-              <label className="file-input-label">
-                {"Upload image"}
-                <input
-                  className="file-input"
-                  id="image"
-                  name="image"
-                  type="file"
-                  onChange={(event) => {
-                    setFieldValue("image", event.currentTarget.files[0]);
-                    console.log(event.currentTarget.files[0]);
-                  }}
-                />
-                <ErrorMessage
-                  name="image"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+            <label className="file-input-label">
+              {"Upload image"}
+              <input
+                className="file-input"
+                id="image"
+                name="image"
+                type="file"
+                onChange={(event) => {
+                  setFieldValue("image", event.currentTarget.files[0]);
+                  console.log(event.currentTarget.files[0]);
+                }}
+              />
+              <ErrorMessage
+                name="image"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <button type="submit">Create</button>
-            </Form>
-          )
+            <button type="submit">Create</button>
+          </Form>
         )}
       </Formik>
     </div>

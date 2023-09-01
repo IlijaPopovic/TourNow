@@ -2,9 +2,11 @@ import React from "react";
 import axios from "axios";
 import Card from "./Card";
 import AdminNavigation from "../header/AdminNavigation";
+import { useNavigate } from "react-router-dom";
 import "../style/Profile.css";
 
 const AdminProfileInfo = (props) => {
+  const navigate = useNavigate();
   const dataSend = { id: props.id };
   const [data, setData] = React.useState([]);
   React.useEffect(() => {
@@ -32,7 +34,7 @@ const AdminProfileInfo = (props) => {
   const organisationCards = data[1].map((item) => (
     <Card
       key={item.id}
-      image={`http://localhost/TourMeAround/user/${item.image}`}
+      image={`${process.env.REACT_APP_API_URL}${item.image}`}
       title={item.name}
       subtitle={item.mail}
       description={item.about}
@@ -43,7 +45,7 @@ const AdminProfileInfo = (props) => {
   const userCards = data[0].map((item) => (
     <Card
       key={item.id}
-      image={`http://localhost/TourMeAround/user/${item.image}`}
+      image={`${process.env.REACT_APP_API_URL}${item.image}`}
       title={"Name: " + item.name + " " + item.surname}
       subtitle={"Email: " + item.mail}
       description={"Enabled: " + item.verified}
@@ -59,7 +61,8 @@ const AdminProfileInfo = (props) => {
         if (response.data["status"] === "logged_out") {
           localStorage.removeItem("admin");
           alert("Logged out");
-          window.location.reload();
+          //window.location.reload();
+          navigate("/");
         } else {
           alert("Error");
         }

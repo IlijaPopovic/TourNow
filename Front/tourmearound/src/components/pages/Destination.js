@@ -5,17 +5,19 @@ import Attractions from "./Attractions";
 import { NavLink } from "react-router-dom";
 import "../style/Tour.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const Organisation = () => {
+const Destination = () => {
+  const navigate = useNavigate();
   const currentURL = window.location.href;
   const urlSegments = currentURL.split("/");
   const lastSegment = urlSegments[urlSegments.length - 1];
   const dataSend = { id: lastSegment };
-
+  console.log("LAST SEGMENT: " + lastSegment);
   const [dataR, setData] = React.useState([]);
 
   React.useEffect(() => {
-    const apiUrl = "http://localhost/TourMeAround/user/getDestination.php";
+    const apiUrl = process.env.REACT_APP_API_URL + "getDestination.php";
     axios
       .post(apiUrl, dataSend, {
         headers: {
@@ -24,7 +26,7 @@ const Organisation = () => {
       })
       .then((response) => {
         setData(response.data[0]);
-        console.log(response.data);
+        //console.log(response.data);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -46,7 +48,8 @@ const Organisation = () => {
       .then((response) => {
         if (response.data.status === "deleted") {
           alert("Obrisano");
-          window.history.back();
+          //window.history.back();
+          navigate("/");
         } else {
           alert("Error");
         }
@@ -72,7 +75,7 @@ const Organisation = () => {
     <div>
       <div>
         <img
-          src={`http://localhost/TourMeAround/user/${dataR["image"]}`}
+          src={`${process.env.REACT_APP_API_URL}${dataR["image"]}`}
           alt="poster"
           className="tour-poster"
         />
@@ -102,4 +105,4 @@ const Organisation = () => {
   );
 };
 
-export default Organisation;
+export default Destination;

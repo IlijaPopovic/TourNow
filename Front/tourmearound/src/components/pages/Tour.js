@@ -18,12 +18,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "../style/Tour.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Tour = () => {
   const currentURL = window.location.href;
   const urlSegments = currentURL.split("/");
   const lastSegment = urlSegments[urlSegments.length - 1];
   const dataSend = { id: lastSegment };
+  const navigate = useNavigate();
 
   const [dataR, setData] = React.useState([]);
   console.log(dataR);
@@ -105,7 +107,8 @@ const Tour = () => {
       .then((response) => {
         if (response.data.status === "deleted") {
           alert("Obrisano");
-          window.history.back();
+          //window.history.back();
+          navigate("/");
         } else {
           alert("Error");
         }
@@ -137,7 +140,9 @@ const Tour = () => {
       .then((response) => {
         console.log(response.data);
         if (response.data["status"] === "inserted") {
-          window.location.reload();
+          //navigate("/Tour/" + lastSegment);
+          navigate("/");
+          // window.location.reload();
           alert("Reserved");
         } else {
           alert("Error");
@@ -195,7 +200,7 @@ const Tour = () => {
     <AccomodationCard
       key={index} //
       id={accommodation["id"]}
-      image={`http://localhost/TourMeAround/user/${accommodation["image"]}`}
+      image={`${process.env.REACT_APP_API_URL}${accommodation["image"]}`}
       title={accommodation["name"]}
       subtitle={`Hotel: ${accommodation["accommodation_name"]}`}
       description={accommodation["about"]}
@@ -211,7 +216,7 @@ const Tour = () => {
     <div>
       <div>
         <img
-          src={`http://localhost/TourMeAround/user/${dataR[2][0]["name"]}`}
+          src={`${process.env.REACT_APP_API_URL}${dataR[2][0]["name"]}`}
           alt="poster"
           className="tour-poster"
         />
@@ -239,7 +244,7 @@ const Tour = () => {
 
       <h2>Organisation</h2>
       <Card
-        image={`http://localhost/TourMeAround/user/${dataR[3]["image"]}`}
+        image={`${process.env.REACT_APP_API_URL}${dataR[3]["image"]}`}
         title={dataR[3]["name"]}
         description={dataR[3]["about"]}
         link={`/organisation/${dataR[3]["id"]}`}

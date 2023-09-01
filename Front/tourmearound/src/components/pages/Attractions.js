@@ -34,7 +34,7 @@ const Attractions = (props) => {
         item.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
         (!startDate || itemStartDate >= new Date(startDate)) &&
         (!endDate || itemEndDate <= new Date(endDate)) &&
-        (!props.destinationID || props.destinationID === item.destination_id)
+        (!props.destinationID || props.destinationID == item.destination_id)
       );
     });
 
@@ -58,7 +58,7 @@ const Attractions = (props) => {
     <Card
       key={item.id}
       id={item.id}
-      image={`http://localhost/TourMeAround/user/${item.image}`}
+      image={`${process.env.REACT_APP_API_URL}${item.image}`}
       title={
         item.title +
         " - " +

@@ -16,6 +16,9 @@ const Header = (props) => {
         <Navigation activeNavLinknStyle={activeNavLinknStyle} />
       </div>
       <div className="header-right">
+        <NavLink to="/AdminProfile" style={activeNavLinknStyle}>
+          *
+        </NavLink>
         <NavLink to="/OrganisationProfile" style={activeNavLinknStyle}>
           <FontAwesomeIcon icon={faMap} />
         </NavLink>

@@ -1,10 +1,12 @@
 import React from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../style/Profile.css";
 
 const UserProfileInfo = (props) => {
   // console.log(localStorage.getItem("user"));
+  const navigate = useNavigate();
 
   const dataSend = { id: props.id };
 
@@ -40,7 +42,8 @@ const UserProfileInfo = (props) => {
         if (response.data["status"] === "logged_out") {
           localStorage.removeItem("user");
           alert("Logged out");
-          window.location.reload();
+          // window.location.reload();
+          navigate("/");
         } else {
           alert("Error");
         }
@@ -60,7 +63,7 @@ const UserProfileInfo = (props) => {
       <div className="info">
         <div className="profile-picture">
           <img
-            src={`http://localhost/TourMeAround/user/${data.image}`}
+            src={`${process.env.REACT_APP_API_URL}${data.image}`}
             alt="poster"
             className="tour-poster"
           />

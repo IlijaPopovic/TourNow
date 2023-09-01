@@ -13,7 +13,7 @@ $session->set('onew_password', password_hash($_POST['password'], PASSWORD_BCRYPT
 
 
 // Construct the reset link
-$resetLink = "http://localhost/TourMeAround/user/changeOrganisationPassword.php?otoken=$token";
+$resetLink = "https://noclass.stud.vts.su.ac.rs/TourMeAround/user/changeOrganisationPassword.php?otoken=$token";
 
 // Send the email
 $mailer = new MyPHPMailerClass();

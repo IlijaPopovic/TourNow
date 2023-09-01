@@ -2,13 +2,13 @@
 
 require_once '../config/database.php';
 require_once '../objects/organisation.php';
-require_once '../objects/file.php';
+require_once '../objects/fileHandler.php';
 require_once '../objects/sessionHandler.php';
 
 $session = new MySessionHandler();
 $session->checkOrganisation()['id']!=="no" ? null : die('nema ulogovane organisacije');
 
-$file = new File();
+$file = new FileHandler();
 if (isset($_FILES['image']) && $_FILES['image']['name'] !== '') {
     $statusFile = $file->uploadFile($_FILES['image']);
     if ($statusFile['status'] == 'uploaded') {

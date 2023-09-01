@@ -36,7 +36,7 @@ const Organisation = () => {
     <div>
       <div className="main-image">
         <img
-          src={`http://localhost/TourMeAround/user/${dataR["image"]}`}
+          src={`${process.env.REACT_APP_API_URL}${dataR["image"]}`}
           alt="poster"
           className="tour-poster"
         />

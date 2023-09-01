@@ -26,7 +26,7 @@ class Transport extends Table
     public function insertTransport():array
     {
         $query = <<<EOD
-                INSERT INTO `Transport` (`id`, `name`, `type`, `start`, `end`, `tour_id`) 
+                INSERT INTO `transport` (`id`, `name`, `type`, `start`, `end`, `tour_id`) 
                 VALUES (NULL, :name, :type, :start, :end, :tour_id);
                 EOD;
         $params = ['name', 'type', 'start', 'end', 'tour_id'];
