@@ -23,7 +23,7 @@ const ChangeAccommodation = (props) => {
     image: yup
       .mixed()
       .test("fileSize", "Fajl je previše velik", (value) => {
-        console.log(value);
+        //console.log(value);
         return !value || (value && value.size <= FILE_SIZE);
       })
       .test(
@@ -59,7 +59,7 @@ const ChangeAccommodation = (props) => {
   }
   //console.log(data[0]);
   const initialValues = { ...data[0], image: undefined };
-  console.log(initialValues);
+  //console.log(initialValues);
 
   return (
     <div className="form-main">
@@ -134,7 +134,7 @@ const ChangeAccommodation = (props) => {
                 type="file"
                 onChange={(event) => {
                   setFieldValue("image", event.currentTarget.files[0]);
-                  console.log(event.currentTarget.files[0]);
+                  //console.log(event.currentTarget.files[0]);
                 }}
               />
               <ErrorMessage

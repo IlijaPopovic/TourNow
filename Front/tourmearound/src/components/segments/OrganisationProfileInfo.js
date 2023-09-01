@@ -46,7 +46,7 @@ const OrganisationProfileInfo = (props) => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         setStat(response.data);
       })
       .catch((error) => {
@@ -62,7 +62,7 @@ const OrganisationProfileInfo = (props) => {
     axios
       .post(process.env.REACT_APP_API_URL + "logOutOrganisation.php")
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         if (response.data["status"] === "logged_out") {
           localStorage.removeItem("organisation");
           alert("Logged out");

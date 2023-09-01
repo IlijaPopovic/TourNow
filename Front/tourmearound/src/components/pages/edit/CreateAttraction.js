@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import * as yup from "yup";
 
-const FILE_SIZE = 2000 * 1024 * 1024; // ograničenje na 2MB
+const FILE_SIZE = 2 * 1024 * 1024; // ograničenje na 2MB
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 
 const validationSchema = yup.object({
@@ -51,7 +51,7 @@ const CreateAttraction = (props) => {
       .post(process.env.REACT_APP_API_URL + "getCreateAttractionData.php")
       .then((response) => {
         setData(response.data);
-        console.log(response.data);
+        //console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -76,7 +76,7 @@ const CreateAttraction = (props) => {
         onSubmit={(values, actions) => {
           axios
             .post(
-              process.env.REACT_APP_API_URL + "CreateAttraction.php",
+              process.env.REACT_APP_API_URL + "createAttraction.php",
               values,
               {
                 headers: {
@@ -85,7 +85,7 @@ const CreateAttraction = (props) => {
               }
             )
             .then((response) => {
-              console.log(response);
+              //console.log(response);
               if (response.data["status"] === "inserted") {
                 alert("Created");
                 actions.resetForm();
@@ -168,7 +168,7 @@ const CreateAttraction = (props) => {
                 type="file"
                 onChange={(event) => {
                   setFieldValue("image", event.currentTarget.files[0]);
-                  console.log(event.currentTarget.files[0]);
+                  //console.log(event.currentTarget.files[0]);
                 }}
               />
               <ErrorMessage

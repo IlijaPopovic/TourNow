@@ -36,7 +36,7 @@ const LoginForm = (props) => {
               },
             })
             .then((response) => {
-              console.log(response.data);
+              //console.log(response.data);
               if (response.data.user === "no") {
                 alert("pogresan upis");
               } else {

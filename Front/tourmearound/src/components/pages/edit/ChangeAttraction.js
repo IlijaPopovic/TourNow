@@ -63,7 +63,7 @@ const ChangeAccommodation = (props) => {
   }
   //console.log(data[0]);
   const initialValues = { ...data[0][0], image: undefined };
-  console.log(initialValues);
+  //console.log(initialValues);
 
   const destinations = data[1].map((item) => (
     <option key={item.id} value={item.id}>
@@ -179,7 +179,7 @@ const ChangeAccommodation = (props) => {
                 type="file"
                 onChange={(event) => {
                   setFieldValue("image", event.currentTarget.files[0]);
-                  console.log(event.currentTarget.files[0]);
+                  //console.log(event.currentTarget.files[0]);
                 }}
               />
               <ErrorMessage

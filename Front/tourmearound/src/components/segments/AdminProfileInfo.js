@@ -20,7 +20,7 @@ const AdminProfileInfo = (props) => {
       })
       .then((response) => {
         setData(response.data);
-        console.log(response.data);
+        //console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -57,7 +57,7 @@ const AdminProfileInfo = (props) => {
     axios
       .post(process.env.REACT_APP_API_URL + "logOutAdmin.php")
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         if (response.data["status"] === "logged_out") {
           localStorage.removeItem("admin");
           alert("Logged out");

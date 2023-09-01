@@ -2,8 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import "../style/Card.css";
+import { useNavigate } from "react-router-dom";
 
 const Card = (props) => {
+  const navigate = useNavigate();
   const limitStringLength = (text, maxLength) => {
     if (text.length <= maxLength) {
       return text;
@@ -19,7 +21,7 @@ const Card = (props) => {
 
   const [reserved, setReserved] = React.useState(false);
   const handleReservationButtonClick = () => {
-    console.log(createAttractionValues);
+    //console.log(createAttractionValues);
     axios
       .post(
         process.env.REACT_APP_API_URL + "createAttractionReservation.php",
@@ -31,7 +33,7 @@ const Card = (props) => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
       });
     setReserved((reserved) => !reserved);
   };
@@ -48,10 +50,11 @@ const Card = (props) => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         if (response.data.status === "deleted") {
           alert("Organisation deleted");
-          window.window.location.reload();
+          //window.window.location.reload();
+          navigate("/");
         } else {
           alert("error");
         }
@@ -70,10 +73,11 @@ const Card = (props) => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         if (response.data.status === "updated") {
           alert("Changed");
-          window.window.location.reload();
+          //window.window.location.reload();
+          navigate("/");
         } else {
           alert("error");
         }

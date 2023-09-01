@@ -21,7 +21,7 @@ const Organisation = () => {
       })
       .then((response) => {
         setData(response.data[0]);
-        console.log(response.data);
+        //console.log(response.data);
       })
       .catch((error) => {
         console.error("Error:", error);

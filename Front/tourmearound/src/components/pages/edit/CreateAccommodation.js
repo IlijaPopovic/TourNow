@@ -55,7 +55,7 @@ const CreateAccomodation = (props) => {
               }
             )
             .then((response) => {
-              console.log(response.data);
+              //console.log(response.data);
               response.data["status"] === "inserted"
                 ? alert("Created")
                 : alert("Error");
@@ -109,7 +109,7 @@ const CreateAccomodation = (props) => {
                 type="file"
                 onChange={(event) => {
                   setFieldValue("image", event.currentTarget.files[0]);
-                  console.log(event.currentTarget.files[0]);
+                  //console.log(event.currentTarget.files[0]);
                 }}
               />
               <ErrorMessage

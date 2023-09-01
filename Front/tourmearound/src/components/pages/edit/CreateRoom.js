@@ -41,7 +41,7 @@ const CreateRoom = (props) => {
       .post(process.env.REACT_APP_API_URL + "getCreateRoomData.php")
       .then((response) => {
         setData(response.data);
-        console.log(response.data);
+        //console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -88,7 +88,7 @@ const CreateRoom = (props) => {
               },
             })
             .then((response) => {
-              console.log(response.data);
+              //console.log(response.data);
               if (response.data["status"] === "inserted") {
                 alert("Created");
                 actions.resetForm();

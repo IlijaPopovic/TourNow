@@ -73,7 +73,7 @@ const ChangeTour = (props) => {
       })
       .then((response) => {
         setData(response.data);
-        console.log(response.data);
+        //console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -105,7 +105,7 @@ const ChangeTour = (props) => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values) => {
-          console.log(values);
+          //console.log(values);
           axios
             .post(process.env.REACT_APP_API_URL + "changeTour.php", values, {
               headers: {
@@ -230,7 +230,7 @@ const ChangeTour = (props) => {
                 multiple
                 onChange={(event) => {
                   const selectedFiles = event.currentTarget.files;
-                  console.log(selectedFiles[0]["size"]);
+                  //console.log(selectedFiles[0]["size"]);
                   setFieldValue("image", selectedFiles);
                 }}
               />

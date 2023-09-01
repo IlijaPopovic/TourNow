@@ -23,7 +23,7 @@ const UserProfileInfo = (props) => {
       })
       .then((response) => {
         setData(response.data[0]);
-        console.log(response.data[0]);
+        //console.log(response.data[0]);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -38,7 +38,7 @@ const UserProfileInfo = (props) => {
     axios
       .post(process.env.REACT_APP_API_URL + "logOutUser.php")
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         if (response.data["status"] === "logged_out") {
           localStorage.removeItem("user");
           alert("Logged out");

@@ -98,7 +98,7 @@ const CreateTour = (props) => {
               },
             })
             .then((response) => {
-              console.log(response.data);
+              //console.log(response.data);
               if (response.data["status"] === "inserted") {
                 alert("Created");
                 actions.resetForm();
@@ -208,7 +208,7 @@ const CreateTour = (props) => {
                 multiple
                 onChange={(event) => {
                   const selectedFiles = event.currentTarget.files;
-                  console.log(selectedFiles[0]["size"]);
+                  //console.log(selectedFiles[0]["size"]);
                   setFieldValue("image", selectedFiles);
                 }}
               />

@@ -54,7 +54,7 @@ const CreateDestination = (props) => {
               }
             )
             .then((response) => {
-              console.log(response);
+              //console.log(response);
               if (response.data["status"] === "inserted") {
                 alert("Created");
                 actions.resetForm();
@@ -112,7 +112,7 @@ const CreateDestination = (props) => {
                 type="file"
                 onChange={(event) => {
                   setFieldValue("image", event.currentTarget.files[0]);
-                  console.log(event.currentTarget.files[0]);
+                  //console.log(event.currentTarget.files[0]);
                 }}
               />
               <ErrorMessage

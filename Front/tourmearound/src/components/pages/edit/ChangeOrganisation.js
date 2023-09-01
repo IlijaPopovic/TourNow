@@ -77,10 +77,10 @@ const ChangeOrganisation = (props) => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values) => {
-          console.log(values);
+          //console.log(values);
           axios
             .post(
-              process.env.REACT_APP_API_URL + "ChangeOrganisation.php",
+              process.env.REACT_APP_API_URL + "changeOrganisation.php",
               values,
               {
                 headers: {
@@ -89,7 +89,7 @@ const ChangeOrganisation = (props) => {
               }
             )
             .then((response) => {
-              console.log(response.data);
+              //console.log(response.data);
             });
         }}
       >
@@ -141,7 +141,7 @@ const ChangeOrganisation = (props) => {
                 type="file"
                 onChange={(event) => {
                   setFieldValue("image", event.currentTarget.files[0]);
-                  console.log(event.currentTarget.files[0]);
+                  //console.log(event.currentTarget.files[0]);
                 }}
               />
               <ErrorMessage

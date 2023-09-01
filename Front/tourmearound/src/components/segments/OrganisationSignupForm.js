@@ -61,7 +61,7 @@ const SignUpForm = (props) => {
               }
             )
             .then((response) => {
-              console.log(response.data);
+              //console.log(response.data);
               if (response.data.status === "inserted") {
                 alert("Verifikacioni mail Vam je poslat");
               } else {
@@ -71,67 +71,65 @@ const SignUpForm = (props) => {
         }}
       >
         {({ setFieldValue, errors }) => (
-          console.log("Formik Errors:", errors),
-          (
-            <Form className="form">
-              <label>
-                <Field name="name" type="text" placeholder="Name" />
-                <ErrorMessage
-                  name="name"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+          //console.log("Formik Errors:", errors),
+          <Form className="form">
+            <label>
+              <Field name="name" type="text" placeholder="Name" />
+              <ErrorMessage
+                name="name"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <label>
-                <Field name="mail" type="email" placeholder="Email" />
-                <ErrorMessage
-                  name="mail"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+            <label>
+              <Field name="mail" type="email" placeholder="Email" />
+              <ErrorMessage
+                name="mail"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <label>
-                <Field name="password" type="password" placeholder="Password" />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+            <label>
+              <Field name="password" type="password" placeholder="Password" />
+              <ErrorMessage
+                name="password"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <label>
-                <Field name="about" type="text" placeholder="Mobile Number" />
-                <ErrorMessage
-                  name="about"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+            <label>
+              <Field name="about" type="text" placeholder="Mobile Number" />
+              <ErrorMessage
+                name="about"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <label className="file-input-label">
-                {"Upload profile picture"}
-                <input
-                  className="file-input"
-                  id="image"
-                  name="image"
-                  type="file"
-                  onChange={(event) => {
-                    setFieldValue("image", event.currentTarget.files[0]);
-                    console.log(event.currentTarget.files[0]);
-                  }}
-                />
-                <ErrorMessage
-                  name="image"
-                  component="div"
-                  className="field-error"
-                />
-              </label>
+            <label className="file-input-label">
+              {"Upload profile picture"}
+              <input
+                className="file-input"
+                id="image"
+                name="image"
+                type="file"
+                onChange={(event) => {
+                  setFieldValue("image", event.currentTarget.files[0]);
+                  //console.log(event.currentTarget.files[0]);
+                }}
+              />
+              <ErrorMessage
+                name="image"
+                component="div"
+                className="field-error"
+              />
+            </label>
 
-              <button type="submit">Sign Up</button>
-            </Form>
-          )
+            <button type="submit">Sign Up</button>
+          </Form>
         )}
       </Formik>
       <button type="button" onClick={props.toggleForm}>

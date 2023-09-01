@@ -28,7 +28,7 @@ const Tour = () => {
   const navigate = useNavigate();
 
   const [dataR, setData] = React.useState([]);
-  console.log(dataR);
+  //console.log(dataR);
   const [activeTransportFilter, setActiveTransportFilter] = React.useState("");
   const [activeAccomodationFilter, setActiveAccomodationFilter] =
     React.useState("");
@@ -69,8 +69,8 @@ const Tour = () => {
       }
     )
     .then((response) => {
-      console.log("statistika:");
-      console.log(response.data);
+      //console.log("statistika:");
+      //console.log(response.data);
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -126,7 +126,7 @@ const Tour = () => {
   };
 
   const handleReservationButtonClick = () => {
-    console.log(createRoomData);
+    //console.log(createRoomData);
     axios
       .post(
         process.env.REACT_APP_API_URL + "createReservation.php",
@@ -138,7 +138,7 @@ const Tour = () => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         if (response.data["status"] === "inserted") {
           //navigate("/Tour/" + lastSegment);
           navigate("/");
@@ -193,7 +193,7 @@ const Tour = () => {
     if (activeAccomodationFilter === "") {
       return true;
     }
-    return accomadation["stars"] === activeAccomodationFilter;
+    return accomadation["stars"] == activeAccomodationFilter;
   });
 
   const accommodation = filteredAccomadation.map((accommodation, index) => (

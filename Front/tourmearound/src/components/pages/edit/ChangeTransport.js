@@ -49,7 +49,7 @@ const ChangeTransport = (props) => {
       )
       .then((response) => {
         setData(response.data);
-        console.log(response.data);
+        //console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -86,10 +86,10 @@ const ChangeTransport = (props) => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values) => {
-          console.log(values);
+          //console.log(values);
           axios
             .post(
-              process.env.REACT_APP_API_URL + "ChangeTransport.php",
+              process.env.REACT_APP_API_URL + "changeTransport.php",
               values,
               {
                 headers: {

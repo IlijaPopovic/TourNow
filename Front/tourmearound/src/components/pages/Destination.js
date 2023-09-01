@@ -13,7 +13,7 @@ const Destination = () => {
   const urlSegments = currentURL.split("/");
   const lastSegment = urlSegments[urlSegments.length - 1];
   const dataSend = { id: lastSegment };
-  console.log("LAST SEGMENT: " + lastSegment);
+  //console.log("LAST SEGMENT: " + lastSegment);
   const [dataR, setData] = React.useState([]);
 
   React.useEffect(() => {
