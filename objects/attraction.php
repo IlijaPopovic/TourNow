@@ -58,7 +58,7 @@ class Attraction extends Table
     public function selectAttractions():array
     {
         $query = <<<EOD
-                SELECT attraction.`id`, attraction.`name` as title, `date_start`, `date_end`, attraction.`description`, `price`, `max_people`, `destination_id`, destination.country, destination.image, destination.name as `destination`  FROM `attraction` INNER JOIN destination ON attraction.destination_id = destination.id
+                SELECT attraction.`id`, attraction.`name` as title, `date_start`, `date_end`, attraction.`description`, `price`, `max_people`, `destination_id`, destination.country, attraction.image, destination.name as `destination`  FROM `attraction` INNER JOIN destination ON attraction.destination_id = destination.id
                 WHERE `attraction`.`reserved` < `attraction`.`max_people`;
                 EOD;
         return parent::select($query);

@@ -53,7 +53,7 @@ const Attractions = (props) => {
     setEndDate(event.target.value);
   };
 
-  //console.log(filteredData);
+  console.log(filteredData);
   const cards = filteredData.map((item) => (
     <Card
       key={item.id}
