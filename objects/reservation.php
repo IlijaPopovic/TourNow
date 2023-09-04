@@ -65,7 +65,7 @@ class Reservation extends Table
     public function selectUserReservations():array
     {
         $query = <<<EOD
-                SELECT destination.name as destination, tour.name as tour, tour.date_start, tour.date_end, tour.price as tour_price, transport.type as transport, transport.price as transport_price, room.name as room, reservation.id as reservation_id FROM destination INNER JOIN tour on tour.destination_id = destination.id INNER JOIN reservation on reservation.tour_id = tour.id LEFT JOIN room on reservation.room_id = room.id LEFT JOIN transport on reservation.transport_id = transport.id WHERE reservation.user_id = :id;
+                SELECT destination.name as destination,tour.id as tour_id, tour.description, tour.name as tour, (SELECT name FROM tour_image WHERE tour_image.tour_id = tour.id LIMIT 1) as image, tour.date_start, tour.date_end, tour.price as tour_price, transport.type as transport, transport.price as transport_price, room.name as room, reservation.id as reservation_id FROM destination INNER JOIN tour on tour.destination_id = destination.id INNER JOIN reservation ON reservation.tour_id = tour.id LEFT JOIN room on reservation.room_id = room.id LEFT JOIN transport on reservation.transport_id = transport.id WHERE reservation.user_id = :id;
                 EOD;
         $params = ['id'];
         return parent::select($query, $params);

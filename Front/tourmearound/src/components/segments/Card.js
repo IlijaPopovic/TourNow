@@ -113,6 +113,7 @@ const Card = (props) => {
           </p>
           {props.deleteOranisationButtonID && deleteOranisationButton}
           {props.deactivationUserButtonID && deactivatiUserButton}
+          {props.bonus}
         </div>
       </div>
     </NavLink>

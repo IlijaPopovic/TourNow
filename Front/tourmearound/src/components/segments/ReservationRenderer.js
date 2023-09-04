@@ -1,6 +1,8 @@
 import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Card from "./Card";
+import { format } from "date-fns";
 
 const ReservationRenderer = ({ reservationData }) => {
   const navigate = useNavigate();
@@ -72,33 +74,69 @@ const ReservationRenderer = ({ reservationData }) => {
       });
   };
 
+  const attractionDeleteButton = <></>;
+  const tourDeleteButton = <></>;
+
   const mainReservations = Object.keys(destinationData).map((destination) => (
     <div key={destination}>
       <h2>{destination}</h2>
       {destinationData[destination].map((reservation) => (
         <div key={reservation.reservation_id}>
           {reservation.tour && (
-            <p>
-              Tour: {reservation.tour} | Price: {reservation.tour_price} ||
-              <button
-                onClick={() => handleTourDelete(reservation.reservation_id)}
-              >
-                Delete
-              </button>
-            </p>
+            <div>
+              <Card
+                key={reservation.reservation_id}
+                image={`${process.env.REACT_APP_API_URL}${reservation.image}`}
+                title={reservation.tour}
+                subtitle={
+                  format(new Date(reservation.date_start), "dd.MM.yyyy") +
+                  " to " +
+                  format(new Date(reservation.date_end), "dd.MM.yyyy") +
+                  " (" +
+                  reservation.tour_price +
+                  "din)"
+                }
+                description={reservation.description}
+                link={`/tour/${reservation.tour_id}`}
+                bonus={
+                  <button
+                    onClick={() => handleTourDelete(reservation.reservation_id)}
+                  >
+                    Delete
+                  </button>
+                }
+              />
+            </div>
           )}
           {reservation.attraction && (
-            <p>
-              Attraction: {reservation.attraction} | Price: {reservation.price}{" "}
-              ||
-              <button
-                onClick={() =>
-                  handleAttractionDelete(reservation.attraction_reservation_id)
+            <div>
+              <Card
+                key={reservation.attraction_reservation_id}
+                image={`${process.env.REACT_APP_API_URL}${reservation.image}`}
+                title={reservation.attraction}
+                subtitle={
+                  format(new Date(reservation.date_start), "dd.MM.yyyy") +
+                  " to " +
+                  format(new Date(reservation.date_end), "dd.MM.yyyy") +
+                  " (" +
+                  reservation.price +
+                  "din)"
                 }
-              >
-                Delete
-              </button>
-            </p>
+                description={reservation.description}
+                link={`/tour/${reservation.tour_id}`}
+                bonus={
+                  <button
+                    onClick={() =>
+                      handleAttractionDelete(
+                        reservation.attraction_reservation_id
+                      )
+                    }
+                  >
+                    Delete
+                  </button>
+                }
+              />
+            </div>
           )}
         </div>
       ))}
