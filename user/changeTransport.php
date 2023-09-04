@@ -20,4 +20,4 @@ $transport = new Transport
 $db = new Database();
 $transport->setConnection($db->getConnection());
 
-print_r(json_encode($transport->updatetransport()));
+print_r(json_encode($transport->updateTransport()));

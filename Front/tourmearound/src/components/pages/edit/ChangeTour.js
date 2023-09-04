@@ -20,6 +20,7 @@ const ChangeTour = (props) => {
   const urlSegments = currentURL.split("/");
   const lastSegment = urlSegments[urlSegments.length - 1];
   const dataSend = { id: lastSegment };
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const validationSchema = yup.object({
     name: yup.string().required("Required"),
@@ -106,6 +107,7 @@ const ChangeTour = (props) => {
         validationSchema={validationSchema}
         onSubmit={(values) => {
           //console.log(values);
+          setIsSubmitting(true);
           axios
             .post(process.env.REACT_APP_API_URL + "changeTour.php", values, {
               headers: {
@@ -119,6 +121,7 @@ const ChangeTour = (props) => {
               } else {
                 alert("Error");
               }
+              setIsSubmitting(false);
             });
         }}
       >
@@ -241,7 +244,9 @@ const ChangeTour = (props) => {
               />
             </label>
 
-            <button type="submit">Change</button>
+            <button type="submit" disabled={isSubmitting}>
+              Change
+            </button>
           </Form>
         )}
       </Formik>

@@ -2,6 +2,7 @@ import React from "react";
 import Card from "../segments/Card";
 import axios from "axios";
 import { format } from "date-fns";
+import { NavLink } from "react-router-dom";
 
 const Attractions = (props) => {
   const [data, setData] = React.useState([]);
@@ -59,16 +60,14 @@ const Attractions = (props) => {
       key={item.id}
       id={item.id}
       image={`${process.env.REACT_APP_API_URL}${item.image}`}
-      title={
-        item.title +
-        " - " +
+      title={item.title}
+      subtitle={
         format(new Date(item.date_start), "dd.MM.yyyy. HH:mm") +
         " to " +
         format(new Date(item.date_end), "dd.MM.yyyy. HH:mm")
       }
-      subtitle={item.destination}
       description={item.description}
-      reservationButton={localStorage.getItem("user") ? item.id : null}
+      link={`/attraction/${item.id}`}
     />
   ));
 

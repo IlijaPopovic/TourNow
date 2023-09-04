@@ -15,5 +15,11 @@ $destination = new Destination
 $db = new Database();
 $destination->setConnection($db->getConnection());
 
+$array = $destination->selectDestination();
+
+$file = new FileHandler();
+
+$file->deleteFile($array[0]['image']);
+
 print_r(json_encode($destination->deleteDestination()));
 

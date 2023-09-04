@@ -12,6 +12,7 @@ const ChangeAccommodation = (props) => {
   const urlSegments = currentURL.split("/");
   const lastSegment = urlSegments[urlSegments.length - 1];
   const dataSend = { id: lastSegment };
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const validationSchema = yup.object({
     name: yup.string().required("Name is required"),
@@ -68,6 +69,7 @@ const ChangeAccommodation = (props) => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
+          setIsSubmitting(true);
           axios
             .post(
               process.env.REACT_APP_API_URL + "changeAccommodation.php",
@@ -85,6 +87,7 @@ const ChangeAccommodation = (props) => {
               } else {
                 alert("Error");
               }
+              setIsSubmitting(false);
             });
         }}
       >
@@ -144,7 +147,9 @@ const ChangeAccommodation = (props) => {
               />
             </label>
 
-            <button type="submit">Change</button>
+            <button type="submit" disabled={isSubmitting}>
+              Change
+            </button>
           </Form>
         )}
       </Formik>

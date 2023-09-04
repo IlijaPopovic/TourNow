@@ -40,7 +40,7 @@ class Room extends Table
     public function deleteRoom():array
     {
         $query = <<<EOD
-                DELETE FROM `room` WHERE `room`.`id` = :id"
+                DELETE FROM `room` WHERE `room`.`id` = :id
                 EOD;
         $params = ['id'];
         return parent::delete($query, $params);

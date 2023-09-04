@@ -15,5 +15,11 @@ $organisation = new Organisation
 $db = new Database();
 $organisation->setConnection($db->getConnection());
 
+$array = $organisation->selectOrganisation();
+
+$file = new FileHandler();
+
+$file->deleteFile($array[0]['image']);
+
 print_r(json_encode($organisation->deleteOrganisation()));
 

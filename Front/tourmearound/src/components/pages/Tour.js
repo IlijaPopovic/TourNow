@@ -47,6 +47,24 @@ const Tour = () => {
       })
       .then((response) => {
         setData(response.data);
+        const apiUrl = process.env.REACT_APP_API_URL + "createStatistic.php";
+        axios
+          .post(
+            apiUrl,
+            { organisation_id: response.data[3]["id"], tour_id: lastSegment },
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          )
+          .then((response) => {
+            //console.log("statistika:");
+            //console.log(response.data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -56,25 +74,6 @@ const Tour = () => {
   if (dataR.length === 0) {
     return <p>Loading...</p>;
   }
-
-  const apiUrl = process.env.REACT_APP_API_URL + "createStatistic.php";
-  axios
-    .post(
-      apiUrl,
-      { organisation_id: dataR[3]["id"], tour_id: lastSegment },
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    )
-    .then((response) => {
-      //console.log("statistika:");
-      //console.log(response.data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
 
   const handleTransportFilterClick = (filter) => {
     setActiveTransportFilter(filter);
@@ -150,20 +149,30 @@ const Tour = () => {
       });
   };
 
-  const reserveButton = (
+  const reserveButton = localStorage.getItem("user") ? (
     <div>
-      <br />
       <button onClick={handleReservationButtonClick}>Reserve</button>
+    </div>
+  ) : (
+    <div className="link-button">
+      <NavLink to="/UserProfile">Log in</NavLink>
     </div>
   );
 
-  const deleteButton = (
-    <div>
-      <br />
-      <button onClick={handleTourDelete}>Delete tour</button>
-      <br />
-    </div>
-  );
+  const deleteButton =
+    localStorage.getItem("admin") || localStorage.getItem("organisation") ? (
+      <div>
+        <br />
+        <button onClick={handleTourDelete}>Delete tour</button>
+        <br />
+      </div>
+    ) : (
+      <></>
+    );
+  const changeLink =
+    localStorage.getItem("admin") || localStorage.getItem("organisation") ? (
+      <NavLink to={"/ChangeTour/" + lastSegment}>Change Tour</NavLink>
+    ) : null;
 
   const transportData = dataR[4];
   const filteredTransport = transportData.filter((transport) => {
@@ -221,17 +230,8 @@ const Tour = () => {
           className="tour-poster"
         />
       </div>
-      <div>
-        {localStorage.getItem("admin") || localStorage.getItem("organisation")
-          ? deleteButton
-          : null}
-      </div>
-      <div>
-        {localStorage.getItem("admin") ||
-        localStorage.getItem("organisation") ? (
-          <NavLink to={"/ChangeTour/" + lastSegment}>Change Tour</NavLink>
-        ) : null}
-      </div>
+      <div>{deleteButton}</div>
+      <div>{changeLink}</div>
       <h1>{dataR[0]["name"]}</h1>
       <p>Location: {dataR[1]["name"]}</p>
       <p>
@@ -323,7 +323,7 @@ const Tour = () => {
         </div>
       </div>
       <div className="accomodation">{accommodation}</div>
-      <div>{localStorage.getItem("user") ? reserveButton : null}</div>
+      <div>{reserveButton}</div>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import "../style/Tour.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import CommentComponent from "../segments/CommentComponent";
 
 const Destination = () => {
   const navigate = useNavigate();
@@ -99,6 +100,7 @@ const Destination = () => {
       <div className="map-main">
         <Map coordinates={coordinates} className="maps" />
       </div>
+      <CommentComponent />
       <Explore destinationID={lastSegment} />
       <Attractions destinationID={lastSegment} />
     </div>

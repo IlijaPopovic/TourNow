@@ -1,7 +1,12 @@
 import React from "react";
 import "../style/AccomodationCard.css";
+import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Card = (props) => {
+  const navigate = useNavigate();
+
   const limitStringLength = (text, maxLength) => {
     if (text.length <= maxLength) {
       return text;
@@ -9,6 +14,46 @@ const Card = (props) => {
       return text.substring(0, maxLength) + "...";
     }
   };
+
+  const handleRoomDelete = () => {
+    const apiUrl = process.env.REACT_APP_API_URL + "deleteRoom.php";
+    axios
+      .post(
+        apiUrl,
+        { id: props.id },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((response) => {
+        if (response.data.status === "deleted") {
+          alert("Deleted");
+          //window.history.back();
+          navigate("/");
+        } else {
+          alert("Error");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+  const deleteButton =
+    localStorage.getItem("admin") || localStorage.getItem("organisation") ? (
+      <div>
+        <br />
+        <button onClick={handleRoomDelete}>Delete</button>
+        <br />
+      </div>
+    ) : (
+      <></>
+    );
+  const changeLink =
+    localStorage.getItem("admin") || localStorage.getItem("organisation") ? (
+      <NavLink to={"/ChangeRoom/" + props.id}>Change</NavLink>
+    ) : null;
 
   return (
     <div
@@ -27,6 +72,8 @@ const Card = (props) => {
         <p className="description">
           {limitStringLength(props.description, 250)}
         </p>
+        {deleteButton}
+        {changeLink}
       </div>
       <div className="accomodationCard-more">
         <p className="subtitle">{props.subtitle}</p>

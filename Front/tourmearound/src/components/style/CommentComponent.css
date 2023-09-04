@@ -1,0 +1,20 @@
+.comments-component {
+  display: flex;
+  flex-wrap: no-wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2px;
+}
+.comments-component > * {
+  margin: 5px;
+}
+.comments-component :first-child {
+  flex-grow: 2;
+  height: 40px;
+}
+@media (max-width: 1100px) {
+  .comments-component {
+    flex-direction: column;
+  }
+}

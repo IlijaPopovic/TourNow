@@ -50,4 +50,14 @@ class FileHandler
 
         return ['status' => 'uploaded', 'fileName' => $filesArray];;
     }
+
+    function deleteFile($filePath): array
+    {
+        if (file_exists($filePath) && is_file($filePath)) {
+            unlink($filePath);
+            return ['status' => 'deleted'];
+        } else {
+            return ['status' => 'file not found'];
+        }
+    }
 }

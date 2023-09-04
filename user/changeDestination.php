@@ -13,6 +13,12 @@ if (isset($_FILES['image']) && $_FILES['image']['name'] !== '') {
     $statusFile = $file->uploadFile($_FILES['image']);
     if ($statusFile['status'] == 'uploaded') {
         $imageName = $statusFile['fileName'];
+
+        $destination = new destination(isset($_POST['id']) ? $_POST['id'] : die('id'));
+        $db = new Database();
+        $destination->setConnection($db->getConnection());
+        $deleteImage = $destination->selectDestination()[0]['image'];
+        $file->deleteFile($deleteImage);
     }
 } else {
     $imageName = "undefined";

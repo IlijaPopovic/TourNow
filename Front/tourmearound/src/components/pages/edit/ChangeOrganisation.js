@@ -24,10 +24,6 @@ const ChangeOrganisation = (props) => {
   const validationSchema = yup.object({
     name: yup.string().required("Required"),
     mail: yup.string().email().required("Required"),
-    password: yup
-      .string()
-      .min(8, "Password must be at least 8 characters")
-      .required("Required"),
     about: yup.string().required("Required"),
     image: yup
       .mixed()
@@ -89,7 +85,11 @@ const ChangeOrganisation = (props) => {
               }
             )
             .then((response) => {
-              //console.log(response.data);
+              if (response.data["status"] === "updated") {
+                alert("Changed");
+              } else {
+                alert("Error");
+              }
             });
         }}
       >
@@ -109,15 +109,6 @@ const ChangeOrganisation = (props) => {
               <Field name="mail" type="text" placeholder="Mail" />
               <ErrorMessage
                 name="mail"
-                component="div"
-                className="field-error"
-              />
-            </label>
-
-            <label>
-              <Field name="password" type="text" placeholder="Password" />
-              <ErrorMessage
-                name="password"
                 component="div"
                 className="field-error"
               />
@@ -151,7 +142,7 @@ const ChangeOrganisation = (props) => {
               />
             </label>
 
-            <button type="submit">Create</button>
+            <button type="submit">Change</button>
           </Form>
         )}
       </Formik>

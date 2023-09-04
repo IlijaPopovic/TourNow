@@ -85,10 +85,10 @@ class Organisation extends Table
     {
         $query = <<<EOD
                 UPDATE `organisation` 
-                SET `name` = :name, `mail` = :mail, `password` = :password, `image` = :image, `about` = :about, `enabled` = :enabled 
+                SET `name` = :name, `mail` = :mail, `image` = :image, `about` = :about, `enabled` = :enabled 
                 WHERE `organisation`.`id` = :id;
                 EOD;
-        $params = ['id','name','mail','password','image','about','enabled'];
+        $params = ['id','name','mail','image','about','enabled'];
         return parent::update($query, $params);
     }
 

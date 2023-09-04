@@ -34,6 +34,9 @@ session_set_cookie_params(3600, '/', '.stud.vts.su.ac.rs');
 if (!isset($_SESSION)) {
    session_start();
 }
+
+
+
 session_write_close();
 
 class Database
@@ -42,6 +45,12 @@ class Database
     private $db_name = "noclass";
     private $username = "noclass";
     private $password = "suYHPRGOhWe4t8k";
+
+    // private $host = "localhost";
+    // private $db_name = "noclass";
+    // private $username = "root";
+    // private $password = "root";
+
     public $conn;
 
     public function getConnection()

@@ -104,10 +104,10 @@ class Transport extends Table
     {
         $query = <<<EOD
                 UPDATE `Transport` 
-                SET `name` = :name, `type` = :type, `start` = :start, `end` = :end 
+                SET `name` = :name, `type` = :type, `start` = :start, `end` = :end, `tour_id` = :tour_id
                 WHERE `Transport`.`id` = :id;
                 EOD;
-        $params = ['id', 'name', 'type', 'start', 'end'];
+        $params = ['id', 'name', 'type', 'start', 'end','tour_id'];
         return parent::update($query, $params);
     }
 }

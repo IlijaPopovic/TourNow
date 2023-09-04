@@ -14,29 +14,28 @@ const Card = (props) => {
     }
   };
 
-  const createAttractionValues = {
-    user_id: localStorage.getItem("user"),
-    attraction_id: props.id,
-  };
+  // const createAttractionValues = {
+  //   user_id: localStorage.getItem("user"),
+  //   attraction_id: props.id,
+  // };
 
-  const [reserved, setReserved] = React.useState(false);
-  const handleReservationButtonClick = () => {
-    //console.log(createAttractionValues);
-    axios
-      .post(
-        process.env.REACT_APP_API_URL + "createAttractionReservation.php",
-        createAttractionValues,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      )
-      .then((response) => {
-        //console.log(response.data);
-      });
-    setReserved((reserved) => !reserved);
-  };
+  // const handleReservationButtonClick = () => {
+  //   //console.log(createAttractionValues);
+  //   axios
+  //     .post(
+  //       process.env.REACT_APP_API_URL + "createAttractionReservation.php",
+  //       createAttractionValues,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       //console.log(response.data);
+  //     });
+  //   setReserved((reserved) => !reserved);
+  // };
 
   const handleDeleteOranisationButtonClick = () => {
     axios
@@ -84,13 +83,6 @@ const Card = (props) => {
       });
   };
 
-  const reservationButton = (
-    <div>
-      <br />
-      <button onClick={handleReservationButtonClick}>Rezervisi</button>
-    </div>
-  );
-
   const deleteOranisationButton = (
     <div>
       <br />
@@ -107,10 +99,6 @@ const Card = (props) => {
     </div>
   );
 
-  const whenReserved = <p>Reseved</p>;
-
-  const showReservationButton = reserved ? whenReserved : reservationButton;
-
   return (
     <NavLink to={props.link}>
       <div className="Card">
@@ -123,7 +111,6 @@ const Card = (props) => {
           <p className="description">
             {limitStringLength(props.description, 300)}
           </p>
-          {props.reservationButton && showReservationButton}
           {props.deleteOranisationButtonID && deleteOranisationButton}
           {props.deactivationUserButtonID && deactivatiUserButton}
         </div>

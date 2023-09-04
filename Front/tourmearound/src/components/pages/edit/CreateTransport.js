@@ -100,7 +100,11 @@ const CreateTransport = (props) => {
             </label>
 
             <label>
-              <Field name="start" type="date" placeholder="Start date" />
+              <Field
+                name="start"
+                type="datetime-local"
+                placeholder="Start date"
+              />
               <ErrorMessage
                 name="start"
                 component="div"
@@ -109,7 +113,7 @@ const CreateTransport = (props) => {
             </label>
 
             <label>
-              <Field name="end" type="date" placeholder="End date" />
+              <Field name="end" type="datetime-local" placeholder="End date" />
               <ErrorMessage
                 name="end"
                 component="div"

@@ -72,44 +72,40 @@ const ReservationRenderer = ({ reservationData }) => {
       });
   };
 
-  return (
-    <div>
-      {Object.keys(destinationData).map((destination) => (
-        <div key={destination}>
-          <h2>{destination}</h2>
-          {destinationData[destination].map((reservation) => (
-            <div key={reservation.reservation_id}>
-              {reservation.tour && (
-                <p>
-                  Tour: {reservation.tour} | Price: {reservation.tour_price} ||
-                  <button
-                    onClick={() => handleTourDelete(reservation.reservation_id)}
-                  >
-                    Delete
-                  </button>
-                </p>
-              )}
-              {reservation.attraction && (
-                <p>
-                  Attraction: {reservation.attraction} | Price:{" "}
-                  {reservation.price} ||
-                  <button
-                    onClick={() =>
-                      handleAttractionDelete(
-                        reservation.attraction_reservation_id
-                      )
-                    }
-                  >
-                    Delete
-                  </button>
-                </p>
-              )}
-            </div>
-          ))}
+  const mainReservations = Object.keys(destinationData).map((destination) => (
+    <div key={destination}>
+      <h2>{destination}</h2>
+      {destinationData[destination].map((reservation) => (
+        <div key={reservation.reservation_id}>
+          {reservation.tour && (
+            <p>
+              Tour: {reservation.tour} | Price: {reservation.tour_price} ||
+              <button
+                onClick={() => handleTourDelete(reservation.reservation_id)}
+              >
+                Delete
+              </button>
+            </p>
+          )}
+          {reservation.attraction && (
+            <p>
+              Attraction: {reservation.attraction} | Price: {reservation.price}{" "}
+              ||
+              <button
+                onClick={() =>
+                  handleAttractionDelete(reservation.attraction_reservation_id)
+                }
+              >
+                Delete
+              </button>
+            </p>
+          )}
         </div>
       ))}
     </div>
-  );
+  ));
+
+  return <div>{mainReservations}</div>;
 };
 
 export default ReservationRenderer;

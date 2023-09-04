@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navigation.css";
 import { NavLink } from "react-router-dom";
 
 const Navigation = (props) => {
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <nav className="header-nav">
-      <ul>
-        {/* <li>
-          <NavLink style={props.activeNavLinknStyle} to="/">
-            Home
-          </NavLink>
-        </li> */}
+      <button className="mobile-menu-toggle" onClick={toggleMobileMenu}>
+        Menu
+      </button>
+      <ul className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
         <li>
           <NavLink style={props.activeNavLinknStyle} to="/explore">
             Explore

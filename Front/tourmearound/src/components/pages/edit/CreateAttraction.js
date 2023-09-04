@@ -108,7 +108,11 @@ const CreateAttraction = (props) => {
             </label>
 
             <label>
-              <Field name="date_start" type="date" placeholder="Date start" />
+              <Field
+                name="date_start"
+                type="datetime-local"
+                placeholder="Date start"
+              />
               <ErrorMessage
                 name="date_start"
                 component="div"
@@ -117,7 +121,11 @@ const CreateAttraction = (props) => {
             </label>
 
             <label>
-              <Field name="date_end" type="date" placeholder="Date end" />
+              <Field
+                name="date_end"
+                type="datetime-local"
+                placeholder="Date end"
+              />
               <ErrorMessage
                 name="date_end"
                 component="div"

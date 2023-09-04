@@ -100,7 +100,11 @@ const ChangeOrganisation = (props) => {
               },
             })
             .then((response) => {
-              console.log(response.data);
+              if (response.data["status"] === "updated") {
+                alert("Changed");
+              } else {
+                alert("Error");
+              }
             });
         }}
       >

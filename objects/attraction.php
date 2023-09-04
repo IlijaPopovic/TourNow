@@ -49,7 +49,7 @@ class Attraction extends Table
     public function selectAttraction():array
     {
         $query = <<<EOD
-                SELECT * FROM `attraction` WHERE `attraction`.`id` = :id
+                SELECT attraction.id, attraction.name, attraction.image, attraction.date_start, attraction.date_end, attraction.description, attraction.price, destination.coordinates, destination.name as destination, destination.country FROM `attraction` INNER JOIN destination ON attraction.destination_id = destination.id WHERE `attraction`.`id` = :id;
                 EOD;
         $params = ['id'];
         return parent::select($query, $params);

@@ -15,6 +15,7 @@ import UserProfile from "./components/pages/UserProfile";
 import AdminProfile from "./components/pages/AdminProfile";
 import Organisation from "./components/pages/Organisation";
 import Tour from "./components/pages/Tour";
+import Attraction from "./components/pages/Attraction";
 import Destination from "./components/pages/Destination";
 
 import CreateAttraction from "./components/pages/edit/CreateAttraction";
@@ -56,6 +57,7 @@ const App = () => {
         <Route path="/Tour/:id" element={<Tour />} />
         <Route path="/Organisation/:id" element={<Organisation />} />
         <Route path="/Destination/:id" element={<Destination />} />
+        <Route path="/Attraction/:id" element={<Attraction />} />
 
         <Route path="/CreateAttraction" element={<CreateAttraction />} />
         <Route path="/CreateDestination" element={<CreateDestination />} />
