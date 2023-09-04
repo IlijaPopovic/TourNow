@@ -125,7 +125,7 @@ const Attraction = () => {
   const coordinates = dataR["coordinates"].split(",");
   return (
     <div>
-      <div>
+      <div className="section">
         <img
           src={`${process.env.REACT_APP_API_URL}${dataR["image"]}`}
           alt="poster"
@@ -134,19 +134,21 @@ const Attraction = () => {
       </div>
       <div>{deleteButton}</div>
       <div>{changeLink}</div>
-      <h1>{dataR["name"]}</h1>
-      <p>Conutry: {dataR["destination"] + " (" + dataR["country"] + ")"}</p>
-      <p>Price: {dataR["price"]}</p>
-      <p>
-        Date start:{" "}
-        {format(new Date(dataR["date_start"]), "dd.MM.yyyy. HH:mm") + "h"}
-      </p>
-      <p>
-        Date End:{" "}
-        {format(new Date(dataR["date_end"]), "dd.MM.yyyy. HH:mm") + "h"}
-      </p>
-      <p>{dataR["description"]}</p>
-      <div className="map-main">
+      <div>
+        <h1>{dataR["name"]}</h1>
+        <p>Conutry: {dataR["destination"] + " (" + dataR["country"] + ")"}</p>
+        <p>Price: {dataR["price"]}</p>
+        <p>
+          Date start:{" "}
+          {format(new Date(dataR["date_start"]), "dd.MM.yyyy. HH:mm") + "h"}
+        </p>
+        <p>
+          Date End:{" "}
+          {format(new Date(dataR["date_end"]), "dd.MM.yyyy. HH:mm") + "h"}
+        </p>
+        <p>{dataR["description"]}</p>
+      </div>
+      <div className="map-main section">
         <Map coordinates={coordinates} className="maps" />
       </div>
       <div>{reserveButton}</div>

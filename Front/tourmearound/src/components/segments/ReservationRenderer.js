@@ -74,9 +74,6 @@ const ReservationRenderer = ({ reservationData }) => {
       });
   };
 
-  const attractionDeleteButton = <></>;
-  const tourDeleteButton = <></>;
-
   const mainReservations = Object.keys(destinationData).map((destination) => (
     <div key={destination}>
       <h2>{destination}</h2>

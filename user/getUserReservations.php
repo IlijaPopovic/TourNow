@@ -34,9 +34,9 @@ $user = new User
 
 $db = new Database();
 $user->setConnection($db->getConnection());
-$data3 = $user->selectUserAttractionReservations();
-$data4 = $user->selectUserRoomReservations();
-$data5 = $user->selectUserTransportReservations();
+// $data3 = $user->selectUserAttractionReservations();
+// $data4 = $user->selectUserRoomReservations();
+// $data5 = $user->selectUserTransportReservations();
 
 print_r(json_encode([$data1, $data2]));
 

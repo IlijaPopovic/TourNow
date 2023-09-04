@@ -74,7 +74,7 @@ const Destination = () => {
   const coordinates = dataR["coordinates"].split(",");
   return (
     <div>
-      <div>
+      <div className="section">
         <img
           src={`${process.env.REACT_APP_API_URL}${dataR["image"]}`}
           alt="poster"
@@ -94,15 +94,21 @@ const Destination = () => {
           </NavLink>
         ) : null}
       </div>
-      <h1>{dataR["name"]}</h1>
-      <p>Conutry: {dataR["country"]}</p>
-      <p>{dataR["description"]}</p>
-      <div className="map-main">
+      <div className="section">
+        <h1>{dataR["name"]}</h1>
+        <p>Conutry: {dataR["country"]}</p>
+        <p>{dataR["description"]}</p>
+      </div>
+      <div className="map-main section">
         <Map coordinates={coordinates} className="maps" />
       </div>
-      <CommentComponent />
-      <Explore destinationID={lastSegment} />
-      <Attractions destinationID={lastSegment} />
+      {localStorage.getItem("user") && <CommentComponent />}
+      <div className="section">
+        <Explore destinationID={lastSegment} />
+      </div>
+      <div className="section">
+        <Attractions destinationID={lastSegment} className="section" />
+      </div>
     </div>
   );
 };

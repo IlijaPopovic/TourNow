@@ -8,8 +8,8 @@
   margin-left: 20px;
 }
 .profile-picture {
-  min-width: 400px;
-  max-width: 400px;
+  min-width: 600px;
+  max-width: 600px;
 }
 @media (max-width: 1100px) {
   .info {
@@ -17,5 +17,8 @@
   }
   .profile-data {
     margin-left: 0;
+  }
+  .profile-picture {
+    min-width: 100%;
   }
 }

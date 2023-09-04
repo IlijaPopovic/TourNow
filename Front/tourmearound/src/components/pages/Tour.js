@@ -223,7 +223,7 @@ const Tour = () => {
 
   return (
     <div>
-      <div>
+      <div className="section">
         <img
           src={`${process.env.REACT_APP_API_URL}${dataR[2][0]["name"]}`}
           alt="poster"
@@ -232,97 +232,108 @@ const Tour = () => {
       </div>
       <div>{deleteButton}</div>
       <div>{changeLink}</div>
-      <h1>{dataR[0]["name"]}</h1>
-      <p>Location: {dataR[1]["name"]}</p>
-      <p>
-        Date: {format(new Date(dataR[0]["date_start"]), "d.MM.yyyy")} -{" "}
-        {format(new Date(dataR[0]["date_end"]), "d.MM.yyyy")}
-      </p>
-      <p>Free space: {dataR[0]["max_people"]}</p>
-      <p>Price: {dataR[0]["price"]}din</p>
-      <p>{dataR[0]["description"]}</p>
-
-      <h2>Organisation</h2>
-      <Card
-        image={`${process.env.REACT_APP_API_URL}${dataR[3]["image"]}`}
-        title={dataR[3]["name"]}
-        description={dataR[3]["about"]}
-        link={`/organisation/${dataR[3]["id"]}`}
-      />
-
-      <div className="header-title-filter">
-        <h2>Pick your Transport</h2>
-        <div className="filter-icon">
-          <FontAwesomeIcon
-            icon={faChevronRight}
-            onClick={() => handleTransportFilterClick("")}
-            className={activeTransportFilter === "" ? "activeFilter" : ""}
-          />
-          <FontAwesomeIcon
-            icon={faBus}
-            onClick={() => handleTransportFilterClick("bus")}
-            className={activeTransportFilter === "bus" ? "activeFilter" : ""}
-          />
-          <FontAwesomeIcon
-            icon={faPlane}
-            onClick={() => handleTransportFilterClick("plane")}
-            className={activeTransportFilter === "plane" ? "activeFilter" : ""}
-          />
-          <FontAwesomeIcon
-            icon={faShip}
-            onClick={() => handleTransportFilterClick("ship")}
-            className={activeTransportFilter === "ship" ? "activeFilter" : ""}
-          />
-          <FontAwesomeIcon
-            icon={faCar}
-            onClick={() => handleTransportFilterClick("car")}
-            className={activeTransportFilter === "car" ? "activeFilter" : ""}
-          />
-          <FontAwesomeIcon
-            icon={faTrain}
-            onClick={() => handleTransportFilterClick("train")}
-            className={activeTransportFilter === "train" ? "activeFilter" : ""}
-          />
-        </div>
+      <div className="section">
+        <h1>{dataR[0]["name"]}</h1>
+        <p>Location: {dataR[1]["name"]}</p>
+        <p>
+          Date: {format(new Date(dataR[0]["date_start"]), "d.MM.yyyy")} -{" "}
+          {format(new Date(dataR[0]["date_end"]), "d.MM.yyyy")}
+        </p>
+        <p>Free space: {dataR[0]["max_people"]}</p>
+        <p>Price: {dataR[0]["price"]}din</p>
+        <p>{dataR[0]["description"]}</p>
       </div>
-      <div className="transports">{transport}</div>
-
-      <div className="header-title-filter">
-        <h2>Pick your Accomodation</h2>
-        <div className="filter-icon">
-          <FontAwesomeIcon
-            icon={faChevronRight}
-            onClick={() => handleAccomodationFilterClick("")}
-            className={activeAccomodationFilter === "" ? "activeFilter" : ""}
-          />
-          <FontAwesomeIcon
-            icon={faStar}
-            onClick={() => handleAccomodationFilterClick("1")}
-            className={activeAccomodationFilter >= "0" ? "activeFilter" : ""}
-          />
-          <FontAwesomeIcon
-            icon={faStar}
-            onClick={() => handleAccomodationFilterClick("2")}
-            className={activeAccomodationFilter >= "2" ? "activeFilter" : ""}
-          />
-          <FontAwesomeIcon
-            icon={faStar}
-            onClick={() => handleAccomodationFilterClick("3")}
-            className={activeAccomodationFilter >= "3" ? "activeFilter" : ""}
-          />
-          <FontAwesomeIcon
-            icon={faStar}
-            onClick={() => handleAccomodationFilterClick("4")}
-            className={activeAccomodationFilter >= "4" ? "activeFilter" : ""}
-          />
-          <FontAwesomeIcon
-            icon={faStar}
-            onClick={() => handleAccomodationFilterClick("5")}
-            className={activeAccomodationFilter >= "5" ? "activeFilter" : ""}
-          />
-        </div>
+      <div className="section">
+        <h2>Organisation</h2>
+        <Card
+          image={`${process.env.REACT_APP_API_URL}${dataR[3]["image"]}`}
+          title={dataR[3]["name"]}
+          description={dataR[3]["about"]}
+          link={`/organisation/${dataR[3]["id"]}`}
+        />
       </div>
-      <div className="accomodation">{accommodation}</div>
+      <div className="section">
+        <div className="header-title-filter">
+          <h2>Pick your Transport</h2>
+          <div className="filter-icon">
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              onClick={() => handleTransportFilterClick("")}
+              className={activeTransportFilter === "" ? "activeFilter" : ""}
+            />
+            <FontAwesomeIcon
+              icon={faBus}
+              onClick={() => handleTransportFilterClick("bus")}
+              className={activeTransportFilter === "bus" ? "activeFilter" : ""}
+            />
+            <FontAwesomeIcon
+              icon={faPlane}
+              onClick={() => handleTransportFilterClick("plane")}
+              className={
+                activeTransportFilter === "plane" ? "activeFilter" : ""
+              }
+            />
+            <FontAwesomeIcon
+              icon={faShip}
+              onClick={() => handleTransportFilterClick("ship")}
+              className={activeTransportFilter === "ship" ? "activeFilter" : ""}
+            />
+            <FontAwesomeIcon
+              icon={faCar}
+              onClick={() => handleTransportFilterClick("car")}
+              className={activeTransportFilter === "car" ? "activeFilter" : ""}
+            />
+            <FontAwesomeIcon
+              icon={faTrain}
+              onClick={() => handleTransportFilterClick("train")}
+              className={
+                activeTransportFilter === "train" ? "activeFilter" : ""
+              }
+            />
+          </div>
+        </div>
+        <div className="transports">{transport}</div>
+      </div>
+
+      <div className="section">
+        <div className="header-title-filter">
+          <h2>Pick your Accomodation</h2>
+          <div className="filter-icon">
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              onClick={() => handleAccomodationFilterClick("")}
+              className={activeAccomodationFilter === "" ? "activeFilter" : ""}
+            />
+            <FontAwesomeIcon
+              icon={faStar}
+              onClick={() => handleAccomodationFilterClick("1")}
+              className={activeAccomodationFilter >= "0" ? "activeFilter" : ""}
+            />
+            <FontAwesomeIcon
+              icon={faStar}
+              onClick={() => handleAccomodationFilterClick("2")}
+              className={activeAccomodationFilter >= "2" ? "activeFilter" : ""}
+            />
+            <FontAwesomeIcon
+              icon={faStar}
+              onClick={() => handleAccomodationFilterClick("3")}
+              className={activeAccomodationFilter >= "3" ? "activeFilter" : ""}
+            />
+            <FontAwesomeIcon
+              icon={faStar}
+              onClick={() => handleAccomodationFilterClick("4")}
+              className={activeAccomodationFilter >= "4" ? "activeFilter" : ""}
+            />
+            <FontAwesomeIcon
+              icon={faStar}
+              onClick={() => handleAccomodationFilterClick("5")}
+              className={activeAccomodationFilter >= "5" ? "activeFilter" : ""}
+            />
+          </div>
+        </div>
+
+        <div className="accomodation">{accommodation}</div>
+      </div>
       <div>{reserveButton}</div>
     </div>
   );
