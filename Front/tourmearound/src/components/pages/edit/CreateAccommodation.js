@@ -119,13 +119,10 @@ const CreateAccomodation = (props) => {
               />
             </label>
 
-            <button type="submit">Sign Up</button>
+            <button type="submit">Create</button>
           </Form>
         )}
       </Formik>
-      <button type="button" onClick={props.toggleForm}>
-        {props.isSignUp ? "Switch to Signup" : "Switch to Login"}
-      </button>
     </div>
   );
 };

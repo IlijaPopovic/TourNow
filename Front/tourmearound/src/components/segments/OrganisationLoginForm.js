@@ -38,9 +38,10 @@ const LoginForm = (props) => {
               }
             )
             .then((response) => {
-              //console.log(response.data);
+              console.log(response);
+              console.log(values);
               if (response.data.id === "no") {
-                alert("pogresan upis");
+                alert("Wrong data");
               } else {
                 localStorage.setItem("organisation", response.data[0].id);
                 navigate("/");

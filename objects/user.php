@@ -165,3 +165,4 @@ class User extends Table
         return parent::update($query, $params);
     }
 }
+

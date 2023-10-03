@@ -14,29 +14,6 @@ const Card = (props) => {
     }
   };
 
-  // const createAttractionValues = {
-  //   user_id: localStorage.getItem("user"),
-  //   attraction_id: props.id,
-  // };
-
-  // const handleReservationButtonClick = () => {
-  //   //console.log(createAttractionValues);
-  //   axios
-  //     .post(
-  //       process.env.REACT_APP_API_URL + "createAttractionReservation.php",
-  //       createAttractionValues,
-  //       {
-  //         headers: {
-  //           "Content-Type": "multipart/form-data",
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       //console.log(response.data);
-  //     });
-  //   setReserved((reserved) => !reserved);
-  // };
-
   const handleDeleteOranisationButtonClick = () => {
     axios
       .post(
@@ -49,10 +26,8 @@ const Card = (props) => {
         }
       )
       .then((response) => {
-        //console.log(response.data);
         if (response.data.status === "deleted") {
           alert("Organisation deleted");
-          //window.window.location.reload();
           navigate("/");
         } else {
           alert("error");

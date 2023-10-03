@@ -17,12 +17,19 @@ img {
 .header-right > * {
   margin: 10px;
 }
+
 @media (max-width: 1100px) {
-  .header,
-  .header-left {
+  .header {
     flex-direction: column;
+  }
+  .header-left {
+    flex-direction: row;
+    width: 100%;
   }
   .header {
     margin-bottom: 50px;
+  }
+  .icon {
+    align-self: flex-start;
   }
 }

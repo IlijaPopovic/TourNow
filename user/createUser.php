@@ -41,5 +41,3 @@ if($answer["status"]=="inserted")
 
 print_r(json_encode($answer));
 
-
-

@@ -12,8 +12,12 @@ const Header = (props) => {
   return (
     <div className="header">
       <div className="header-left">
-        <img src={require("./logo.png")} alt="Home" className="header-icon" />
-        <Navigation activeNavLinknStyle={activeNavLinknStyle} />
+        <div className="icon">
+          <img src={require("./logo.png")} alt="Home" className="header-icon" />
+        </div>
+        <div>
+          <Navigation activeNavLinknStyle={activeNavLinknStyle} />
+        </div>
       </div>
       <div className="header-right">
         <NavLink to="/AdminProfile" style={activeNavLinknStyle}>

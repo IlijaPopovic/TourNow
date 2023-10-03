@@ -120,7 +120,7 @@ const ReservationRenderer = ({ reservationData }) => {
                   "din)"
                 }
                 description={reservation.description}
-                link={`/tour/${reservation.tour_id}`}
+                link={`/attraction/${reservation.attraction_id}`}
                 bonus={
                   <button
                     onClick={() =>

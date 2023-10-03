@@ -1,6 +1,9 @@
 {
   "name": "brunoschlumpf/tour-me-around",
   "require": {
-    "phpmailer/phpmailer": "^6.5"
+    "php": ">=8.0.0",
+    "phpmailer/phpmailer": "^6.5",
+    "bacon/bacon-qr-code": "^2.0",
+    "endroid/qr-code": "^4.8"
   }
 }

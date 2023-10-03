@@ -8,8 +8,6 @@ require_once '../objects/sessionHandler.php';
 $session = new MySessionHandler();
 $session->checkOrganisation()['id']!=="no" ? null : die('nema ulogovane organisacije');
 
-// var_dump($_POST);
-
 $room = new Room
 (
     null,

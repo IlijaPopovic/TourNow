@@ -62,6 +62,31 @@ class Reservation extends Table
         return parent::update($query, $params);
     }
 
+    public function updateActivationOrDeactivationReservation():array
+    {
+        $query = <<<EOD
+                UPDATE `reservation`
+                SET `checked` = CASE
+                    WHEN `checked` = 1 THEN 0
+                    WHEN `checked` = 0 THEN 1
+                    ELSE `checked`  -- In case the current value is neither 0 nor 1
+                END
+                WHERE `id` = :id;
+                EOD;
+        $params = ['id'];
+        return parent::update($query, $params);
+    }
+    public function updateActivationReservation():array
+    {
+        $query = <<<EOD
+                UPDATE `reservation`
+                SET `checked` = 1
+                WHERE `id` = :id;
+                EOD;
+        $params = ['id'];
+        return parent::update($query, $params);
+    }
+
     public function selectUserReservations():array
     {
         $query = <<<EOD

@@ -57,7 +57,7 @@ class AttractionReservation extends Table
     public function selectUserAttractionReservation():array
     {
         $query = <<<EOD
-                SELECT destination.name as destination,attraction.image,attraction.description, attraction.name as attraction, attraction.date_start, attraction.date_end, attraction.price, attraction_reservation.id as attraction_reservation_id
+                SELECT attraction.id as attraction_id, destination.name as destination,attraction.image,attraction.description, attraction.name as attraction, attraction.date_start, attraction.date_end, attraction.price, attraction_reservation.id as attraction_reservation_id
                 FROM destination 
                 INNER JOIN attraction on attraction.destination_id = destination.id
                 INNER JOIN attraction_reservation on attraction.id = attraction_reservation.attraction_id

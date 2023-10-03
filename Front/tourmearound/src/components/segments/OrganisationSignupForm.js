@@ -63,7 +63,7 @@ const SignUpForm = (props) => {
             .then((response) => {
               //console.log(response.data);
               if (response.data.status === "inserted") {
-                alert("Verifikacioni mail Vam je poslat");
+                alert("Verification email has been sent to you");
               } else {
                 alert("Error - duplicate mail");
               }

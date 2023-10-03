@@ -58,10 +58,11 @@ const TransportCard = (props) => {
       <div className="transport-data">
         <h3 className="transport-title">{props.title}</h3>
         <p className="transport-dateStart">
-          {format(new Date(props.dateStart), "dd.MM.yyyy. HH:mm")}
+          {"Departure: " +
+            format(new Date(props.dateStart), "dd.MM.yyyy. HH:mm")}
         </p>
         <p className="transport-dateEnd">
-          {format(new Date(props.dateEnd), "dd.MM.yyyy. HH:mm")}
+          {"Arrival: " + format(new Date(props.dateEnd), "dd.MM.yyyy. HH:mm")}
         </p>
         <p className="transport-description">{props.description}</p>
         <p className="transport-type">{props.type}</p>

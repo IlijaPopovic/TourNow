@@ -110,8 +110,8 @@ const OrganisationProfileInfo = (props) => {
         </div>
       </div>
       <div>
-        <h1>Statistics: </h1>
-        {statistics}
+        {/* <h1>Statistics: </h1>
+        {statistics} */}
       </div>
       <OrganisationNavigation />
       <Explore organisationID={localStorage.getItem("organisation")} />

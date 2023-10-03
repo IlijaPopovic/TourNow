@@ -6,8 +6,8 @@ require_once '../objects/sessionHandler.php';
 
 $organisation = new Organisation();
 
-$organisation->mail = isset($_POST['mail']) ? $_POST['mail'] : die();
-$organisation->password = isset($_POST['password']) ? $_POST['password'] : die();
+$organisation->mail = isset($_POST['mail']) ? $_POST['mail'] : die('mail');
+$organisation->password = isset($_POST['password']) ? $_POST['password'] : die('password');
 
 $db = new Database();
 $organisation->setConnection($db->getConnection());

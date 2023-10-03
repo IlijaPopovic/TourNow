@@ -105,7 +105,7 @@ const Tour = () => {
       )
       .then((response) => {
         if (response.data.status === "deleted") {
-          alert("Obrisano");
+          alert("Deleted");
           //window.history.back();
           navigate("/");
         } else {
@@ -190,7 +190,7 @@ const Tour = () => {
       title={transport["name"]}
       dateStart={`Polazak: ${transport["start"]}`}
       dateEnd={`Dolazak: ${transport["end"]}`}
-      description={`Cena: ${transport["price"]}`}
+      description={`Price: ${transport["price"]}$`}
       type={`Type: ${transport["type"]}`}
       handleClick={handleTransportCardClick}
       isSelected={transport["id"] === selectedTransportId}
@@ -240,7 +240,7 @@ const Tour = () => {
           {format(new Date(dataR[0]["date_end"]), "d.MM.yyyy")}
         </p>
         <p>Free space: {dataR[0]["max_people"]}</p>
-        <p>Price: {dataR[0]["price"]}din</p>
+        <p>Price: {dataR[0]["price"]}$</p>
         <p>{dataR[0]["description"]}</p>
       </div>
       <div className="section">

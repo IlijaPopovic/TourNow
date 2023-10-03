@@ -53,6 +53,15 @@ class Organisation extends Table
         return parent::select($query, $params);
     }
 
+    public function selectOrganisationTours():array
+    {
+        $query = <<<EOD
+                SELECT `id`,`name`,`date_start`,`date_end`,`description`,`max_people`,`type`,`price`,`enabled`,`organisation_id`,`destination_id`, (SELECT name from tour_image WHERE tour_image.tour_id = tour.id ORDER BY tour.id LIMIT 1) as image FROM `tour` WHERE `tour`.`organisation_id` = :id;
+                EOD;
+        $params = ['id'];
+        return parent::select($query, $params);
+    }
+
     public function selectOrganisations():array
     {
         $query = <<<EOD

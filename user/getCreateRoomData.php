@@ -5,7 +5,7 @@ require_once '../objects/room.php';
 require_once '../objects/sessionHandler.php';
 
 $session = new MySessionHandler();
-$session->checkOrganisation()['id']!=="no" ? null : die('nema ulogovane organisacije');
+$session->checkOrganisation()['id']!=="no" || $session->checkAdmin()['id']!=="no" ? null : die('nema ulogovane organisacije');
 
 $room = new Room();
 $db = new Database();

@@ -4,12 +4,12 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import * as yup from "yup";
 
-const FILE_SIZE = 2 * 1024 * 1024; // ograničenje na 2MB
+const FILE_SIZE = 2 * 1024 * 1024;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
 
 const validationSchema = yup.object({
   name: yup.string().required("Required"),
-  date_start: yup.date().required("$equired"),
+  date_start: yup.date().required("Required"),
   date_end: yup.date().required("Required"),
   description: yup.string().required("Required"),
   price: yup.string().required("Required"),
@@ -51,7 +51,6 @@ const CreateAttraction = (props) => {
       .post(process.env.REACT_APP_API_URL + "getCreateAttractionData.php")
       .then((response) => {
         setData(response.data);
-        //console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -67,6 +66,7 @@ const CreateAttraction = (props) => {
       {item.name}
     </option>
   ));
+
   return (
     <div className="form-main">
       <h1>Create Attraction</h1>
@@ -85,7 +85,6 @@ const CreateAttraction = (props) => {
               }
             )
             .then((response) => {
-              //console.log(response);
               if (response.data["status"] === "inserted") {
                 alert("Created");
                 actions.resetForm();
@@ -96,7 +95,6 @@ const CreateAttraction = (props) => {
         }}
       >
         {({ setFieldValue, errors }) => (
-          //console.log("Formik Errors:", errors),
           <Form className="form">
             <label>
               <Field name="name" type="text" placeholder="Name" />
@@ -176,7 +174,6 @@ const CreateAttraction = (props) => {
                 type="file"
                 onChange={(event) => {
                   setFieldValue("image", event.currentTarget.files[0]);
-                  //console.log(event.currentTarget.files[0]);
                 }}
               />
               <ErrorMessage

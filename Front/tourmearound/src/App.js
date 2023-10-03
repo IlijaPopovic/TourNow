@@ -37,9 +37,19 @@ import ChangeAccommodation from "./components/pages/edit/ChangeAccommodation";
 import UserForgotPassword from "./components/pages/edit/UserForgotPassword";
 import OrganisationForgotPassword from "./components/pages/edit/OrganisationForgotPassword";
 
+import {
+  ChecUserLogin,
+  ChecOrganisationLogin,
+  ChecAdminLogin,
+} from "./components/functions/CheckLogins";
+
 axios.defaults.withCredentials = true;
 
 const App = () => {
+  ChecUserLogin();
+  ChecOrganisationLogin();
+  ChecAdminLogin();
+
   return (
     <div className="App">
       <Header />

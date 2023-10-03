@@ -59,6 +59,15 @@ class Tour extends Table
         return parent::select($query, $params);
     }
 
+    public function selectTourReservations():array
+    {
+        $query = <<<EOD
+                SELECT reservation.id, checked, tour_group, user_id, tour_id, transport_id, room_id, name, surname, identity_number, country, address, mail, mobile_number, image, verified FROM `reservation` INNER JOIN user ON user.id = reservation.user_id WHERE `reservation`.`tour_id` = :id;
+                EOD;
+        $params = ['id'];
+        return parent::select($query, $params);
+    }
+
     public function selectTours():array
     {
         $query = <<<EOD

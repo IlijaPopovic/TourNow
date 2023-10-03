@@ -62,7 +62,6 @@ const CreateTour = (props) => {
       .post(process.env.REACT_APP_API_URL + "getCreateTourData.php")
       .then((response) => {
         setData(response.data);
-        // console.log(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -98,7 +97,6 @@ const CreateTour = (props) => {
               },
             })
             .then((response) => {
-              //console.log(response.data);
               if (response.data["status"] === "inserted") {
                 alert("Created");
                 actions.resetForm();
@@ -109,7 +107,6 @@ const CreateTour = (props) => {
         }}
       >
         {({ setFieldValue, errors }) => (
-          // console.log("Formik Errors:", errors),
           <Form className="form">
             <label>
               <Field name="name" type="text" placeholder="Name" />

@@ -49,7 +49,7 @@ const Organisation = () => {
       )
       .then((response) => {
         if (response.data.status === "deleted") {
-          alert("Obrisano");
+          alert("Deleted");
           //window.history.back();
           navigate("/");
         } else {
@@ -61,25 +61,23 @@ const Organisation = () => {
       });
   };
 
-  const deleteButton =
-    localStorage.getItem("admin") || localStorage.getItem("organisation") ? (
-      <div>
-        <br />
-        <button onClick={handleTourDelete}>Delete organiastion</button>
-        <br />
-      </div>
-    ) : (
-      <></>
-    );
+  const deleteButton = localStorage.getItem("admin") ? (
+    <div>
+      <br />
+      <button onClick={handleTourDelete}>Delete organiastion</button>
+      <br />
+    </div>
+  ) : (
+    <></>
+  );
 
-  const changeLink =
-    localStorage.getItem("admin") || localStorage.getItem("organisation") ? (
-      <NavLink to={"/ChangeOrganisation/" + lastSegment}>
-        Change Organisation
-      </NavLink>
-    ) : (
-      <></>
-    );
+  const changeLink = localStorage.getItem("admin") ? (
+    <NavLink to={"/ChangeOrganisation/" + lastSegment}>
+      Change Organisation
+    </NavLink>
+  ) : (
+    <></>
+  );
 
   return (
     <div>

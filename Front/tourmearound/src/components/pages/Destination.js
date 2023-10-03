@@ -48,7 +48,7 @@ const Destination = () => {
       )
       .then((response) => {
         if (response.data.status === "deleted") {
-          alert("Obrisano");
+          alert("Deleted");
           //window.history.back();
           navigate("/");
         } else {
